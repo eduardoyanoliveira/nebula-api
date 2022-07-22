@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User{
+  id String @id @default(uuid())
+  username String @unique @db.VarChar(50)
+  email String @unique
+  password String 
+
+  is_active Boolean @default(true)
+
+  role String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("tbl_users")
+  ranks Rank[]
+  questions Question[]
+  answers Answer[]
+}
+
+
+model Subject{
+  id String @id @default(uuid())
+  name String @unique @db.VarChar(50)
+
+  is_active Boolean @default(true)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("tbl_subjects")
+  ranks Rank[]
+  contents Content[]
+  questions Question[]
+}
+
+
+model Rank {
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
+
+  subject Subject @relation(fields: [subject_id], references: [id])
+  subject_id String
+
+  points Int
+
+  @@id([user_id, subject_id])
+  @@map("tbl_ranks")
+}
+
+
+model Rankmark{
+  id String @id @default(uuid())
+  name String @unique @db.VarChar(50)
+  points Int
+  color String @db.VarChar(12)
+
+  is_active Boolean @default(true)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("tbl_rankmarks")
+}
+
+
+model Content{
+  id String @id @default(uuid())
+  description String @db.VarChar(80)
+  url String @db.VarChar(300)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  subject Subject @relation(fields: [subject_id], references: [id])
+  subject_id String
+
+  @@map("tbl_contents")
+}
+
+
+model Question{
+  id String @id @default(uuid())
+  title String @db.VarChar(70)
+  text String
+
+  is_public Boolean @default(true)
+  is_closed Boolean @default(false)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  author User @relation(fields: [author_id], references: [id])
+  author_id String
+
+  subject Subject @relation(fields: [subject_id], references: [id])
+  subject_id String
+
+  @@map("tbl_questions")
+  answers Answer[]
+} 
+
+
+model Answer{
+  id String @id @default(uuid())
+  text String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  author User @relation(fields: [author_id], references: [id])
+  author_id String
+
+  question Question @relation(fields: [question_id], references: [id])
+  question_id String
+
+  @@map("tbl_answers")
+}

@@ -1,0 +1,46 @@
+import { GenericResultClass } from "../../../../core/GenericResultClass";
+import { Result } from "../../../../core/Result";
+import { IRankRepository } from "../../../repositories/Rank/rank-repository";
+import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
+import { IUserRepository } from "../../../repositories/User/user-repository";
+
+
+interface IGenerateUserRanksProps {
+    user_id : string
+};
+
+
+export class GenerateUserRanksService {
+
+    constructor(
+        private  UserRepository : IUserRepository,
+        private SubjectRepository: ISubjectRepository,
+        private RankRepository : IRankRepository
+    ){};
+
+    async execute({ user_id } : IGenerateUserRanksProps) : Promise<Result<GenericResultClass>>{
+
+        const userOrError = await this.UserRepository.findById(user_id);
+
+        if(userOrError.isFailure){
+            return Result.fail<GenericResultClass>(userOrError.error);
+        };
+
+        const subjectsOrError = await this.SubjectRepository.list();
+
+        if(subjectsOrError.isFailure){
+            return Result.fail<GenericResultClass>(subjectsOrError.error);
+        };
+
+        // If there are no subjects on database there is no need to create ranks
+        if(subjectsOrError.getValue().length === 0) return Result.ok<GenericResultClass>(GenericResultClass.create('ok'));
+
+        const ranksOrError = await this.RankRepository.generateUserRanks(userOrError.getValue(), subjectsOrError.getValue());
+
+        if(ranksOrError.isFailure){
+            return Result.fail<GenericResultClass>(ranksOrError.error);
+        };
+
+        return Result.ok<GenericResultClass>(GenericResultClass.create('ok'));
+    };
+};
