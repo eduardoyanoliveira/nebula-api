@@ -7,3 +7,6 @@ coverage
 
 yarn.lock
 yarn-error
+
+/migrations
+migrations
