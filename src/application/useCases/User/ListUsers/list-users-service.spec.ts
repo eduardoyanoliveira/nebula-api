@@ -1,24 +1,19 @@
 import { Result } from "../../../../core/Result";
-import { Role, User } from "../../../../domain/entities/User";
+import { User } from "../../../../domain/entities/User";
 import { generateRandomUser } from "../../../../tests/generate-random-user";
-import { InMemoryUserRepository } from "../../../../tests/repositories/User/in-memory-user-repo";
+import { InMemoryListUsersRepository, inMemoryUsers } from "../../../../tests/repositories/User/in-memory-user-repo";
 import { ListUsersService } from "./list-users-service";
 
 describe('List users service', () => {
     
-    const repo = new InMemoryUserRepository();
-    const service = new ListUsersService(repo);
+    const listUsersRepository = new InMemoryListUsersRepository();
+    const service = new ListUsersService(listUsersRepository);
 
     const user_one = generateRandomUser();
     const user_two = generateRandomUser();
 
-    repo.users.push(user_one);
-    repo.users.push(user_two);
-      
-    afterAll(() => {
-        repo.users = [];
-    });
-      
+    inMemoryUsers.push(user_one);
+    inMemoryUsers.push(user_two);
 
     it('should return a list of users', async () => {
 

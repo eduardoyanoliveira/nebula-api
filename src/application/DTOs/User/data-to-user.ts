@@ -2,11 +2,11 @@ import { Role, User } from "../../../domain/entities/User";
 import { IUserDataProps } from "./interfaces";
 
 export interface IDataToUser {
-    dataToUser(userData: IUserDataProps): User
+    transform(userData: IUserDataProps): User
 };
 
 export class DataToUser implements IDataToUser{
-    dataToUser(userData: IUserDataProps): User{
+    transform(userData: IUserDataProps): User{
         const { id, ...rest } = userData;
     
         const props = {

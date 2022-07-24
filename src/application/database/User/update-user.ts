@@ -1,13 +1,12 @@
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 import { prismaClient } from "../prisma/prismaClient";
-import { IUserRepository } from "../../repositories/User/user-repository";
+import { IUpdateUserRepository } from "../../repositories/User/user-repository";
 
-export interface IUpdateUser extends Pick<IUserRepository, 'update'>{};
 
-export class UpdateUser implements IUpdateUser{
+export class UpdateUserRepository implements IUpdateUserRepository{
 
-    async update(user: User): Promise<Result<User>> {
+    async execute(user: User): Promise<Result<User>> {
         
         try{
 

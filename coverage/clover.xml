@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1658079568371" clover="3.2.0">
-  <project timestamp="1658079568371" name="All files">
-    <metrics statements="2551" coveredstatements="2472" conditionals="362" coveredconditionals="314" methods="167" coveredmethods="162" elements="3080" coveredelements="2948" complexity="0" loc="2551" ncloc="2551" packages="58" files="78" classes="78"/>
+<coverage generated="1658706081418" clover="3.2.0">
+  <project timestamp="1658706081418" name="All files">
+    <metrics statements="2560" coveredstatements="2481" conditionals="361" coveredconditionals="313" methods="166" coveredmethods="161" elements="3087" coveredelements="2955" complexity="0" loc="2560" ncloc="2560" packages="58" files="78" classes="78"/>
     <package name="application.services.Cryptography">
       <metrics statements="12" coveredstatements="10" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="1"/>
       <file name="password-cryptography.ts" path="D:\Dev\JavaScript\typescript\projetos\nebula\backend\src\application\services\Cryptography\password-cryptography.ts">
@@ -107,9 +107,9 @@
       </file>
     </package>
     <package name="application.useCases.Answer.UpdateAnswer">
-      <metrics statements="44" coveredstatements="42" conditionals="7" coveredconditionals="6" methods="2" coveredmethods="2"/>
+      <metrics statements="45" coveredstatements="43" conditionals="7" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="update-answer-service.ts" path="D:\Dev\JavaScript\typescript\projetos\nebula\backend\src\application\useCases\Answer\UpdateAnswer\update-answer-service.ts">
-        <metrics statements="44" coveredstatements="42" conditionals="7" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <metrics statements="45" coveredstatements="43" conditionals="7" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -147,13 +147,14 @@
         <line num="35" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
-        <line num="38" count="3" type="cond" truecount="0" falsecount="1"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="cond" truecount="1" falsecount="0"/>
-        <line num="41" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="3" type="cond" truecount="0" falsecount="1"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="cond" truecount="1" falsecount="0"/>
         <line num="42" count="1" type="stmt"/>
-        <line num="43" count="3" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="44" count="3" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
       </file>
     </package>
     <package name="application.useCases.Content.CreateContent">
@@ -1072,9 +1073,9 @@
       </file>
     </package>
     <package name="application.useCases.User.CreateUser">
-      <metrics statements="59" coveredstatements="59" conditionals="7" coveredconditionals="7" methods="2" coveredmethods="2"/>
+      <metrics statements="61" coveredstatements="61" conditionals="7" coveredconditionals="7" methods="2" coveredmethods="2"/>
       <file name="create-user-service.ts" path="D:\Dev\JavaScript\typescript\projetos\nebula\backend\src\application\useCases\User\CreateUser\create-user-service.ts">
-        <metrics statements="59" coveredstatements="59" conditionals="7" coveredconditionals="7" methods="2" coveredmethods="2"/>
+        <metrics statements="61" coveredstatements="61" conditionals="7" coveredconditionals="7" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -1102,25 +1103,25 @@
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="28" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="29" count="4" type="stmt"/>
-        <line num="30" count="4" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="31" count="4" type="stmt"/>
-        <line num="32" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="34" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="35" count="3" type="stmt"/>
-        <line num="36" count="3" type="stmt"/>
+        <line num="32" count="4" type="stmt"/>
+        <line num="33" count="4" type="stmt"/>
+        <line num="34" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="36" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="37" count="3" type="stmt"/>
-        <line num="38" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="40" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="41" count="2" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="39" count="3" type="stmt"/>
+        <line num="40" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="43" count="2" type="stmt"/>
-        <line num="44" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="45" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="46" count="4" type="cond" truecount="1" falsecount="0"/>
         <line num="47" count="1" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
         <line num="49" count="1" type="stmt"/>
@@ -1132,8 +1133,10 @@
         <line num="55" count="1" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
         <line num="57" count="1" type="stmt"/>
-        <line num="58" count="4" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
         <line num="59" count="1" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
       </file>
     </package>
     <package name="application.useCases.User.GetUser">
@@ -1194,9 +1197,9 @@
       </file>
     </package>
     <package name="application.useCases.User.UpdateUser">
-      <metrics statements="39" coveredstatements="39" conditionals="9" coveredconditionals="7" methods="2" coveredmethods="2"/>
+      <metrics statements="40" coveredstatements="40" conditionals="9" coveredconditionals="7" methods="2" coveredmethods="2"/>
       <file name="update-user-service.ts" path="D:\Dev\JavaScript\typescript\projetos\nebula\backend\src\application\useCases\User\UpdateUser\update-user-service.ts">
-        <metrics statements="39" coveredstatements="39" conditionals="9" coveredconditionals="7" methods="2" coveredmethods="2"/>
+        <metrics statements="40" coveredstatements="40" conditionals="9" coveredconditionals="7" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -1214,28 +1217,29 @@
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
-        <line num="18" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="19" count="2" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="20" count="2" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
-        <line num="22" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="23" count="1" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="23" count="2" type="cond" truecount="1" falsecount="0"/>
         <line num="24" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="28" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="29" count="2" type="cond" truecount="2" falsecount="1"/>
-        <line num="30" count="2" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="30" count="2" type="cond" truecount="2" falsecount="1"/>
         <line num="31" count="2" type="stmt"/>
         <line num="32" count="2" type="stmt"/>
         <line num="33" count="2" type="stmt"/>
         <line num="34" count="2" type="stmt"/>
-        <line num="35" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="36" count="1" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
       </file>
     </package>
     <package name="application.useCases.User.UserAuthentication">
@@ -1318,22 +1322,22 @@
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="8" count="157" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="158" type="cond" truecount="1" falsecount="1"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
-        <line num="12" count="157" type="cond" truecount="1" falsecount="1"/>
+        <line num="12" count="158" type="cond" truecount="1" falsecount="1"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
-        <line num="16" count="157" type="stmt"/>
-        <line num="17" count="157" type="stmt"/>
-        <line num="18" count="157" type="stmt"/>
-        <line num="19" count="157" type="stmt"/>
-        <line num="20" count="157" type="stmt"/>
-        <line num="21" count="157" type="stmt"/>
-        <line num="22" count="157" type="stmt"/>
-        <line num="23" count="157" type="stmt"/>
+        <line num="16" count="158" type="stmt"/>
+        <line num="17" count="158" type="stmt"/>
+        <line num="18" count="158" type="stmt"/>
+        <line num="19" count="158" type="stmt"/>
+        <line num="20" count="158" type="stmt"/>
+        <line num="21" count="158" type="stmt"/>
+        <line num="22" count="158" type="stmt"/>
+        <line num="23" count="158" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
         <line num="25" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="26" count="79" type="cond" truecount="0" falsecount="1"/>
@@ -1344,8 +1348,8 @@
         <line num="31" count="79" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
         <line num="33" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="34" count="94" type="stmt"/>
-        <line num="35" count="94" type="stmt"/>
+        <line num="34" count="95" type="stmt"/>
+        <line num="35" count="95" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="38" count="63" type="stmt"/>
@@ -2582,25 +2586,25 @@
       </file>
     </package>
     <package name="tests.repositories.User">
-      <metrics statements="51" coveredstatements="51" conditionals="14" coveredconditionals="14" methods="6" coveredmethods="6"/>
+      <metrics statements="56" coveredstatements="56" conditionals="13" coveredconditionals="13" methods="5" coveredmethods="5"/>
       <file name="in-memory-user-repo.ts" path="D:\Dev\JavaScript\typescript\projetos\nebula\backend\src\tests\repositories\User\in-memory-user-repo.ts">
-        <metrics statements="51" coveredstatements="51" conditionals="14" coveredconditionals="14" methods="6" coveredmethods="6"/>
+        <metrics statements="56" coveredstatements="56" conditionals="13" coveredconditionals="13" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="5" count="10" type="cond" truecount="1" falsecount="0"/>
-        <line num="6" count="10" type="stmt"/>
-        <line num="7" count="10" type="stmt"/>
-        <line num="8" count="10" type="stmt"/>
-        <line num="9" count="10" type="cond" truecount="1" falsecount="0"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
-        <line num="14" count="10" type="stmt"/>
-        <line num="15" count="10" type="stmt"/>
-        <line num="16" count="10" type="cond" truecount="1" falsecount="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="19" count="1" type="stmt"/>
@@ -2608,34 +2612,39 @@
         <line num="21" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="24" count="10" type="stmt"/>
-        <line num="25" count="10" type="cond" truecount="1" falsecount="0"/>
-        <line num="26" count="15" type="stmt"/>
-        <line num="27" count="15" type="cond" truecount="1" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="28" count="15" type="stmt"/>
-        <line num="29" count="15" type="cond" truecount="2" falsecount="0"/>
-        <line num="30" count="6" type="stmt"/>
-        <line num="31" count="6" type="cond" truecount="1" falsecount="0"/>
-        <line num="32" count="9" type="stmt"/>
-        <line num="33" count="9" type="stmt"/>
-        <line num="34" count="15" type="stmt"/>
-        <line num="35" count="10" type="stmt"/>
-        <line num="36" count="10" type="cond" truecount="1" falsecount="0"/>
-        <line num="37" count="7" type="stmt"/>
-        <line num="38" count="7" type="cond" truecount="1" falsecount="0"/>
-        <line num="39" count="7" type="stmt"/>
-        <line num="40" count="7" type="cond" truecount="1" falsecount="0"/>
-        <line num="41" count="4" type="stmt"/>
-        <line num="42" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="43" count="3" type="stmt"/>
-        <line num="44" count="3" type="stmt"/>
-        <line num="45" count="7" type="stmt"/>
-        <line num="46" count="10" type="stmt"/>
-        <line num="47" count="10" type="cond" truecount="1" falsecount="0"/>
-        <line num="48" count="2" type="stmt"/>
-        <line num="49" count="2" type="stmt"/>
-        <line num="50" count="10" type="stmt"/>
+        <line num="29" count="15" type="cond" truecount="1" falsecount="0"/>
+        <line num="30" count="15" type="stmt"/>
+        <line num="31" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="6" type="stmt"/>
+        <line num="33" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="34" count="9" type="stmt"/>
+        <line num="35" count="9" type="stmt"/>
+        <line num="36" count="15" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="41" count="7" type="stmt"/>
+        <line num="42" count="7" type="cond" truecount="1" falsecount="0"/>
+        <line num="43" count="7" type="stmt"/>
+        <line num="44" count="7" type="cond" truecount="1" falsecount="0"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="46" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="47" count="3" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
         <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="53" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="55" count="2" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
       </file>
     </package>
     <package name="utils.email">

@@ -4,7 +4,7 @@ import { UserCredentials } from "../../../../domain/entities/UserCredentials";
 import { IAuthenticationService, IValidateResult } from "../../../../interfaces/authentication-interfaces";
 import { IPasswordCryptographer } from "../../../../interfaces/password-interfaces";
 import { generateRandomUser } from "../../../../tests/generate-random-user";
-import { InMemoryUserRepository } from "../../../../tests/repositories/User/in-memory-user-repo";
+import { InMemoryFindUserByEmailRepository, inMemoryUsers } from "../../../../tests/repositories/User/in-memory-user-repo";
 import { UserAuthenticationService } from "./user-authentication-service";
 
 
@@ -37,21 +37,16 @@ class MockPasswordCryptographer implements IPasswordCryptographer{
 describe('User authenticate', () => {
 
     const authenticationService = new MockAuthenticationService();
-    const repo = new InMemoryUserRepository();
+    const FindUserByEmailRepository = new InMemoryFindUserByEmailRepository();
     const passwordCryptographer = new MockPasswordCryptographer();
-    const service = new UserAuthenticationService(repo, passwordCryptographer, authenticationService);
+    const service = new UserAuthenticationService(FindUserByEmailRepository, passwordCryptographer, authenticationService);
 
     const userThatExists = generateRandomUser();
 
     beforeAll( async () => {
 
         userThatExists.props.password = await passwordCryptographer.crypt(userThatExists.props.password);
-        repo.users.push(userThatExists);
-    });
-      
-
-    afterAll(() => {
-        repo.users = [];
+        inMemoryUsers.push(userThatExists);
     });
       
 

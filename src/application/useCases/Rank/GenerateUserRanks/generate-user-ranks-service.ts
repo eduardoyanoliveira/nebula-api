@@ -2,7 +2,7 @@ import { GenericResultClass } from "../../../../core/GenericResultClass";
 import { Result } from "../../../../core/Result";
 import { IRankRepository } from "../../../repositories/Rank/rank-repository";
 import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
-import { IUserRepository } from "../../../repositories/User/user-repository";
+import { IFindUserByIdRepository } from "../../../repositories/User/user-repository";
 
 
 interface IGenerateUserRanksProps {
@@ -13,14 +13,14 @@ interface IGenerateUserRanksProps {
 export class GenerateUserRanksService {
 
     constructor(
-        private  UserRepository : IUserRepository,
+        private  FindUserByIdRepository : IFindUserByIdRepository,
         private SubjectRepository: ISubjectRepository,
         private RankRepository : IRankRepository
     ){};
 
     async execute({ user_id } : IGenerateUserRanksProps) : Promise<Result<GenericResultClass>>{
 
-        const userOrError = await this.UserRepository.findById(user_id);
+        const userOrError = await this.FindUserByIdRepository.execute(user_id);
 
         if(userOrError.isFailure){
             return Result.fail<GenericResultClass>(userOrError.error);

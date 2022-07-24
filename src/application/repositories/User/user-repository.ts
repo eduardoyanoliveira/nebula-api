@@ -1,10 +1,21 @@
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
+export interface ICreateUserRepository {
+    execute(user: User) : Promise<Result<User>>,
+};
 
-export interface IUserRepository {
-    create(user: User) : Promise<Result<User>>,
-    update(user: User) : Promise<Result<User>>,
-    findById(user_id: string) : Promise<Result<User>>,
-    findByEmail(email: string) : Promise<Result<User>>,
-    list(filters?: object): Promise<Result<User[]>>
+export interface IUpdateUserRepository {
+    execute(user: User) : Promise<Result<User>>,
+};
+
+export interface IFindUserByIdRepository {
+    execute(user_id: string) : Promise<Result<User>>,
+};
+
+export interface IFindUserByEmailRepository {
+    execute(email: string) : Promise<Result<User>>,
+};
+
+export interface IListUsersRepository{
+    execute(filters?: object): Promise<Result<User[]>>
 };

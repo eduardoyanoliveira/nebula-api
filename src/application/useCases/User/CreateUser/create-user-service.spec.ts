@@ -2,7 +2,7 @@ import { Result } from "../../../../core/Result";
 import { User } from "../../../../domain/entities/User";
 import { UserFactory } from "../../../../domain/factories/User/factory-class";
 import { generateRandomUser } from "../../../../tests/generate-random-user";
-import { InMemoryUserRepository } from "../../../../tests/repositories/User/in-memory-user-repo";
+import { InMemoryCreateUserRepository, InMemoryFindUserByEmailRepository } from "../../../../tests/repositories/User/in-memory-user-repo";
 import { EmailValidator } from "../../../../utils/email/email-validator";
 import { PasswordValidator } from "../../../../utils/password/password-validator";
 import { PasswordCryptographer } from "../../../services/Cryptography/password-cryptography";
@@ -11,14 +11,16 @@ import { CreateUserService } from "./create-user-service";
 
 describe('Create user service', () => {
 
-    const repo = new InMemoryUserRepository();
+    const findUserByEmailRepository = new InMemoryFindUserByEmailRepository();
+    const createUserRepository = new InMemoryCreateUserRepository();
     const validatePassword = new PasswordValidator();
     const emailValidator = new EmailValidator();
     const passwordCryptographer = new PasswordCryptographer();
     const userFactory = new UserFactory();
 
     const service = new CreateUserService(
-        repo,
+        findUserByEmailRepository,
+        createUserRepository,
         validatePassword, 
         emailValidator, 
         passwordCryptographer,
@@ -27,13 +29,8 @@ describe('Create user service', () => {
 
     // Genereate a random user and add to database
     const userThatAlreadyExists = generateRandomUser();
-    repo.users.push(userThatAlreadyExists);
-      
-    afterAll(() => {
-        repo.users = [];
-    });
-
-      
+    createUserRepository.execute(userThatAlreadyExists);
+       
     it('should fail if the user already exists', async () => {
 
         const userOrError : Result<User> = await service.execute({

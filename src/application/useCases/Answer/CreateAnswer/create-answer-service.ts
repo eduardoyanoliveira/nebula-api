@@ -1,6 +1,6 @@
 import { IAnswerRepository } from '../../../repositories/Answer/answer-repository';
 import { IQuestionRepository } from '../../../repositories/Question/question-repository';
-import { IUserRepository } from '../../../repositories/User/user-repository';
+import { IFindUserByIdRepository } from '../../../repositories/User/user-repository';
 import { IAnswerFactory } from '../../../../domain/factories/Answer/factory-class';
 import { Result } from '../../../../core/Result';
 import { Answer } from '../../../../domain/entities/Interactions/Answer';
@@ -14,7 +14,7 @@ interface ICreateAnswerRequest {
 
 export class CreateAnswerService {
     constructor(
-        private UserRepository: IUserRepository,
+        private FindUserByIdRepository: IFindUserByIdRepository,
         private QuestionRepository: IQuestionRepository,
         private AnswerRepository: IAnswerRepository,
         private AnswerFactory: IAnswerFactory
@@ -22,7 +22,7 @@ export class CreateAnswerService {
 
     async execute( { text, user_id, question_id } : ICreateAnswerRequest) : Promise<Result<Answer>>{
 
-        const userOrError = await this.UserRepository.findById(user_id);
+        const userOrError = await this.FindUserByIdRepository.execute(user_id);
 
         if(userOrError.isFailure){
             return Result.fail<Answer>(userOrError.error);

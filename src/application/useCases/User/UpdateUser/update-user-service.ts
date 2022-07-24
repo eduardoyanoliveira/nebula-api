@@ -1,6 +1,6 @@
 import { Result } from "../../../../core/Result";
 import { User } from "../../../../domain/entities/User";
-import { IUserRepository } from "../../../repositories/User/user-repository";
+import { IFindUserByIdRepository, IUpdateUserRepository } from "../../../repositories/User/user-repository";
 
 interface IUpdateUserRequest {
     id: string,
@@ -12,12 +12,13 @@ interface IUpdateUserRequest {
 export class UpdateUserService {
 
     constructor(
-        private UserRepository : IUserRepository,
+        private FindUserByIdRepository: IFindUserByIdRepository,
+        private UpdateUserRepository : IUpdateUserRepository,
     ){};
 
     async execute({ id, username, is_active} : IUpdateUserRequest) : Promise<Result<User>>{
 
-        const response = await this.UserRepository.findById(id);
+        const response = await this.FindUserByIdRepository.execute(id);
 
         if(response.isFailure){
             return Result.fail<User>(response.error);
@@ -31,7 +32,7 @@ export class UpdateUserService {
 
         // Persist on database
 
-        await this.UserRepository.update(user);
+        await this.UpdateUserRepository.execute(user);
 
         return Result.ok<User>(user);
     };

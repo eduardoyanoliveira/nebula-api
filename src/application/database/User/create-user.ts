@@ -1,15 +1,12 @@
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
-import { IUserRepository } from "../../repositories/User/user-repository";
 import { prismaClient } from '../prisma/prismaClient';
 import { RankCreateManyInputs } from 'prisma';
+import { ICreateUserRepository } from "../../repositories/User/user-repository";
 
+export class CreateUserRepository implements ICreateUserRepository{
 
-export interface ICreateUser extends Pick<IUserRepository, 'create'>{};
-
-export class CreateUser implements ICreateUser{
-
-    async create(user: User): Promise<Result<User>> {
+    async execute(user: User): Promise<Result<User>> {
 
         // Retrieve all subjects from database to generate the subject ranks
         const subjects = await prismaClient.subject.findMany({});

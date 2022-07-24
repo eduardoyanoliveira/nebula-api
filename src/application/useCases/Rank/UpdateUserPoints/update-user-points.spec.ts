@@ -1,5 +1,5 @@
 import { UpdateUserPointsService } from "./update-user-points-service";
-import { InMemoryUserRepository } from '../../../../tests/repositories/User/in-memory-user-repo';
+import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
 import { InMemorySubjectRepo } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
 import { InMemoryRankRepository } from '../../../../tests/repositories/Rank/in-memory-rank-repository';
 
@@ -10,11 +10,11 @@ import { Result } from "../../../../core/Result";
 
 describe('Update user points', () => {
 
-    const userRepository = new InMemoryUserRepository();
+    const findUserByIdRepository = new InMemoryFindUserByIdRepository();
     const subjectRepository = new InMemorySubjectRepo();
     const rankRepository = new InMemoryRankRepository();
 
-    const service = new UpdateUserPointsService(userRepository, subjectRepository, rankRepository);
+    const service = new UpdateUserPointsService(findUserByIdRepository, subjectRepository, rankRepository);
 
     const userThatExists = generateRandomUser();
     const subjectThatExists = generateRandomSubject();
@@ -25,7 +25,7 @@ describe('Update user points', () => {
         points: 50
     });
 
-    userRepository.users.push(userThatExists);
+    inMemoryUsers.push(userThatExists);
     subjectRepository.subjects.push(subjectThatExists);
     rankRepository.ranks.push(rank);
 

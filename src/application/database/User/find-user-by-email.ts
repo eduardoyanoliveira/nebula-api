@@ -1,18 +1,16 @@
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 import { prismaClient } from "../prisma/prismaClient";
-import { IUserRepository } from "../../repositories/User/user-repository";
-import { IUserDTO } from '../../DTOs/User/user-dto';
+import { IDataToUser } from "../../DTOs/User/data-to-user";
+import { IFindUserByEmailRepository } from "../../repositories/User/user-repository";
 
-export interface IFindUserByEmail extends Pick<IUserRepository, 'findByEmail'>{};
-
-export class FindUserByEmail implements IFindUserByEmail{
+export class FindUserByEmailRepository implements IFindUserByEmailRepository{
 
     constructor(
-        private UserDTO: IUserDTO
+        private DataToUser: IDataToUser
     ){};
 
-    async findByEmail(email: string): Promise<Result<User>> {
+    async execute(email: string): Promise<Result<User>> {
         try{
 
             // Retrieve an user from database
@@ -26,7 +24,7 @@ export class FindUserByEmail implements IFindUserByEmail{
                 return Result.fail<User>("Couldn't find the user with the given email");
             };
 
-            return Result.ok<User>(this.UserDTO.dataToUser(response));
+            return Result.ok<User>(this.DataToUser.transform(response));
         }catch(err){
             return Result.fail<User>(err.message);
         };

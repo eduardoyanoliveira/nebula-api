@@ -1,4 +1,4 @@
-import { InMemoryUserRepository } from '../../../../tests/repositories/User/in-memory-user-repo';
+import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
 import { InMemorySubjectRepo } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
 import { InMemoryQuestionRepository } from '../../../../tests/repositories/Question/in-memory-question-repository';
 import { QuestionFactory } from '../../../../domain/factories/Question/factory-class';
@@ -10,22 +10,21 @@ import { Question } from '../../../../domain/entities/Interactions/Question';
 
 describe('Create question service', () => {
 
-    const userRepository = new InMemoryUserRepository();
+    const findUserByIdRepository = new InMemoryFindUserByIdRepository();
     const subjectRepository = new InMemorySubjectRepo();
     const questionRepository = new InMemoryQuestionRepository();
     const factory = new QuestionFactory();
 
-    const service = new CreateQuestionService(factory, userRepository, subjectRepository, questionRepository);
+    const service = new CreateQuestionService(factory, findUserByIdRepository, subjectRepository, questionRepository);
 
     const userThatExists = generateRandomUser();
     const subjectThatExists = generateRandomSubject();
 
-    userRepository.users.push(userThatExists);
+    inMemoryUsers.push(userThatExists);
     subjectRepository.subjects.push(subjectThatExists);
 
 
     afterAll(() => {
-        userRepository.users = [];
         subjectRepository.subjects = [];
     });
 

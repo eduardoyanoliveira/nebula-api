@@ -1,7 +1,7 @@
 import { generateRandomUser } from '../../../../tests/generate-random-user';
 import { generateRandomSubject } from '../../../../tests/generate-random-subject';
 import { generateRandomQuestion } from '../../../../tests/generate-random-question';
-import { InMemoryUserRepository } from '../../../../tests/repositories/User/in-memory-user-repo';
+import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
 import { InMemoryQuestionRepository } from '../../../../tests/repositories/Question/in-memory-question-repository';
 import { InMemoryAnswerRepository } from '../../../../tests/repositories/Answer/in-memory-answer-repository';
 import { CreateAnswerService } from './create-answer-service';
@@ -13,11 +13,11 @@ describe( 'Create answer service' ,() =>{
 
     const factory = new AnswerFactory();
 
-    const userRepository = new InMemoryUserRepository();
+    const findUserByIdRepository = new InMemoryFindUserByIdRepository();
     const questionRepository = new InMemoryQuestionRepository();
     const answerRepository = new InMemoryAnswerRepository();
 
-    const service = new CreateAnswerService(userRepository, questionRepository, answerRepository, factory);
+    const service = new CreateAnswerService(findUserByIdRepository, questionRepository, answerRepository, factory);
     
 
     const question_user = generateRandomUser();
@@ -27,13 +27,12 @@ describe( 'Create answer service' ,() =>{
 
     const question = generateRandomQuestion(question_user, subject);
 
-    userRepository.users.push(answer_user);
-    userRepository.users.push(question_user);
+    inMemoryUsers.push(answer_user);
+    inMemoryUsers.push(question_user);
 
     questionRepository.questions.push(question);
 
     afterAll(() =>{
-        userRepository.users = [];
         questionRepository.questions = [];
     });
 

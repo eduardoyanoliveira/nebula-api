@@ -2,7 +2,7 @@ import { Result } from "../../../../core/Result";
 import { UserCredentials } from "../../../../domain/entities/UserCredentials";
 import { IAuthenticationService } from "../../../../interfaces/authentication-interfaces";
 import { IPasswordCryptographer } from "../../../../interfaces/password-interfaces";
-import { IUserRepository } from "../../../repositories/User/user-repository";
+import { IFindUserByEmailRepository } from "../../../repositories/User/user-repository";
 
 interface IUserAuthRequest {
     email: string,
@@ -11,14 +11,14 @@ interface IUserAuthRequest {
 
 export class UserAuthenticationService{
     constructor(
-        private UserRepository : IUserRepository,
+        private FindUserByEmailRepository : IFindUserByEmailRepository,
         private PasswordCryptographer: IPasswordCryptographer,
         private AuthenticationService: IAuthenticationService
     ){};
 
     async execute({ email, password } : IUserAuthRequest) : Promise<Result<UserCredentials>> {
 
-        const response = await this.UserRepository.findByEmail(email); 
+        const response = await this.FindUserByEmailRepository.execute(email); 
 
         if(response.isFailure){
             return Result.fail<UserCredentials>(response.error)

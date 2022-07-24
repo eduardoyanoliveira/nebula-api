@@ -1,22 +1,18 @@
 import { Result } from "../../../../core/Result";
-import { Role, User } from "../../../../domain/entities/User";
+import { User } from "../../../../domain/entities/User";
 import { generateRandomUser } from "../../../../tests/generate-random-user";
-import { InMemoryUserRepository } from "../../../../tests/repositories/User/in-memory-user-repo";
+import { InMemoryFindUserByIdRepository, InMemoryUpdateUserRepository, inMemoryUsers } from "../../../../tests/repositories/User/in-memory-user-repo";
 import { UpdateUserService } from "./update-user-service";
 
 
 describe('Update user service', () => {
 
-    const repo = new InMemoryUserRepository();
-    const service = new UpdateUserService(repo);
+    const findUserByIdRepository = new InMemoryFindUserByIdRepository();
+    const updateUserRepository = new InMemoryUpdateUserRepository();
+    const service = new UpdateUserService(findUserByIdRepository, updateUserRepository);
 
     const userThatExists = generateRandomUser();
-    repo.users.push(userThatExists);
-
-
-    afterAll(() => {
-        repo.users = [];
-    });
+    inMemoryUsers.push(userThatExists);
 
 
     it('should fail with the user does not exist', async () => {

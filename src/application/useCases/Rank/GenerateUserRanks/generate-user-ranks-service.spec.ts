@@ -1,5 +1,5 @@
 import { GenerateUserRanksService } from "./generate-user-ranks-service";
-import { InMemoryUserRepository } from '../../../../tests/repositories/User/in-memory-user-repo';
+import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
 import { InMemorySubjectRepo } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
 import { InMemoryRankRepository } from "../../../../tests/repositories/Rank/in-memory-rank-repository";
 
@@ -9,23 +9,21 @@ import { generateRandomSubject } from '../../../../tests/generate-random-subject
 
 describe('Generate ranks with user service', () => {
 
-    const userRepository = new InMemoryUserRepository();
+    const findUserByIdRepository = new InMemoryFindUserByIdRepository();
     const subjectRepository = new InMemorySubjectRepo();
     const rankRepository = new InMemoryRankRepository();
 
-    const service = new GenerateUserRanksService(userRepository, subjectRepository, rankRepository);
+    const service = new GenerateUserRanksService(findUserByIdRepository, subjectRepository, rankRepository);
 
     const user = generateRandomUser();
     const subject_one = generateRandomSubject();
     const subject_two = generateRandomSubject();
 
-    userRepository.users.push(user);
+    inMemoryUsers.push(user);
     subjectRepository.subjects.push(subject_one);
     subjectRepository.subjects.push(subject_two);
 
     afterAll(() => {
-        userRepository.users = [];
-
         subjectRepository.subjects = [];
     });
 

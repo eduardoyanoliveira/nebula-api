@@ -1,4 +1,4 @@
-import { IUserRepository } from '../../../repositories/User/user-repository';
+import { IFindUserByIdRepository } from '../../../repositories/User/user-repository';
 import { ISubjectRepository } from '../../../repositories/Subject/subject-repository';
 import { IQuestionRepository } from '../../../repositories/Question/question-repository';
 import { Result } from '../../../../core/Result';
@@ -19,7 +19,7 @@ export class CreateQuestionService {
 
     constructor(
         private QuestionFactory: QuestionFactory,
-        private UserRepository : IUserRepository,
+        private FindUserByIdRepository : IFindUserByIdRepository,
         private SubjectRepository: ISubjectRepository,
         private QuestionRepository: IQuestionRepository,
     ){};
@@ -32,7 +32,7 @@ export class CreateQuestionService {
         subject_id 
     } : ICreateQuestionRequest ) : Promise<Result<Question>> {
 
-        const userOrError = await this.UserRepository.findById(author_id);
+        const userOrError = await this.FindUserByIdRepository.execute(author_id);
 
         if(userOrError.isFailure){
             return Result.fail<Question>(userOrError.error);

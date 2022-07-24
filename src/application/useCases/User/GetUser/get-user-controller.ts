@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { IUserDTO } from "../../../DTOs/User/user-dto";
+import { IUserToResponse } from "../../../DTOs/User/user-to-response";
 import { GetUserService } from "./get-user-service";
 
 export class GetUserController {
 
     constructor(
         private GetUserService : GetUserService,
-        private UserDTO: IUserDTO
+        private UserToResponse: IUserToResponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -19,6 +19,6 @@ export class GetUserController {
             throw new Error(userOrError.error);
         };
 
-        return res.json(this.UserDTO.userToResponse(userOrError.getValue()));
+        return res.json(this.UserToResponse.transform(userOrError.getValue()));
     };
 };

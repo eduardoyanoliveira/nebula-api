@@ -2,7 +2,7 @@ import { GenericResultClass } from "../../../../core/GenericResultClass";
 import { Result } from "../../../../core/Result";
 import { IRankRepository } from "../../../repositories/Rank/rank-repository";
 import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
-import { IUserRepository } from "../../../repositories/User/user-repository";
+import { IListUsersRepository } from "../../../repositories/User/user-repository";
 
 
 interface IGenerateSubjectRanksProps {
@@ -14,7 +14,7 @@ export class GenerateSubjectRanksService {
 
     constructor(
         private SubjectRepository: ISubjectRepository,
-        private  UserRepository : IUserRepository,
+        private  ListUsersRepository : IListUsersRepository,
         private RankRepository : IRankRepository
     ){};
 
@@ -26,7 +26,7 @@ export class GenerateSubjectRanksService {
             return Result.fail<GenericResultClass>(subjectOrError.error);
         };
 
-        const usersOrError = await this.UserRepository.list();
+        const usersOrError = await this.ListUsersRepository.execute();
 
         if(usersOrError.isFailure){
             return Result.fail<GenericResultClass>(usersOrError.error);

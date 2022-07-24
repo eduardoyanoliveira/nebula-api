@@ -1,18 +1,16 @@
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 import { prismaClient } from "../prisma/prismaClient";
-import { IUserRepository } from "../../repositories/User/user-repository";
-import { IUserDTO } from "../../DTOs/User/user-dto";
+import { IListUsersRepository } from "../../repositories/User/user-repository";
+import { IDataToUser } from "../../DTOs/User/data-to-user";
 
-export interface IListUsers extends Pick<IUserRepository, 'list'>{};
-
-export class ListUsers implements IListUsers{
+export class ListUsersRepository implements IListUsersRepository{
 
     constructor(
-        private UserDTO: IUserDTO
+        private DataToUser: IDataToUser
     ){};
 
-    async list(filters): Promise<Result<User[]>> {
+    async execute(filters): Promise<Result<User[]>> {
         try{
 
             // Retrieve all users from database
@@ -24,7 +22,7 @@ export class ListUsers implements IListUsers{
             const users : User[] = [];
 
             response.forEach((user) => {
-                users.push(this.UserDTO.dataToUser(user));
+                users.push(this.DataToUser.transform(user));
             });
 
             return Result.ok<User[]>(users);

@@ -1,6 +1,6 @@
 import { Result } from "../../../../core/Result";
 import { User } from "../../../../domain/entities/User";
-import { IUserRepository } from "../../../repositories/User/user-repository";
+import { IListUsersRepository } from "../../../repositories/User/user-repository";
 
 interface IListUserRequest {
     filters?: object
@@ -8,10 +8,10 @@ interface IListUserRequest {
 
 export class ListUsersService{
     constructor(
-        private UserRepository: IUserRepository,
+        private ListUsersRepository: IListUsersRepository,
     ){};
 
     async execute({ filters }: IListUserRequest) : Promise<Result<User[]>>{
-        return await this.UserRepository.list(filters);
+        return await this.ListUsersRepository.execute(filters);
     };
 };

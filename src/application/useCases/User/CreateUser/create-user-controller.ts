@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Result } from "../../../../core/Result";
 import { User } from "../../../../domain/entities/User";
-import { IUserDTO } from "../../../DTOs/User/user-dto";
+import { IUserToResponse } from "../../../DTOs/User/user-to-response";
 import { CreateUserService } from "./create-user-service";
 
 
@@ -9,7 +9,7 @@ export class CreateUserController{
 
     constructor(
         private CreateUserService: CreateUserService,
-        private UserDTO: IUserDTO
+        private UserToResponse: IUserToResponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -31,6 +31,6 @@ export class CreateUserController{
             throw new Error(userOrError.error);
         };
 
-        return res.json(this.UserDTO.userToResponse(userOrError.getValue()));
+        return res.json(this.UserToResponse.transform(userOrError.getValue()));
     };
 };

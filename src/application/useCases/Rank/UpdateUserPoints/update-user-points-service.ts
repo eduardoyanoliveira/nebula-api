@@ -1,7 +1,7 @@
 import { IRankRepository } from '../../../repositories/Rank/rank-repository';
 import { Result } from "../../../../core/Result";
 import { Rank } from '../../../../domain/entities/Rank';
-import { IUserRepository } from '../../../repositories/User/user-repository';
+import { IFindUserByIdRepository } from '../../../repositories/User/user-repository';
 import { ISubjectRepository } from '../../../repositories/Subject/subject-repository';
 
 
@@ -15,14 +15,14 @@ interface IUpdateUserPointsProps{
 export class UpdateUserPointsService {
 
     constructor(
-        private UserRepository : IUserRepository,
+        private FindUserByIdRepository : IFindUserByIdRepository,
         private SubjectRepository : ISubjectRepository,
         private RankRepository : IRankRepository
     ){};
 
     async execute({ user_id, subject_id, points } : IUpdateUserPointsProps) : Promise<Result<Rank>> {
 
-        const userOrError = await this.UserRepository.findById(user_id);
+        const userOrError = await this.FindUserByIdRepository.execute(user_id);
 
         if(userOrError.isFailure){
             return Result.fail<Rank>(userOrError.error);

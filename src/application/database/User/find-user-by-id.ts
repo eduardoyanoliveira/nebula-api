@@ -1,18 +1,16 @@
 import { Result } from "../../../core/Result";
-import { Role, User } from "../../../domain/entities/User";
+import { User } from "../../../domain/entities/User";
 import { prismaClient } from "../prisma/prismaClient";
-import { IUserRepository } from "../../repositories/User/user-repository";
-import { IUserDTO } from "../../DTOs/User/user-dto";
+import { IFindUserByIdRepository } from "../../repositories/User/user-repository";
+import { IDataToUser } from "../../DTOs/User/data-to-user";
 
-export interface IFindUserById extends Pick<IUserRepository, 'findById'>{};
-
-export class FindUserById implements IFindUserById{
+export class FindUserByIdRepository implements IFindUserByIdRepository{
 
     constructor(
-        private UserDTO: IUserDTO
+        private DataToUser: IDataToUser
     ){};
 
-    async findById(user_id: string): Promise<Result<User>> {
+    async execute(user_id: string): Promise<Result<User>> {
         try{
 
             // Retrieve an user from database
@@ -26,7 +24,7 @@ export class FindUserById implements IFindUserById{
                 return Result.fail<User>("Couldn't find the user with the given id");
             };
 
-            return Result.ok<User>(this.UserDTO.dataToUser(response));
+            return Result.ok<User>(this.DataToUser.transform(response));
         }catch(err){
             return Result.fail<User>(err.message);
         };

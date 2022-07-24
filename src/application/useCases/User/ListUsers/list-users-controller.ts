@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { IUserDataProps } from "../../../DTOs/User/interfaces";
-import { IUserDTO } from "../../../DTOs/User/user-dto";
 import { ListUsersService } from "./list-users-service";
 import { objectToWhere } from '../../../../utils/prisma-filters';
+import { IUserToResponse } from "../../../DTOs/User/user-to-response";
 
 export class ListUsersController{
 
     constructor(
         private ListUsersService: ListUsersService,
-        private UserDTO: IUserDTO
+        private UserToResponse: IUserToResponse
     ){};
 
     async handle( req: Request, res: Response){
@@ -24,7 +24,7 @@ export class ListUsersController{
         const users : Omit<IUserDataProps, 'password'>[] = [];
 
         usersOrError.getValue().forEach((user) => {
-            users.push(this.UserDTO.userToResponse(user));
+            users.push(this.UserToResponse.transform(user));
         });
 
         return res.json(users);

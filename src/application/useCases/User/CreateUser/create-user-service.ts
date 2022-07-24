@@ -3,7 +3,7 @@ import { User } from "../../../../domain/entities/User";
 import { IUserFactory } from "../../../../domain/factories/User/factory-class";
 import { IEmailValidator } from "../../../../interfaces/email-interfaces";
 import { IPasswordCryptographer, IPasswordValidator } from "../../../../interfaces/password-interfaces";
-import { IUserRepository } from "../../../repositories/User/user-repository";
+import { ICreateUserRepository, IFindUserByEmailRepository } from "../../../repositories/User/user-repository";
 
 
 interface ICreateUserRequest{
@@ -17,7 +17,9 @@ interface ICreateUserRequest{
 export class CreateUserService{
 
     constructor(
-        private UserRepository : IUserRepository,
+
+        private FindUserByEmailRepository : IFindUserByEmailRepository,
+        private CreateUserRepository : ICreateUserRepository ,
         private PasswordValidator: IPasswordValidator,
         private EmailValidator: IEmailValidator,
         private PasswordCryptographer: IPasswordCryptographer,
@@ -27,7 +29,7 @@ export class CreateUserService{
 
     async execute({ role, username, email, password } : ICreateUserRequest) : Promise<Result<User>>{
 
-        const alreadyExists : Result<User> = await this.UserRepository.findByEmail(email);
+        const alreadyExists : Result<User> = await this.FindUserByEmailRepository.execute(email);
 
         if(alreadyExists.isSuccess){
             return Result.fail<User>('This email is already registered on database');
@@ -51,7 +53,7 @@ export class CreateUserService{
 
         // Persist on database
 
-        await this.UserRepository.create(user);
+        await this.CreateUserRepository.execute(user);
 
         return Result.ok<User>(user);
 
