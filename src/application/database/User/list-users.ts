@@ -1,7 +1,7 @@
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 import { prismaClient } from "../prisma/prismaClient";
-import { IListUsersRepository } from "../../repositories/User/user-repository";
+import { IListUsersRepository } from "../../repositories/User/user-repositories";
 import { IDataToUser } from "../../DTOs/User/data-to-user";
 
 export class ListUsersRepository implements IListUsersRepository{

@@ -48,7 +48,7 @@ describe( 'Update answer service' ,() =>{
 
         const response : Result<Answer> = await service.execute({
             answer_id: answer.id,
-            user_id: question_user.id,
+            user_id: 'asr4235tw40-q-255wa',
             text: 'fake text'
         });
 

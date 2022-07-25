@@ -1,6 +1,6 @@
 import { Result } from "../../../../core/Result";
 import { User } from "../../../../domain/entities/User";
-import { IListUsersRepository } from "../../../repositories/User/user-repository";
+import { IListUsersRepository } from "../../../repositories/User/user-repositories";
 
 interface IListUserRequest {
     filters?: object

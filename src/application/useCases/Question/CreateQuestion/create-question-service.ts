@@ -1,4 +1,4 @@
-import { IFindUserByIdRepository } from '../../../repositories/User/user-repository';
+import { IFindUserByIdRepository } from '../../../repositories/User/user-repositories';
 import { ISubjectRepository } from '../../../repositories/Subject/subject-repository';
 import { IQuestionRepository } from '../../../repositories/Question/question-repository';
 import { Result } from '../../../../core/Result';

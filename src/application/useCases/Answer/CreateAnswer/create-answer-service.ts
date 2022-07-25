@@ -1,6 +1,6 @@
 import { IAnswerRepository } from '../../../repositories/Answer/answer-repository';
 import { IQuestionRepository } from '../../../repositories/Question/question-repository';
-import { IFindUserByIdRepository } from '../../../repositories/User/user-repository';
+import { IFindUserByIdRepository } from '../../../repositories/User/user-repositories';
 import { IAnswerFactory } from '../../../../domain/factories/Answer/factory-class';
 import { Result } from '../../../../core/Result';
 import { Answer } from '../../../../domain/entities/Interactions/Answer';

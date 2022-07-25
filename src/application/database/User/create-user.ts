@@ -2,7 +2,7 @@ import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 import { prismaClient } from '../prisma/prismaClient';
 import { RankCreateManyInputs } from 'prisma';
-import { ICreateUserRepository } from "../../repositories/User/user-repository";
+import { ICreateUserRepository } from "../../repositories/User/user-repositories";
 
 export class CreateUserRepository implements ICreateUserRepository{
 

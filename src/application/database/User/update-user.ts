@@ -1,7 +1,7 @@
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 import { prismaClient } from "../prisma/prismaClient";
-import { IUpdateUserRepository } from "../../repositories/User/user-repository";
+import { IUpdateUserRepository } from "../../repositories/User/user-repositories";
 
 
 export class UpdateUserRepository implements IUpdateUserRepository{

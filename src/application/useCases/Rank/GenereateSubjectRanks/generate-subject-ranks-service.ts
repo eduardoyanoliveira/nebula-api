@@ -2,7 +2,7 @@ import { GenericResultClass } from "../../../../core/GenericResultClass";
 import { Result } from "../../../../core/Result";
 import { IRankRepository } from "../../../repositories/Rank/rank-repository";
 import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
-import { IListUsersRepository } from "../../../repositories/User/user-repository";
+import { IListUsersRepository } from "../../../repositories/User/user-repositories";
 
 
 interface IGenerateSubjectRanksProps {

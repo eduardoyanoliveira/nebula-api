@@ -1,6 +1,6 @@
 import { Result } from "../../../../core/Result";
 import { User } from "../../../../domain/entities/User";
-import { IFindUserByIdRepository } from "../../../repositories/User/user-repository";
+import { IFindUserByIdRepository } from "../../../repositories/User/user-repositories";
 
 interface IGetUserRequest{
     user_id: string,

@@ -2,7 +2,7 @@ import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 import { prismaClient } from "../prisma/prismaClient";
 import { IDataToUser } from "../../DTOs/User/data-to-user";
-import { IFindUserByEmailRepository } from "../../repositories/User/user-repository";
+import { IFindUserByEmailRepository } from "../../repositories/User/user-repositories";
 
 export class FindUserByEmailRepository implements IFindUserByEmailRepository{
 

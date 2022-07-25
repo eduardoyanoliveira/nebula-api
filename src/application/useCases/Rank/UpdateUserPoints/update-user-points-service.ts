@@ -1,7 +1,7 @@
 import { IRankRepository } from '../../../repositories/Rank/rank-repository';
 import { Result } from "../../../../core/Result";
 import { Rank } from '../../../../domain/entities/Rank';
-import { IFindUserByIdRepository } from '../../../repositories/User/user-repository';
+import { IFindUserByIdRepository } from '../../../repositories/User/user-repositories';
 import { ISubjectRepository } from '../../../repositories/Subject/subject-repository';
 
 

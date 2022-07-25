@@ -1,4 +1,4 @@
-import { ICreateUserRepository, IFindUserByEmailRepository, IFindUserByIdRepository, IListUsersRepository, IUpdateUserRepository } from "../../../application/repositories/User/user-repository";
+import { ICreateUserRepository, IFindUserByEmailRepository, IFindUserByIdRepository, IListUsersRepository, IUpdateUserRepository } from "../../../application/repositories/User/user-repositories";
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 

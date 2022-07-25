@@ -2,7 +2,7 @@ import { Result } from "../../../../core/Result";
 import { UserCredentials } from "../../../../domain/entities/UserCredentials";
 import { IAuthenticationService } from "../../../../interfaces/authentication-interfaces";
 import { IPasswordCryptographer } from "../../../../interfaces/password-interfaces";
-import { IFindUserByEmailRepository } from "../../../repositories/User/user-repository";
+import { IFindUserByEmailRepository } from "../../../repositories/User/user-repositories";
 
 interface IUserAuthRequest {
     email: string,
