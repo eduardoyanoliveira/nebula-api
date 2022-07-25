@@ -1,14 +1,12 @@
 import { Result } from "../../../core/Result";
 import { Subject } from "../../../domain/entities/Subject";
-import { ISubjectRepository } from "../../repositories/Subject/subject-repository";
+import { ICreateSubjectRepository } from "../../repositories/Subject/subject-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 import { RankCreateManyInputs } from 'prisma';
 
-interface ICreateSubject extends Pick<ISubjectRepository, 'create'>{};
+export class CreateSubjectRepository implements ICreateSubjectRepository{
 
-export class CreateSubject implements ICreateSubject{
-
-    async create(subject: Subject): Promise<Result<Subject>>{
+    async execute(subject: Subject): Promise<Result<Subject>>{
   
         const users = await prismaClient.user.findMany({});
 

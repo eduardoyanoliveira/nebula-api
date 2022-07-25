@@ -1,13 +1,11 @@
 import { Result } from "../../../core/Result";
 import { Subject } from "../../../domain/entities/Subject";
-import { ISubjectRepository } from "../../repositories/Subject/subject-repository";
+import { IUpdateSubjectRepository } from "../../repositories/Subject/subject-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IUpdateSubject extends Pick<ISubjectRepository, 'update'>{};
+export class UpdateSubjectRepository implements IUpdateSubjectRepository{
 
-export class UpdateSubject implements IUpdateSubject{
-
-    async update(subject: Subject): Promise<Result<Subject>> {
+    async execute(subject: Subject): Promise<Result<Subject>> {
 
         try{
             await prismaClient.subject.update({

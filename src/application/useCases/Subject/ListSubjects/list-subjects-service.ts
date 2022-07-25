@@ -1,6 +1,6 @@
 import { Result } from "../../../../core/Result";
 import { Subject } from "../../../../domain/entities/Subject";
-import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
+import { IListSubjectsRepository } from "../../../repositories/Subject/subject-repositories";
 
 interface IListSubjectsRequest{
     filters?: object
@@ -8,10 +8,10 @@ interface IListSubjectsRequest{
 
 export class ListSubjectsService {
     constructor(
-        private SubjectRepository : ISubjectRepository,
+        private ListSubjectsRepository : IListSubjectsRepository,
     ){};
 
     async execute({ filters } : IListSubjectsRequest) : Promise<Result<Subject[]>>{
-        return await this.SubjectRepository.list(filters);
+        return await this.ListSubjectsRepository.execute(filters);
     };
 };

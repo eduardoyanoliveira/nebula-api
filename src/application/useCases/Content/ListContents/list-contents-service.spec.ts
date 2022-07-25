@@ -3,12 +3,11 @@ import { Content } from "../../../../domain/entities/Content";
 import { generateRandomContent } from "../../../../tests/generate-random-contents";
 import { generateRandomSubject } from "../../../../tests/generate-random-subject";
 import { InMemoryContentRepository } from "../../../../tests/repositories/Content/in-memory-content-repository";
-import { InMemorySubjectRepo } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { ListContentsService } from "./list-contents-service"
 
 describe('List contents service', () => {
 
-    const subjectRepository = new InMemorySubjectRepo();
     const contentRepository = new InMemoryContentRepository();
 
     const service = new ListContentsService(contentRepository);
@@ -20,14 +19,13 @@ describe('List contents service', () => {
     const content_one = generateRandomContent(subject);
     const content_two = generateRandomContent(subject);
 
-    subjectRepository.subjects.push(subject);
-    subjectRepository.subjects.push(other_subject);
+    inMemorySubjects.push(subject);
+    inMemorySubjects.push(other_subject);
 
     contentRepository.contents.push(content_one);
     contentRepository.contents.push(content_two);
 
     afterAll(() => {
-        subjectRepository.subjects = [];
         contentRepository.contents = [];
     });
 

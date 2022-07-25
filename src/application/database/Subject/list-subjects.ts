@@ -1,18 +1,17 @@
 import { Result } from "../../../core/Result";
 import { Subject } from "../../../domain/entities/Subject";
-import { ISubjectDTO } from "../../DTOs/Subject/subject-dto";
-import { ISubjectRepository } from "../../repositories/Subject/subject-repository";
+import { IDataToSubject } from "../../DTOs/Subject/data-to-subject";
+import { IListSubjectsRepository } from "../../repositories/Subject/subject-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IListSubjects extends Pick<ISubjectRepository, 'list'>{};
 
-export class ListSubjects implements IListSubjects{
+export class ListSubjectsRepository implements IListSubjectsRepository{
 
     constructor(
-        private SubjectDTO: ISubjectDTO
+        private DataToSubject: IDataToSubject
     ){};
 
-    async list(filters): Promise<Result<Subject[]>> {
+    async execute(filters): Promise<Result<Subject[]>> {
 
         try{
             const response = await prismaClient.subject.findMany({
@@ -22,7 +21,7 @@ export class ListSubjects implements IListSubjects{
             const subjects: Subject[] = [];
     
             response.forEach((subject) => {
-                subjects.push(this.SubjectDTO.dataToSubject(subject));
+                subjects.push(this.DataToSubject.transform(subject));
             });
     
             return Result.ok<Subject[]>(subjects);

@@ -4,13 +4,12 @@ import { generateRandomQuestion } from "../../../../tests/generate-random-questi
 import { generateRandomSubject } from "../../../../tests/generate-random-subject";
 import { generateRandomUser } from "../../../../tests/generate-random-user";
 import { InMemoryQuestionRepository } from "../../../../tests/repositories/Question/in-memory-question-repository";
-import { InMemorySubjectRepo } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { ListQuestionsService } from "./list-questions-service";
 
 
 describe('Get question service', () => {
 
-    const subjectRepository = new InMemorySubjectRepo();
     const questionRepository = new InMemoryQuestionRepository();
     const service = new ListQuestionsService(questionRepository);
 
@@ -26,12 +25,11 @@ describe('Get question service', () => {
     questionRepository.questions.push(question_two);
     questionRepository.questions.push(question_three);
 
-    subjectRepository.subjects.push(randomSubjectOne);
-    subjectRepository.subjects.push(randomSubjectTwo);
+    inMemorySubjects.push(randomSubjectOne);
+    inMemorySubjects.push(randomSubjectTwo);
 
     afterAll(() => {
         questionRepository.questions = [];
-        subjectRepository.subjects = [];
     });
 
 

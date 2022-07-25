@@ -1,6 +1,6 @@
 import { Result } from "../../../../core/Result";
 import { Subject } from "../../../../domain/entities/Subject";
-import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
+import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 
 interface IGetSubjectRequest {
     id: string
@@ -8,12 +8,12 @@ interface IGetSubjectRequest {
 
 export class GetSubjectService {
     constructor(
-        private SubjectRepository : ISubjectRepository,
+        private FindSubjectByIdRepository : IFindSubjectByIdRepository,
     ){};
 
     async execute({ id } : IGetSubjectRequest) : Promise<Result<Subject>> {
 
-        const subjectOrError = await this.SubjectRepository.findById(id);
+        const subjectOrError = await this.FindSubjectByIdRepository.execute(id);
 
         if(subjectOrError.isFailure){
             return Result.fail<Subject>(subjectOrError.error);

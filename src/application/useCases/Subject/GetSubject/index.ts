@@ -1,14 +1,16 @@
-import { SubjectRepository } from '../../../database/Subject/subject-repository';
 import { GetSubjectService } from './get-subject-service';
 import { GetSubjectController } from './get-subject-controller';
-import { SubjectDTO } from '../../../DTOs/Subject/subject-dto';
+import { FindSubjectByIdRepository } from '../../../database/Subject/find-subject-by-id';
+import { SubjectToResponse } from '../../../DTOs/Subject/subject-to-response';
+import { DataToSubject } from '../../../DTOs/Subject/data-to-subject';
 
-const subjectDTO = new SubjectDTO();
+const dataToSubject = new DataToSubject();
+const subjectToResponse = new SubjectToResponse();
 
-const repository = new SubjectRepository(subjectDTO);
+const findSubjectByIdRepository = new FindSubjectByIdRepository(dataToSubject);
 
-const getSubjectService = new GetSubjectService(repository);
+const getSubjectService = new GetSubjectService(findSubjectByIdRepository);
 
-const getSubjectController = new GetSubjectController(getSubjectService, subjectDTO);
+const getSubjectController = new GetSubjectController(getSubjectService, subjectToResponse);
 
 export { getSubjectService, getSubjectController };

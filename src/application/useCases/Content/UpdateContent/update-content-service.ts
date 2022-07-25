@@ -2,8 +2,7 @@ import { Result } from "../../../../core/Result";
 import { Content } from "../../../../domain/entities/Content";
 import { partialUpdateObject } from "../../../../utils/object-methods/partial-update-object";
 import { IContentRepository } from "../../../repositories/Content/content-repository";
-import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
-
+import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 
 interface IUpdateContentRequest {
     id: string,
@@ -15,7 +14,7 @@ interface IUpdateContentRequest {
 export class UpdateContentService {
 
     constructor(
-        private SubjectRepository: ISubjectRepository,
+        private FindSubjectByIdRepository: IFindSubjectByIdRepository,
         private ContentRepository: IContentRepository
     ){};
 
@@ -29,7 +28,7 @@ export class UpdateContentService {
 
         const validatedSubjectId = subject_id || contentOrError.getValue().props.subject.id;
 
-        const subjectOrError = await this.SubjectRepository.findById(validatedSubjectId);
+        const subjectOrError = await this.FindSubjectByIdRepository.execute(validatedSubjectId);
 
         if(subjectOrError.isFailure){
             return Result.fail<Content>(subjectOrError.error);

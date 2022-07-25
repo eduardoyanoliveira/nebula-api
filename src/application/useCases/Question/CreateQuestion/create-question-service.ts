@@ -1,9 +1,9 @@
 import { IFindUserByIdRepository } from '../../../repositories/User/user-repositories';
-import { ISubjectRepository } from '../../../repositories/Subject/subject-repository';
 import { IQuestionRepository } from '../../../repositories/Question/question-repository';
 import { Result } from '../../../../core/Result';
 import { Question } from '../../../../domain/entities/Interactions/Question';
 import { QuestionFactory } from '../../../../domain/factories/Question/factory-class';
+import { IFindSubjectByIdRepository } from '../../../repositories/Subject/subject-repositories';
 
 
 interface ICreateQuestionRequest {
@@ -20,7 +20,7 @@ export class CreateQuestionService {
     constructor(
         private QuestionFactory: QuestionFactory,
         private FindUserByIdRepository : IFindUserByIdRepository,
-        private SubjectRepository: ISubjectRepository,
+        private FindSubjectByIdRepository: IFindSubjectByIdRepository,
         private QuestionRepository: IQuestionRepository,
     ){};
 
@@ -38,7 +38,7 @@ export class CreateQuestionService {
             return Result.fail<Question>(userOrError.error);
         };
 
-        const subjectOrError = await this.SubjectRepository.findById(subject_id);
+        const subjectOrError = await this.FindSubjectByIdRepository.execute(subject_id);
 
         if(subjectOrError.isFailure){
             return Result.fail<Question>(subjectOrError.error);

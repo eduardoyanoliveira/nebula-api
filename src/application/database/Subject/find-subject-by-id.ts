@@ -1,18 +1,16 @@
 import { Result } from "../../../core/Result";
 import { Subject } from "../../../domain/entities/Subject";
-import { ISubjectRepository } from "../../repositories/Subject/subject-repository";
+import { IFindSubjectByIdRepository } from "../../repositories/Subject/subject-repositories";
 import { prismaClient } from "../prisma/prismaClient";
-import { ISubjectDTO } from '../../DTOs/Subject/subject-dto';
+import { IDataToSubject } from '../../DTOs/Subject/data-to-subject';
 
-interface IFindSubjectById extends Pick<ISubjectRepository, 'findById'>{};
-
-export class FindSubjectById implements IFindSubjectById{
+export class FindSubjectByIdRepository implements IFindSubjectByIdRepository{
 
     constructor(
-        private SubjectDTO: ISubjectDTO
+        private DataToSubject: IDataToSubject
     ){};
 
-    async findById(subject_id: string): Promise<Result<Subject>> {
+    async execute(subject_id: string): Promise<Result<Subject>> {
         
         const response = await prismaClient.subject.findFirst({
             where:{
@@ -24,6 +22,6 @@ export class FindSubjectById implements IFindSubjectById{
             return Result.fail<Subject>("Couldn't find the subject with the given id");
         };
 
-        return Result.ok<Subject>(this.SubjectDTO.dataToSubject(response));
+        return Result.ok<Subject>(this.DataToSubject.transform(response));
     };
 };

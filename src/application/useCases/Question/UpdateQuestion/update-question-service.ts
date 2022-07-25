@@ -2,8 +2,7 @@ import { Result } from "../../../../core/Result";
 import { Question } from "../../../../domain/entities/Interactions/Question";
 import { partialUpdateObject } from "../../../../utils/object-methods/partial-update-object";
 import { IQuestionRepository } from "../../../repositories/Question/question-repository";
-import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
-
+import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 
 interface IUpdateQuestionRequest {
     id: string,
@@ -17,7 +16,7 @@ interface IUpdateQuestionRequest {
 export class UpdateQuestionService {
     constructor(
         private Questionrepository: IQuestionRepository,
-        private SubjectRepository: ISubjectRepository,
+        private FindSubjectByIdRepository: IFindSubjectByIdRepository,
     ){};
 
     async execute({ id, user_id, title, text, subject_id } : IUpdateQuestionRequest){
@@ -34,7 +33,7 @@ export class UpdateQuestionService {
 
         const validatedSubjectId = subject_id || questionOrError.getValue().props.subject.id;
 
-        const subjectOrError = await this.SubjectRepository.findById(validatedSubjectId);
+        const subjectOrError = await this.FindSubjectByIdRepository.execute(validatedSubjectId);
 
         if(subjectOrError.isFailure){
             return Result.fail<Question>(subjectOrError.error); 

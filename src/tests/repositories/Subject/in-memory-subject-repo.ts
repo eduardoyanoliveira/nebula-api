@@ -1,30 +1,33 @@
-import { ISubjectRepository } from "../../../application/repositories/Subject/subject-repository";
+import { ICreateSubjectRepository, IFindSubjectByIdRepository, IFindSubjectByNameRepository, IListSubjectsRepository, IUpdateSubjectRepository } from '../../../application/repositories/Subject/subject-repositories';
 import { Result } from "../../../core/Result";
 import { Subject } from "../../../domain/entities/Subject";
 
-export class InMemorySubjectRepo implements ISubjectRepository{
+export const inMemorySubjects : Subject[] = [];
+export class InMemoryCreateSubjectRepository implements ICreateSubjectRepository {
 
-    public subjects : Subject[] = []
-
-    async create(subject: Subject): Promise<Result<Subject>> {
+    async execute(subject: Subject): Promise<Result<Subject>> {
        
-        this.subjects.push(subject);
+        inMemorySubjects.push(subject);
 
         return Result.ok<Subject>(subject);
     };
+};
 
-    async update(subject: Subject): Promise<Result<Subject>> {
+export class InMemoryUpdateSubjectRepository implements IUpdateSubjectRepository{
+    async execute(subject: Subject): Promise<Result<Subject>> {
 
-        const index = this.subjects.findIndex(item => item.id === subject.id);
+        const index = inMemorySubjects.findIndex(item => item.id === subject.id);
 
-        this.subjects[index] = subject;
+        inMemorySubjects[index] = subject;
 
         return Result.ok<Subject>(subject);
     };
+};
 
+export class InMemoryFindSubjectByIdRepository implements IFindSubjectByIdRepository{
 
-    async findById(id: string): Promise<Result<Subject>> {
-        const subject = this.subjects.find(sub => sub.id === id);
+    async execute(id: string): Promise<Result<Subject>> {
+        const subject = inMemorySubjects.find(sub => sub.id === id);
 
         if(!subject){
             return Result.fail<Subject>("Couldn't find an subject with the given id");
@@ -32,10 +35,13 @@ export class InMemorySubjectRepo implements ISubjectRepository{
 
         return Result.ok<Subject>(subject);
     };
+};
 
-    async findByName(name: string): Promise<Result<Subject>> {
+export class InMemoryFindSubjectByNameRepository implements IFindSubjectByNameRepository{
 
-        const subject = this.subjects.find(sub => sub.props.name === name);
+    async execute(name: string): Promise<Result<Subject>> {
+
+        const subject = inMemorySubjects.find(sub => sub.props.name === name);
 
         if(!subject){
             return Result.fail<Subject>("Couldn't find an subject with the given name");
@@ -43,9 +49,11 @@ export class InMemorySubjectRepo implements ISubjectRepository{
 
         return Result.ok<Subject>(subject);
     }; 
+};
 
-    async list(): Promise<Result<Subject[]>> {
-        return Result.ok<Subject[]>(this.subjects);
+export class InMemoryListSubjectsRepository implements IListSubjectsRepository{
+
+    async execute(): Promise<Result<Subject[]>> {
+        return Result.ok<Subject[]>(inMemorySubjects);
     };
-
 };

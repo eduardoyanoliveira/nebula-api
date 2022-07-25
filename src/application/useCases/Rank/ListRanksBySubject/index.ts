@@ -1,17 +1,17 @@
 import { RankRepository } from "../../../database/Rank/rank-repository";
-import { SubjectRepository } from "../../../database/Subject/subject-repository";
+import { FindSubjectByIdRepository } from "../../../database/Subject/find-subject-by-id";
 import { RankDTO } from "../../../DTOs/Rank/rank-dto";
-import { SubjectDTO } from "../../../DTOs/Subject/subject-dto";
+import { DataToSubject } from "../../../DTOs/Subject/data-to-subject";
 import { ListRanksBySubjectController } from "./list-ranks-by-subject-controller";
 import { ListRanksBySubjectService } from "./list-ranks-by-subject-service";
 
-const subjectDTO = new SubjectDTO();
+const dataToSubject = new DataToSubject();
 const rankDTO = new RankDTO();
 
-const subjectRepository = new SubjectRepository(subjectDTO);
+const findSubjectByIdRepository = new FindSubjectByIdRepository(dataToSubject);
 const rankRepository = new RankRepository(rankDTO);
 
-const listRanksBySubjectService = new ListRanksBySubjectService(subjectRepository, rankRepository);
+const listRanksBySubjectService = new ListRanksBySubjectService(findSubjectByIdRepository, rankRepository);
 
 const listRanksBySubjectController = new ListRanksBySubjectController(listRanksBySubjectService, rankDTO);
 

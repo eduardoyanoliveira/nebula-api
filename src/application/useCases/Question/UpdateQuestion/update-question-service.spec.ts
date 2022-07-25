@@ -3,16 +3,16 @@ import { Question } from "../../../../domain/entities/Interactions/Question";
 import { generateRandomSubject } from "../../../../tests/generate-random-subject";
 import { generateRandomQuestion} from '../../../../tests/generate-random-question';
 import { InMemoryQuestionRepository } from "../../../../tests/repositories/Question/in-memory-question-repository";
-import { InMemorySubjectRepo } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { UpdateQuestionService } from "./update-question-service";
 import { generateRandomUser } from "../../../../tests/generate-random-user";
 
 describe('Update question service', () => {
 
-    const subjectRepository = new InMemorySubjectRepo();
+    const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
     const questionRepository = new InMemoryQuestionRepository();
 
-    const service = new UpdateQuestionService(questionRepository, subjectRepository);
+    const service = new UpdateQuestionService(questionRepository, findSubjectByIdRepository);
 
     const user = generateRandomUser();
     const subject = generateRandomSubject();
@@ -20,12 +20,11 @@ describe('Update question service', () => {
 
     const questionThatExists = generateRandomQuestion(user, subject);
 
-    subjectRepository.subjects.push(subject);
-    subjectRepository.subjects.push(other_subject);
+    inMemorySubjects.push(subject);
+    inMemorySubjects.push(other_subject);
     questionRepository.questions.push(questionThatExists);
 
     afterAll(() => {
-        subjectRepository.subjects = [];
         questionRepository.questions = [];
     });
 

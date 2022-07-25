@@ -1,6 +1,6 @@
 import { GenerateUserRanksService } from "./generate-user-ranks-service";
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
-import { InMemorySubjectRepo } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
+import { InMemoryListSubjectsRepository, inMemorySubjects } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
 import { InMemoryRankRepository } from "../../../../tests/repositories/Rank/in-memory-rank-repository";
 
 import { generateRandomUser } from '../../../../tests/generate-random-user';
@@ -10,22 +10,18 @@ import { generateRandomSubject } from '../../../../tests/generate-random-subject
 describe('Generate ranks with user service', () => {
 
     const findUserByIdRepository = new InMemoryFindUserByIdRepository();
-    const subjectRepository = new InMemorySubjectRepo();
+    const listSubjectsRepository = new InMemoryListSubjectsRepository();
     const rankRepository = new InMemoryRankRepository();
 
-    const service = new GenerateUserRanksService(findUserByIdRepository, subjectRepository, rankRepository);
+    const service = new GenerateUserRanksService(findUserByIdRepository, listSubjectsRepository, rankRepository);
 
     const user = generateRandomUser();
     const subject_one = generateRandomSubject();
     const subject_two = generateRandomSubject();
 
     inMemoryUsers.push(user);
-    subjectRepository.subjects.push(subject_one);
-    subjectRepository.subjects.push(subject_two);
-
-    afterAll(() => {
-        subjectRepository.subjects = [];
-    });
+    inMemorySubjects.push(subject_one);
+    inMemorySubjects.push(subject_two);
 
     it('should fail with the user does not exist', async () => {
 

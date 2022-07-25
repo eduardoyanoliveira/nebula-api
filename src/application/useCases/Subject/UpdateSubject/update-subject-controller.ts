@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { ISubjectDTO } from "../../../DTOs/Subject/subject-dto";
+import { ISubjectToResponse } from "../../../DTOs/Subject/subject-to-response";
 import { UpdateSubjectService } from "./update-subject-service";
 
 
 export class UpdateSubjectController {
     constructor(
         private UpdateSubjectService : UpdateSubjectService,
-        private SubjectDTO: ISubjectDTO
+        private SubjectToResponse: ISubjectToResponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -24,6 +24,6 @@ export class UpdateSubjectController {
             throw new Error(subjectOrError.error);
         };
 
-        return res.json(this.SubjectDTO.subjectToResponse(subjectOrError.getValue()));
+        return res.json(this.SubjectToResponse.transform(subjectOrError.getValue()));
     };
 };

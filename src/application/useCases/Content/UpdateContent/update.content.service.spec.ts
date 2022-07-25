@@ -1,24 +1,23 @@
 import { generateRandomSubject } from "../../../../tests/generate-random-subject";
 import { generateRandomContent } from "../../../../tests/generate-random-contents";
 import { InMemoryContentRepository } from "../../../../tests/repositories/Content/in-memory-content-repository";
-import { InMemorySubjectRepo } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { UpdateContentService } from "./update-content-service";
 
 
 describe('Update content service', () => {
 
-    const subjectRepository = new InMemorySubjectRepo();
+    const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
     const contentRepository = new InMemoryContentRepository();
-    const service = new UpdateContentService( subjectRepository, contentRepository );
+    const service = new UpdateContentService( findSubjectByIdRepository, contentRepository );
 
     const subjectThatExists = generateRandomSubject();
     const contentThatExists = generateRandomContent( subjectThatExists );
 
-    subjectRepository.subjects.push(subjectThatExists);
+    inMemorySubjects.push(subjectThatExists);
     contentRepository.contents.push(contentThatExists);
 
     afterAll(() => {
-        subjectRepository.subjects = [];
         contentRepository.contents = [];
     });
 
@@ -61,7 +60,7 @@ describe('Update content service', () => {
 
         const newSubject = generateRandomSubject();
 
-        subjectRepository.subjects.push(newSubject);
+        inMemorySubjects.push(newSubject);
 
         const response = await service.execute({
             id: contentThatExists.id,

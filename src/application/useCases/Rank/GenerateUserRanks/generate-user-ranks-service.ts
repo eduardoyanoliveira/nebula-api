@@ -1,7 +1,7 @@
 import { GenericResultClass } from "../../../../core/GenericResultClass";
 import { Result } from "../../../../core/Result";
 import { IRankRepository } from "../../../repositories/Rank/rank-repository";
-import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
+import { IListSubjectsRepository } from "../../../repositories/Subject/subject-repositories";
 import { IFindUserByIdRepository } from "../../../repositories/User/user-repositories";
 
 
@@ -14,7 +14,7 @@ export class GenerateUserRanksService {
 
     constructor(
         private  FindUserByIdRepository : IFindUserByIdRepository,
-        private SubjectRepository: ISubjectRepository,
+        private ListSubjectsRepository: IListSubjectsRepository,
         private RankRepository : IRankRepository
     ){};
 
@@ -26,7 +26,7 @@ export class GenerateUserRanksService {
             return Result.fail<GenericResultClass>(userOrError.error);
         };
 
-        const subjectsOrError = await this.SubjectRepository.list();
+        const subjectsOrError = await this.ListSubjectsRepository.execute();
 
         if(subjectsOrError.isFailure){
             return Result.fail<GenericResultClass>(subjectsOrError.error);

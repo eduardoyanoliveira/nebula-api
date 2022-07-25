@@ -2,13 +2,14 @@ import { Request, Response } from "express";
 import { Result } from "../../../../core/Result";
 import { Subject } from "../../../../domain/entities/Subject";
 import { GetSubjectService } from './get-subject-service';
-import { ISubjectDTO } from '../../../DTOs/Subject/subject-dto';
+
+import { ISubjectToResponse } from "../../../DTOs/Subject/subject-to-response";
 
 export class GetSubjectController{
 
     constructor(
         private GetSubjectService: GetSubjectService,
-        private SubjectDTO : ISubjectDTO
+        private SubjectToResponse : ISubjectToResponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -20,6 +21,6 @@ export class GetSubjectController{
             throw new Error(subjectOrError.error);
         };
 
-        return res.json(this.SubjectDTO.subjectToResponse(subjectOrError.getValue()));
+        return res.json(this.SubjectToResponse.transform(subjectOrError.getValue()));
     };
 };

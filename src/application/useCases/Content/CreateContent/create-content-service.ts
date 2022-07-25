@@ -2,8 +2,7 @@ import { Result } from "../../../../core/Result";
 import { Content } from "../../../../domain/entities/Content";
 import { ContentFactory } from '../../../../domain/factories/Content/factory-class';
 import { IContentRepository } from "../../../repositories/Content/content-repository";
-import { ISubjectRepository } from '../../../repositories/Subject/subject-repository';
-
+import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 interface ICreateContentRequest {
     description: string,
     url: string,
@@ -13,14 +12,14 @@ interface ICreateContentRequest {
 export class CreateContentService {
 
     constructor(
-        private SubjectRepository : ISubjectRepository,
+        private FindSubjectByIdRepository : IFindSubjectByIdRepository,
         private ContentFactory : ContentFactory,
         private ContentRepository : IContentRepository,
     ){};
 
     async execute({ description, url, subject_id} : ICreateContentRequest) : Promise<Result<Content>>{
 
-        const subjectOrError = await this.SubjectRepository.findById(subject_id);
+        const subjectOrError = await this.FindSubjectByIdRepository.execute(subject_id);
 
         if(subjectOrError.isFailure){
             return Result.fail<Content>(subjectOrError.error);

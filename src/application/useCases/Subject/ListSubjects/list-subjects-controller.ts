@@ -3,14 +3,14 @@ import { Result } from "../../../../core/Result";
 import { Subject } from "../../../../domain/entities/Subject";
 import { objectToWhere } from "../../../../utils/prisma-filters";
 import { ISubjectDataProps } from "../../../DTOs/Subject/interfaces";
-import { ISubjectDTO } from "../../../DTOs/Subject/subject-dto";
+import { ISubjectToResponse } from "../../../DTOs/Subject/subject-to-response";
 import { ListSubjectsService } from "./list-subjects-service";
 
 export class ListSubjectsController{
 
     constructor(
         private ListSubjectsService: ListSubjectsService,
-        private SubjectDTO: ISubjectDTO
+        private SubjectToResponse: ISubjectToResponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -28,7 +28,7 @@ export class ListSubjectsController{
         const subjects : ISubjectDataProps[] = [];
 
         subjectsOrError.getValue().forEach((subject) => {
-            subjects.push(this.SubjectDTO.subjectToResponse(subject));
+            subjects.push(this.SubjectToResponse.transform(subject));
         });
 
         return res.json(subjects);

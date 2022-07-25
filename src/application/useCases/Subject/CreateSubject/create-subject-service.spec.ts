@@ -1,20 +1,19 @@
 import { Result } from "../../../../core/Result";
 import { Subject } from "../../../../domain/entities/Subject";
 import { generateRandomSubject } from "../../../../tests/generate-random-subject";
-import { InMemorySubjectRepo } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { InMemoryCreateSubjectRepository, InMemoryFindSubjectByNameRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { CreateSubjectService } from "./create-subject-service";
 
 describe('Create subject service', () => {
 
-    const repository = new InMemorySubjectRepo();
-    const service = new CreateSubjectService(repository);
+    const findSubjectByNameRepository = new InMemoryFindSubjectByNameRepository();
+    const createSubjectRepository = new InMemoryCreateSubjectRepository();
+
+    const service = new CreateSubjectService(findSubjectByNameRepository, createSubjectRepository);
 
     const subjectThatAlreadyExists = generateRandomSubject();
-    repository.subjects.push(subjectThatAlreadyExists);
+    inMemorySubjects.push(subjectThatAlreadyExists);
 
-    afterAll(() => {
-        repository.subjects = [];
-    });
 
     it('should fail with there is already a subject with the given name resgistered on database', async () => {
 

@@ -1,22 +1,17 @@
 import { Result } from "../../../../core/Result";
 import { Subject } from "../../../../domain/entities/Subject";
 import { generateRandomSubject } from "../../../../tests/generate-random-subject";
-import { InMemorySubjectRepo } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { InMemoryFindSubjectByIdRepository, InMemoryUpdateSubjectRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { UpdateSubjectService } from "./update-subject-service";
 
 describe('Update subject service', () => {
 
-    const repository = new InMemorySubjectRepo();
-    const service = new UpdateSubjectService(repository);
+    const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
+    const updateSubjectRepository = new InMemoryUpdateSubjectRepository();
+    const service = new UpdateSubjectService(findSubjectByIdRepository, updateSubjectRepository);
 
     const subjectThatExists = generateRandomSubject();
-    repository.subjects.push(subjectThatExists);
-
-
-    afterAll(() => {
-        repository.subjects = [];
-    });
-
+    inMemorySubjects.push(subjectThatExists);
 
     it('should faild with the subject does not exist', async () => {
 

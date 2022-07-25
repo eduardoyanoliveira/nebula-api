@@ -1,20 +1,20 @@
 import { CreateContentService } from "./create-content-service";
 import { ContentRepository } from '../../../database/Content/content-repository';
-import { SubjectRepository } from "../../../database/Subject/subject-repository";
 import { ContentFactory } from "../../../../domain/factories/Content/factory-class";
 import { CreateContentController } from "./create-content-controller";
-import { SubjectDTO } from "../../../DTOs/Subject/subject-dto";
 import { ContentDTO } from "../../../DTOs/Content/content-dto";
+import { DataToSubject } from "../../../DTOs/Subject/data-to-subject";
+import { FindSubjectByIdRepository } from "../../../database/Subject/find-subject-by-id";
 
-const subjectDTO = new SubjectDTO();
+const dataToSubject = new DataToSubject();
 const contentDTO = new ContentDTO();
 
-const subjectRepository = new SubjectRepository(subjectDTO);
+const findSubjectByIdRepository = new FindSubjectByIdRepository(dataToSubject);
 const contentRepository = new ContentRepository(contentDTO);
 
 const contentFactory = new ContentFactory();
 
-const createContentService = new CreateContentService(subjectRepository, contentFactory, contentRepository);
+const createContentService = new CreateContentService(findSubjectByIdRepository, contentFactory, contentRepository);
 
 const createContentController = new CreateContentController(createContentService, contentDTO);
 

@@ -1,14 +1,16 @@
-import { SubjectRepository } from '../../../database/Subject/subject-repository';
 import { ListSubjectsService } from './list-subjects-service';
 import { ListSubjectsController } from './list-subjects-controller';
-import { SubjectDTO } from '../../../DTOs/Subject/subject-dto';
+import { DataToSubject } from '../../../DTOs/Subject/data-to-subject';
+import { SubjectToResponse } from '../../../DTOs/Subject/subject-to-response';
+import { ListSubjectsRepository } from '../../../database/Subject/list-subjects';
 
-const subjectDTO = new SubjectDTO();
+const dataToSubject = new DataToSubject();
+const subjectToResponse = new SubjectToResponse();
 
-const repository = new SubjectRepository(subjectDTO);
+const listSubjectsRepository = new ListSubjectsRepository(dataToSubject);
 
-const listSubjectsService = new ListSubjectsService(repository);
+const listSubjectsService = new ListSubjectsService(listSubjectsRepository);
 
-const listSubjectsController = new ListSubjectsController(listSubjectsService, subjectDTO);
+const listSubjectsController = new ListSubjectsController(listSubjectsService, subjectToResponse);
 
 export { listSubjectsService, listSubjectsController };

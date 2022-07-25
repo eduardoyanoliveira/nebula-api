@@ -1,6 +1,6 @@
 import { ContentFactory } from '../../../../domain/factories/Content/factory-class';
 import { InMemoryContentRepository } from '../../../../tests/repositories/Content/in-memory-content-repository';
-import { InMemorySubjectRepo } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
 import { CreateContentService } from './create-content-service';
 import { generateRandomSubject } from '../../../../tests/generate-random-subject';
 import { Content } from '../../../../domain/entities/Content';
@@ -9,18 +9,14 @@ import { Result } from '../../../../core/Result';
 describe('Create content service', ()  => {
 
     const factory = new ContentFactory();
-    const subjectRepository = new InMemorySubjectRepo();
+    const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
     const contentRepository = new InMemoryContentRepository();
 
-    const service = new CreateContentService(subjectRepository, factory, contentRepository);
+    const service = new CreateContentService(findSubjectByIdRepository, factory, contentRepository);
 
     const subjectThatExists = generateRandomSubject();
 
-    subjectRepository.subjects.push(subjectThatExists);
-
-    afterAll(() => {
-        subjectRepository.subjects = [];
-    });
+    inMemorySubjects.push(subjectThatExists);
 
     it('should fail if the subject does not exists', async () => {
         const response : Result<Content> = await service.execute({

@@ -1,7 +1,7 @@
 import { Result } from "../../../../core/Result";
 import { Subject } from "../../../../domain/entities/Subject";
 import { partialUpdateObject } from "../../../../utils/object-methods/partial-update-object";
-import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
+import { IFindSubjectByIdRepository, IUpdateSubjectRepository } from "../../../repositories/Subject/subject-repositories";
 
 interface IUpdateSubjectRequest {
     id: string;
@@ -11,7 +11,8 @@ interface IUpdateSubjectRequest {
 
 export class UpdateSubjectService {
     constructor(
-        private SubjectRepository: ISubjectRepository,
+        private FindSubjectByIdRepository: IFindSubjectByIdRepository,
+        private UpdateSubjectRepository: IUpdateSubjectRepository
     ){};
 
     async execute({ id, name, is_active }: IUpdateSubjectRequest) : Promise<Result<Subject>>{
@@ -22,7 +23,7 @@ export class UpdateSubjectService {
             updated_at: new Date()
         };
         
-        const subjectOrError = await this.SubjectRepository.findById(id);
+        const subjectOrError = await this.FindSubjectByIdRepository.execute(id);
         
         if(subjectOrError.isFailure){
             return Result.fail<Subject>(subjectOrError.error)
@@ -34,7 +35,7 @@ export class UpdateSubjectService {
         );
         
         // Persist on database
-        await this.SubjectRepository.update(updatedSubject); 
+        await this.UpdateSubjectRepository.execute(updatedSubject); 
         
         return Result.ok<Subject>(updatedSubject);
     };

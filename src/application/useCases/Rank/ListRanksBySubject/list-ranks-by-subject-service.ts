@@ -1,8 +1,7 @@
 import { Result } from "../../../../core/Result";
 import { Rank } from "../../../../domain/entities/Rank";
 import { IRankRepository } from "../../../repositories/Rank/rank-repository";
-import { ISubjectRepository } from "../../../repositories/Subject/subject-repository";
-
+import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 
 interface IListRanksBySubjectProps {
     subject_id: string,
@@ -11,13 +10,13 @@ interface IListRanksBySubjectProps {
 export class ListRanksBySubjectService{
 
     constructor(
-        private SubjectRepository : ISubjectRepository,
+        private FindSubjectByIdRepository : IFindSubjectByIdRepository,
         private RankRepository : IRankRepository
     ){};
 
     async execute({ subject_id } : IListRanksBySubjectProps) : Promise<Result<Rank[]>>{
 
-        const subjectOrError = await this.SubjectRepository.findById(subject_id);
+        const subjectOrError = await this.FindSubjectByIdRepository.execute(subject_id);
 
         // checks if the subject exists
         if(subjectOrError.isFailure){

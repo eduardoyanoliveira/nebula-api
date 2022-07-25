@@ -1,14 +1,18 @@
-import { SubjectRepository } from "../../../database/Subject/subject-repository";
 import { UpdateSubjectService } from "./update-subject-service";
 import { UpdateSubjectController } from './update-subject-controller';
-import { SubjectDTO } from "../../../DTOs/Subject/subject-dto";
+import { SubjectToResponse } from "../../../DTOs/Subject/subject-to-response";
+import { DataToSubject } from "../../../DTOs/Subject/data-to-subject";
+import { UpdateSubjectRepository } from "../../../database/Subject/update-subject";
+import { FindSubjectByIdRepository } from "../../../database/Subject/find-subject-by-id";
 
-const subjectDTO = new SubjectDTO();
+const dataToSubject = new DataToSubject();
+const subjectToResponse = new SubjectToResponse();
 
-const repository = new SubjectRepository(subjectDTO);
+const findSubjectByIdRepository = new FindSubjectByIdRepository(dataToSubject);
+const updateSubjectRepository = new UpdateSubjectRepository();
 
-const updateSubjectService = new UpdateSubjectService(repository);
+const updateSubjectService = new UpdateSubjectService(findSubjectByIdRepository, updateSubjectRepository);
 
-const updateSubjectController = new UpdateSubjectController(updateSubjectService, subjectDTO);
+const updateSubjectController = new UpdateSubjectController(updateSubjectService, subjectToResponse);
 
 export { updateSubjectService, updateSubjectController };

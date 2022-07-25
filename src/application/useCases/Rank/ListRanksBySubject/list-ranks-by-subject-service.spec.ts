@@ -2,14 +2,14 @@ import { Rank } from "../../../../domain/entities/Rank";
 import { Subject } from "../../../../domain/entities/Subject";
 import { Role, User } from "../../../../domain/entities/User";
 import { InMemoryRankRepository } from "../../../../tests/repositories/Rank/in-memory-rank-repository";
-import { InMemorySubjectRepo } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { ListRanksBySubjectService } from "./list-ranks-by-subject-service";
 
 describe('List ranks by subject service', () => {
 
-    const subjectRepository = new InMemorySubjectRepo();
+    const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
     const rankRepository = new InMemoryRankRepository();
-    const service = new ListRanksBySubjectService(subjectRepository, rankRepository);
+    const service = new ListRanksBySubjectService(findSubjectByIdRepository, rankRepository);
 
     beforeAll(async () => {
         
@@ -36,7 +36,7 @@ describe('List ranks by subject service', () => {
             role: Role.USER
         });
 
-        await subjectRepository.create(subject);
+        inMemorySubjects.push(subject);
 
         const rank_one = Rank.create({
             user: user_one,
