@@ -1,18 +1,17 @@
 import { Result } from "../../../core/Result";
 import { Rankmark } from "../../../domain/entities/Rankmark";
-import { IRankmarkDTO } from "../../DTOs/Rankmark/rankmark-dto";
-import { IRankmarkRepository } from "../../repositories/Rankmark/rankmark-repository";
+import { IDataToRankmark } from "../../DTOs/Rankmark/data-to-rankmark";
+import { IFindRankmarkByNameRepository } from "../../repositories/Rankmark/rankmark-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IFindRankmarkByName extends Pick<IRankmarkRepository, 'findByName'>{};
 
-export class FindRankmarkByName implements IFindRankmarkByName{
+export class FindRankmarkByNameRepository implements IFindRankmarkByNameRepository{
 
     constructor(
-        private RankmarkDTO: IRankmarkDTO
+        private DataToRankmark: IDataToRankmark
     ){};
 
-    async findByName(name: string): Promise<Result<Rankmark>> {
+    async execute(name: string): Promise<Result<Rankmark>> {
 
         const response = await prismaClient.rankmark.findUnique({
             where:{
@@ -24,6 +23,6 @@ export class FindRankmarkByName implements IFindRankmarkByName{
             return Result.fail<Rankmark>('could not retrieve rankmark from database due an unexpected error');
         };
 
-        return Result.ok<Rankmark>(this.RankmarkDTO.dataToRankmark(response));
+        return Result.ok<Rankmark>(this.DataToRankmark.transform(response));
     };
 };

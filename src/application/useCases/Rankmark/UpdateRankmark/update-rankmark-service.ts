@@ -1,7 +1,7 @@
 import { Result } from "../../../../core/Result";
 import { Rankmark } from "../../../../domain/entities/Rankmark";
 import { partialUpdateObject } from "../../../../utils/object-methods/partial-update-object";
-import { IRankmarkRepository } from "../../../repositories/Rankmark/rankmark-repository";
+import { IFindRankmarkByIdRepository, IUpdateRankmarkRepository } from "../../../repositories/Rankmark/rankmark-repositories";
 
 interface IUpdateRankmarkRequestProps{
     id: string,
@@ -13,7 +13,8 @@ interface IUpdateRankmarkRequestProps{
 
 export class UpdateRankmarkService {
     constructor(
-        private RankmarkRepository : IRankmarkRepository
+        private FindRankmarkByIdRepository : IFindRankmarkByIdRepository,
+        private UpdateRankmarkRepository: IUpdateRankmarkRepository
     ){};
 
     async execute({ id, name, color, points, is_active } : IUpdateRankmarkRequestProps): Promise<Result<Rankmark>>{
@@ -26,7 +27,7 @@ export class UpdateRankmarkService {
             updated_at: new Date()
         };
 
-        const rankmarkOrError = await this.RankmarkRepository.findById(id);
+        const rankmarkOrError = await this.FindRankmarkByIdRepository.execute(id);
 
         if(rankmarkOrError.isFailure){
             return Result.fail<Rankmark>(rankmarkOrError.error);
@@ -38,7 +39,7 @@ export class UpdateRankmarkService {
         );
 
         // Persist on database
-        await this.RankmarkRepository.update(rankmark);
+        await this.UpdateRankmarkRepository.execute(rankmark);
 
         return Result.ok<Rankmark>(rankmark);
 

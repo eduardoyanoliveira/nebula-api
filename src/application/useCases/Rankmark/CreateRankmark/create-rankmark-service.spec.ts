@@ -2,22 +2,25 @@ import { Result } from "../../../../core/Result";
 import { Rankmark } from "../../../../domain/entities/Rankmark";
 import { RankmarkFactory } from "../../../../domain/factories/Rankmark/factory-class";
 import { generateRandomRankmark } from "../../../../tests/generate-random-rankmark";
-import { InMemoryRankmarkRepository } from "../../../../tests/repositories/Rankmark/in-memory-rankmark-repository";
+import { InMemoryCreateRankmarkRepository, InMemoryFindRankmarkByNameRepository, inMemoryRankmarks } from "../../../../tests/repositories/Rankmark/in-memory-rankmark-repository";
 import { CreateRankmarkService } from "./create-rankmark-service";
 
 describe('Create rankmark service', () => {
 
     const factory = new RankmarkFactory();
-    const repository = new InMemoryRankmarkRepository();
-    const service = new CreateRankmarkService( factory ,repository );
+    const findRankmarkByNameRepository = new InMemoryFindRankmarkByNameRepository();
+    const createRankmarkRepository = new InMemoryCreateRankmarkRepository();
+
+
+    const service = new CreateRankmarkService( 
+        findRankmarkByNameRepository, 
+        createRankmarkRepository, 
+        factory 
+    );
 
     const rankmarkThatAlreadyExists = generateRandomRankmark();
 
-    repository.rankmarks.push(rankmarkThatAlreadyExists);
-
-    afterAll(() => {
-        repository.rankmarks = [];
-    });
+    inMemoryRankmarks.push(rankmarkThatAlreadyExists);
 
     it('should fail with there is already a rankmark on database with the given name', async () => {
         

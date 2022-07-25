@@ -1,18 +1,17 @@
 import { Result } from "../../../core/Result";
 import { Rankmark } from "../../../domain/entities/Rankmark";
-import { IRankmarkDTO } from "../../DTOs/Rankmark/rankmark-dto";
-import { IRankmarkRepository } from "../../repositories/Rankmark/rankmark-repository";
+import { IDataToRankmark } from "../../DTOs/Rankmark/data-to-rankmark";
+import { IListRankmarksRepository } from "../../repositories/Rankmark/rankmark-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IListRankmark extends Pick<IRankmarkRepository, 'list'>{};
 
-export class ListRankmark implements IListRankmark{
+export class ListRankmarksRepository implements IListRankmarksRepository{
 
     constructor(
-        private RankmarkDTO: IRankmarkDTO
+        private DataToRankmark: IDataToRankmark
     ){};
 
-    async list(filters): Promise<Result<Rankmark[]>> {
+    async execute(filters): Promise<Result<Rankmark[]>> {
 
         const response = await prismaClient.rankmark.findMany({
             where: filters
@@ -25,7 +24,7 @@ export class ListRankmark implements IListRankmark{
         const rankmarks : Rankmark[] = [];
 
         response.forEach((rankmark) => {
-            rankmarks.push(this.RankmarkDTO.dataToRankmark(rankmark));
+            rankmarks.push(this.DataToRankmark.transform(rankmark));
         });
         
         return Result.ok<Rankmark[]>(rankmarks);

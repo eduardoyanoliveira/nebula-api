@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { IRankmarkDataProps } from '../../../DTOs/Rankmark/interfaces';
-import { IRankmarkDTO } from '../../../DTOs/Rankmark/rankmark-dto';
 import { ListRankmarksService } from './list-rankmarks-service';
 import { objectToWhere } from '../../../../utils/prisma-filters'; 
+import { IRankmarkToResponse } from '../../../DTOs/Rankmark/rankmark-to-response';
 
 export class ListRankmarksController {
     constructor(
         private ListRankmarksService : ListRankmarksService,
-        private RankmarkDTO: IRankmarkDTO
+        private RankmarkToResponse: IRankmarkToResponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -23,7 +23,7 @@ export class ListRankmarksController {
         const rankmarks : IRankmarkDataProps[] = [];
 
         rankmarksOrError.getValue().forEach((rankmark) => {
-            rankmarks.push(this.RankmarkDTO.rankmarkToResponse(rankmark));
+            rankmarks.push(this.RankmarkToResponse.transform(rankmark));
         });
 
         return res.json(rankmarks);

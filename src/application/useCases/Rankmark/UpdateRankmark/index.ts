@@ -1,13 +1,18 @@
-import { RankmarkRepository } from "../../../database/Rankmark/rankmark-repository";
-import { RankmarkDTO } from "../../../DTOs/Rankmark/rankmark-dto";
+import { DataToRankmark } from "../../../DTOs/Rankmark/data-to-rankmark";
+import { RankmarkToResponse } from "../../../DTOs/Rankmark/rankmark-to-response";
 import { UpdateRankmarkController } from "./update-rankmark-controller";
 import { UpdateRankmarkService } from "./update-rankmark-service";
+import { FindRankmarkByIdRepository } from '../../../database/Rankmark/find-rankmark-by-id';
+import { UpdateRankmarkRepository } from "../../../database/Rankmark/update-rankmark";
 
-const rankmarkDTO = new RankmarkDTO();
+const dataToRankmark = new DataToRankmark();
+const rankmarkToResponse = new RankmarkToResponse();
 
-const rankmarkRepository = new RankmarkRepository(rankmarkDTO);
-const updateRankmarkService = new UpdateRankmarkService( rankmarkRepository );
+const findRankmarkByIdRepository = new FindRankmarkByIdRepository(dataToRankmark);
+const updateRankmarkRepository = new UpdateRankmarkRepository();
 
-const updateRankmarkController = new UpdateRankmarkController(updateRankmarkService, rankmarkDTO);
+const updateRankmarkService = new UpdateRankmarkService( findRankmarkByIdRepository, updateRankmarkRepository );
+
+const updateRankmarkController = new UpdateRankmarkController(updateRankmarkService, rankmarkToResponse);
 
 export { updateRankmarkController, updateRankmarkService };

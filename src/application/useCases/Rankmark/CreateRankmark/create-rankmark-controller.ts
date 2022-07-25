@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { IRankmarkDTO } from "../../../DTOs/Rankmark/rankmark-dto";
+import { IRankmarkToResponse } from "../../../DTOs/Rankmark/rankmark-to-response";
 import { CreateRankmarkService } from "./create-rankmark-service";
 
 export class CreateRankmarkController {
 
     constructor(
         private CreateRankmarkService: CreateRankmarkService,
-        private RankmarkDTO: IRankmarkDTO
+        private RankmarkToResponse: IRankmarkToResponse
     ){};
 
     async handle(req: Request, res: Response) {
@@ -19,6 +19,6 @@ export class CreateRankmarkController {
             throw new Error(rankmarkOrError.error);
         };
 
-        return res.json(this.RankmarkDTO.rankmarkToResponse(rankmarkOrError.getValue()));
+        return res.json(this.RankmarkToResponse.transform(rankmarkOrError.getValue()));
     };
 };

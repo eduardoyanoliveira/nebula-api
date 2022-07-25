@@ -1,13 +1,11 @@
 import { Result } from "../../../core/Result";
 import { Rankmark } from "../../../domain/entities/Rankmark";
-import { IRankmarkRepository } from "../../repositories/Rankmark/rankmark-repository";
+import { IUpdateRankmarkRepository } from "../../repositories/Rankmark/rankmark-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IUpdateRankmark extends Pick<IRankmarkRepository, 'update'>{};
+export class UpdateRankmarkRepository implements IUpdateRankmarkRepository{
 
-export class UpdateRankmark implements IUpdateRankmark{
-
-    async update(rankmark: Rankmark): Promise<Result<Rankmark>> {
+    async execute(rankmark: Rankmark): Promise<Result<Rankmark>> {
         try{
             await prismaClient.rankmark.update({
                 where:{

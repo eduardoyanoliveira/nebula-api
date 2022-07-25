@@ -1,29 +1,33 @@
-import { IRankmarkRepository } from "../../../application/repositories/Rankmark/rankmark-repository";
+import { ICreateRankmarkRepository, IFindRankmarkByIdRepository, IFindRankmarkByNameRepository, IListRankmarksRepository, IUpdateRankmarkRepository } from "../../../application/repositories/Rankmark/rankmark-repositories";
 import { Result } from "../../../core/Result";
 import { Rankmark } from "../../../domain/entities/Rankmark";
 
-export class InMemoryRankmarkRepository implements IRankmarkRepository {
+export const inMemoryRankmarks : Rankmark[] = [];
+export class InMemoryCreateRankmarkRepository implements ICreateRankmarkRepository{
+    async execute(rankmark: Rankmark): Promise<Result<Rankmark>> {
 
-    public rankmarks : Rankmark[] = [];
-
-    async create(rankmark: Rankmark): Promise<Result<Rankmark>> {
-
-        this.rankmarks.push(rankmark);
+        inMemoryRankmarks.push(rankmark);
 
         return Result.ok<Rankmark>(rankmark);
     };
+};
 
-    async update(rankmark: Rankmark): Promise<Result<Rankmark>> {
+export class InMemoryUpdateRankmarkRepository implements IUpdateRankmarkRepository{
 
-        const index = this.rankmarks.findIndex(item => item.id === rankmark.id);
+    async execute(rankmark: Rankmark): Promise<Result<Rankmark>> {
 
-        this.rankmarks[index] = rankmark;
+        const index = inMemoryRankmarks.findIndex(item => item.id === rankmark.id);
+
+        inMemoryRankmarks[index] = rankmark;
 
         return Result.ok<Rankmark>(rankmark);
     };
+};
 
-    async findByName(name: string): Promise<Result<Rankmark>> {
-        const rankmark = this.rankmarks.find(item => item.props.name === name);
+export class InMemoryFindRankmarkByNameRepository implements IFindRankmarkByNameRepository{
+
+    async execute(name: string): Promise<Result<Rankmark>> {
+        const rankmark = inMemoryRankmarks.find(item => item.props.name === name);
 
         if(!rankmark){
             return Result.fail<Rankmark>('could not find a rankmark with the given name');
@@ -31,10 +35,11 @@ export class InMemoryRankmarkRepository implements IRankmarkRepository {
 
         return Result.ok<Rankmark>(rankmark);
     };
+};
+export class InMemoryFindRankmarkByIdRepository implements IFindRankmarkByIdRepository{
+    async execute(id: string): Promise<Result<Rankmark>> {
 
-    async findById(id: string): Promise<Result<Rankmark>> {
-
-        const rankmark = this.rankmarks.find(item => item.id === id);
+        const rankmark = inMemoryRankmarks.find(item => item.id === id);
 
         if(!rankmark){
             return Result.fail<Rankmark>('could not find a rankmark with the given id');
@@ -42,9 +47,13 @@ export class InMemoryRankmarkRepository implements IRankmarkRepository {
 
         return Result.ok<Rankmark>(rankmark);
     };
+};
 
-    async list(): Promise<Result<Rankmark[]>> {
-        return Result.ok<Rankmark[]>(this.rankmarks);
+
+export class InMemoryListRankmarksRepository implements IListRankmarksRepository {
+
+    async execute(): Promise<Result<Rankmark[]>> {
+        return Result.ok<Rankmark[]>(inMemoryRankmarks);
     };
 
 };

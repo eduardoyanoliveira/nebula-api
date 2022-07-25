@@ -3,12 +3,12 @@ import { IRankmarkDataProps } from "./interfaces";
 
 
 export interface IRankmarkToResponse {
-    rankmarkToResponse(rankmark: Rankmark): IRankmarkDataProps
+    transform(rankmark: Rankmark): IRankmarkDataProps
 };
 
 export class RankmarkToResponse implements IRankmarkToResponse{
 
-    rankmarkToResponse(rankmark: Rankmark): IRankmarkDataProps {
+    transform(rankmark: Rankmark): IRankmarkDataProps {
         
         const response = {
             id: rankmark.id,

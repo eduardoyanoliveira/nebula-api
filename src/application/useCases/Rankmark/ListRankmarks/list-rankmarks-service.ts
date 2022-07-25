@@ -1,6 +1,6 @@
 import { Result } from "../../../../core/Result";
 import { Rankmark } from "../../../../domain/entities/Rankmark";
-import { IRankmarkRepository } from "../../../repositories/Rankmark/rankmark-repository";
+import { IListRankmarksRepository } from "../../../repositories/Rankmark/rankmark-repositories";
 
 interface IListRankmarksRequest {
     filters?: object
@@ -9,12 +9,12 @@ interface IListRankmarksRequest {
 export class ListRankmarksService {
 
     constructor(
-        private RankmarkRepository: IRankmarkRepository
+        private ListRankmarksReposoitory: IListRankmarksRepository
     ){}
 
     async execute({ filters } : IListRankmarksRequest): Promise<Result<Rankmark[]>> {
 
-        const rankmarksOrError = await this.RankmarkRepository.list(filters);
+        const rankmarksOrError = await this.ListRankmarksReposoitory.execute(filters);
 
         if(rankmarksOrError.isFailure){
             return Result.fail<Rankmark[]>(rankmarksOrError.error);
