@@ -1,7 +1,7 @@
 import { GenerateUserRanksService } from "./generate-user-ranks-service";
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
 import { InMemoryListSubjectsRepository, inMemorySubjects } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
-import { InMemoryRankRepository } from "../../../../tests/repositories/Rank/in-memory-rank-repository";
+import { InMemoryGenerateUserRanksRepository } from "../../../../tests/repositories/Rank/in-memory-rank-repository";
 
 import { generateRandomUser } from '../../../../tests/generate-random-user';
 import { generateRandomSubject } from '../../../../tests/generate-random-subject';
@@ -11,9 +11,13 @@ describe('Generate ranks with user service', () => {
 
     const findUserByIdRepository = new InMemoryFindUserByIdRepository();
     const listSubjectsRepository = new InMemoryListSubjectsRepository();
-    const rankRepository = new InMemoryRankRepository();
+    const generateUserRanksRepository = new InMemoryGenerateUserRanksRepository();
 
-    const service = new GenerateUserRanksService(findUserByIdRepository, listSubjectsRepository, rankRepository);
+    const service = new GenerateUserRanksService(
+        findUserByIdRepository,
+        listSubjectsRepository,
+        generateUserRanksRepository
+    );
 
     const user = generateRandomUser();
     const subject_one = generateRandomSubject();

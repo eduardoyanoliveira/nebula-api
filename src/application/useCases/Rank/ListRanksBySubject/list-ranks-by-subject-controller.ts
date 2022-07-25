@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import { IRankResponseProps } from '../../../DTOs/Rank/interfaces';
-import { IRankDTO } from '../../../DTOs/Rank/rank-dto';
+import { IRankToResponse } from '../../../DTOs/Rank/rank-to-response';
 import { ListRanksBySubjectService } from './list-ranks-by-subject-service';
 
 export class ListRanksBySubjectController {
     constructor(
         private ListRanksBySubjectService : ListRanksBySubjectService,
-        private RankDTO : IRankDTO
+        private RankToResponse : IRankToResponse
     ){};
 
     async handle(req: Request, res: Response) {
@@ -21,7 +21,7 @@ export class ListRanksBySubjectController {
         const ranks : IRankResponseProps[] = [];
 
         ranksOrError.getValue().forEach((rank) => {
-            ranks.push(this.RankDTO.rankToResponse(rank));
+            ranks.push(this.RankToResponse.transform(rank));
         });
 
         return res.json(ranks);

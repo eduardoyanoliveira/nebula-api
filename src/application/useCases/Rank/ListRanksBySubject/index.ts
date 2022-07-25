@@ -1,18 +1,22 @@
-import { RankRepository } from "../../../database/Rank/rank-repository";
+import { ListRanksBySubjectRepository } from "../../../database/Rank/list-ranks-by-subject";
 import { FindSubjectByIdRepository } from "../../../database/Subject/find-subject-by-id";
-import { RankDTO } from "../../../DTOs/Rank/rank-dto";
+import { DataToRank } from "../../../DTOs/Rank/data-to-rank";
+import { RankToResponse } from "../../../DTOs/Rank/rank-to-response";
 import { DataToSubject } from "../../../DTOs/Subject/data-to-subject";
 import { ListRanksBySubjectController } from "./list-ranks-by-subject-controller";
 import { ListRanksBySubjectService } from "./list-ranks-by-subject-service";
 
 const dataToSubject = new DataToSubject();
-const rankDTO = new RankDTO();
+
+const dataToRank = new DataToRank();
+const rankToResponse = new RankToResponse();
 
 const findSubjectByIdRepository = new FindSubjectByIdRepository(dataToSubject);
-const rankRepository = new RankRepository(rankDTO);
 
-const listRanksBySubjectService = new ListRanksBySubjectService(findSubjectByIdRepository, rankRepository);
+const listRanksBySubjectRepository = new ListRanksBySubjectRepository( dataToRank);
 
-const listRanksBySubjectController = new ListRanksBySubjectController(listRanksBySubjectService, rankDTO);
+const listRanksBySubjectService = new ListRanksBySubjectService(findSubjectByIdRepository, listRanksBySubjectRepository);
+
+const listRanksBySubjectController = new ListRanksBySubjectController(listRanksBySubjectService, rankToResponse);
 
 export { listRanksBySubjectController, listRanksBySubjectService };

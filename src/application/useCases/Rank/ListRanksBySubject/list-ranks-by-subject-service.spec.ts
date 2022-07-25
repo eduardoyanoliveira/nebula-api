@@ -1,15 +1,15 @@
 import { Rank } from "../../../../domain/entities/Rank";
 import { Subject } from "../../../../domain/entities/Subject";
 import { Role, User } from "../../../../domain/entities/User";
-import { InMemoryRankRepository } from "../../../../tests/repositories/Rank/in-memory-rank-repository";
+import { InMemoryListRanksBySubjectRepository, inMemoryRanks } from "../../../../tests/repositories/Rank/in-memory-rank-repository";
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { ListRanksBySubjectService } from "./list-ranks-by-subject-service";
 
 describe('List ranks by subject service', () => {
 
     const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
-    const rankRepository = new InMemoryRankRepository();
-    const service = new ListRanksBySubjectService(findSubjectByIdRepository, rankRepository);
+    const listRanksBySubjectRepository = new InMemoryListRanksBySubjectRepository();
+    const service = new ListRanksBySubjectService(findSubjectByIdRepository, listRanksBySubjectRepository);
 
     beforeAll(async () => {
         
@@ -63,15 +63,11 @@ describe('List ranks by subject service', () => {
         });
 
 
-        rankRepository.ranks.push(rank_one);
-        rankRepository.ranks.push(rank_two);
-        rankRepository.ranks.push(rank_three);
-        rankRepository.ranks.push(rank_four);
+        inMemoryRanks.push(rank_one);
+        inMemoryRanks.push(rank_two);
+        inMemoryRanks.push(rank_three);
+        inMemoryRanks.push(rank_four);
 
-    });
-
-    afterAll(() => {
-        rankRepository.ranks = [];
     });
 
     it('should fail if the subject does not exist', async () =>{

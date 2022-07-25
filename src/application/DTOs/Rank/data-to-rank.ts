@@ -5,12 +5,12 @@ import { IRankDataProps } from "./interfaces";
 
 
 export interface IDataToRank {
-    dataToRank(rankData: IRankDataProps): Rank
+    transform(rankData: IRankDataProps): Rank
 };
 
 export class DataToRank implements IDataToRank{
 
-    dataToRank(rankData: IRankDataProps): Rank {
+    transform(rankData: IRankDataProps): Rank {
         const { user_id, user, subject_id, subject, ...props } = rankData;
 
         const { id: userId, ...userRest } = user;

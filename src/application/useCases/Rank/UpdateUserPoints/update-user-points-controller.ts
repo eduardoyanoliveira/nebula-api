@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { IRankDTO } from "../../../DTOs/Rank/rank-dto";
+import { IRankToResponse } from "../../../DTOs/Rank/rank-to-response";
 import { UpdateUserPointsService } from "./update-user-points-service";
 
 
 export class UpdateUserPointsController {
     constructor(
         private UpdateUserPointsService: UpdateUserPointsService,
-        private RankDTO: IRankDTO
+        private RankToResponse: IRankToResponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -22,6 +22,6 @@ export class UpdateUserPointsController {
             throw new Error(rankOrError.error);
         };
 
-        return res.json(this.RankDTO.rankToResponse(rankOrError.getValue()));
+        return res.json(this.RankToResponse.transform(rankOrError.getValue()));
     };
 };

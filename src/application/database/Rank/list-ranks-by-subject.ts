@@ -1,18 +1,16 @@
 import { Result } from "../../../core/Result";
 import { Rank } from "../../../domain/entities/Rank";
-import { IRankDTO } from "../../DTOs/Rank/rank-dto";
-import { IRankRepository } from "../../repositories/Rank/rank-repository";
+import { IListRanksBySubjectRepository } from "../../repositories/Rank/rank-repositories";
 import { prismaClient } from "../prisma/prismaClient";
+import { IDataToRank } from '../../DTOs/Rank/data-to-rank';
 
-interface IListRanksBySubject extends Pick<IRankRepository, 'listRanksBySubject'>{};
-
-export class ListRanksBySubject implements IListRanksBySubject {
+export class ListRanksBySubjectRepository implements IListRanksBySubjectRepository {
 
     constructor(
-        private RankDTO: IRankDTO
+        private DataToRank: IDataToRank
     ){};
     
-    async listRanksBySubject(subject_id: string): Promise<Result<Rank[]>> {
+    async execute(subject_id: string): Promise<Result<Rank[]>> {
 
         const response = await prismaClient.rank.findMany({
             where:{
@@ -31,7 +29,7 @@ export class ListRanksBySubject implements IListRanksBySubject {
         const ranks: Rank[] =[];
 
         response.forEach((rank) => {
-            ranks.push(this.RankDTO.dataToRank(rank));
+            ranks.push(this.DataToRank.transform(rank));
         });
 
         return Result.ok<Rank[]>(ranks);

@@ -1,13 +1,12 @@
 import { Result } from "../../../core/Result";
 import { Rank } from "../../../domain/entities/Rank";
-import { IRankRepository } from "../../repositories/Rank/rank-repository";
+import { IUpdateUserPointsRepository } from "../../repositories/Rank/rank-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IUpdateUserPointsProps extends Pick<IRankRepository, 'updateUserPoints'>{}; 
 
-export class UpdateUserPoints implements IUpdateUserPointsProps {
+export class UpdateUserPointsRepository implements IUpdateUserPointsRepository {
 
-    async updateUserPoints(rank: Rank): Promise<Result<Rank>> {
+    async execute(rank: Rank): Promise<Result<Rank>> {
 
         const data = await prismaClient.rank.update({
             where:{

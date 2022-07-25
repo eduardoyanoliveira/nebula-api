@@ -1,17 +1,15 @@
 import { Result } from '../../../core/Result';
-import { IRankRepository } from '../../repositories/Rank/rank-repository';
 import { prismaClient } from '../prisma/prismaClient';
 import { RankCreateManyInputs } from 'prisma';
 import { GenericResultClass } from '../../../core/GenericResultClass';
 import { User } from '../../../domain/entities/User';
 import { Subject } from '../../../domain/entities/Subject';
+import { IGenerateSubjectRanksRepository } from '../../repositories/Rank/rank-repositories';
 
 
-interface IGenerateSubjectRanks extends Pick<IRankRepository, 'generateSubjectRanks'>{};
+export class GenerateSubjectRanksRepository implements IGenerateSubjectRanksRepository{
 
-export class GenerateSubjectRanks implements IGenerateSubjectRanks{
-
-    async generateSubjectRanks(subject: Subject, users: User[]): Promise<Result<GenericResultClass>> {
+    async execute(subject: Subject, users: User[]): Promise<Result<GenericResultClass>> {
         
         const data : RankCreateManyInputs[] = users.map((user) =>{
             return {

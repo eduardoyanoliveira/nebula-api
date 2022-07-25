@@ -1,7 +1,7 @@
 import { UpdateUserPointsService } from "./update-user-points-service";
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
-import { InMemoryRankRepository } from '../../../../tests/repositories/Rank/in-memory-rank-repository';
+import { InMemoryUpdateUserPointsRepository, inMemoryRanks } from '../../../../tests/repositories/Rank/in-memory-rank-repository';
 
 import { generateRandomUser } from '../../../../tests/generate-random-user';
 import { generateRandomSubject } from '../../../../tests/generate-random-subject';
@@ -12,9 +12,13 @@ describe('Update user points', () => {
 
     const findUserByIdRepository = new InMemoryFindUserByIdRepository();
     const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
-    const rankRepository = new InMemoryRankRepository();
+    const updateUserPointsRepository = new InMemoryUpdateUserPointsRepository();
 
-    const service = new UpdateUserPointsService(findUserByIdRepository, findSubjectByIdRepository, rankRepository);
+    const service = new UpdateUserPointsService(
+        findUserByIdRepository,
+        findSubjectByIdRepository, 
+        updateUserPointsRepository
+    );
 
     const userThatExists = generateRandomUser();
     const subjectThatExists = generateRandomSubject();
@@ -27,11 +31,7 @@ describe('Update user points', () => {
 
     inMemoryUsers.push(userThatExists);
     inMemorySubjects.push(subjectThatExists);
-    rankRepository.ranks.push(rank);
-
-    afterAll(() => {
-        rankRepository.ranks = [];
-    });
+    inMemoryRanks.push(rank);
 
     it('should fail if the user does not exists', async ()=> {
         const response : Result<Rank> = await service.execute({

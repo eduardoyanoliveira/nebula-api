@@ -2,12 +2,12 @@ import { Rank } from "../../../domain/entities/Rank";
 import { IRankResponseProps } from "./interfaces";
 
 export interface IRankToResponse {
-    rankToResponse(rank: Rank): IRankResponseProps 
+    transform(rank: Rank): IRankResponseProps 
 };
 
 export class RankToResponse implements IRankToResponse {
 
-    rankToResponse(rank: Rank): IRankResponseProps {
+    transform(rank: Rank): IRankResponseProps {
        
         const response = {
             user_id: rank.user.id,

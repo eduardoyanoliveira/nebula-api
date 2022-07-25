@@ -1,6 +1,6 @@
 import { GenericResultClass } from "../../../../core/GenericResultClass";
 import { Result } from "../../../../core/Result";
-import { IRankRepository } from "../../../repositories/Rank/rank-repository";
+import { IGenerateSubjectRanksRepository } from "../../../repositories/Rank/rank-repositories";
 import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 import { IListUsersRepository } from "../../../repositories/User/user-repositories";
 
@@ -14,8 +14,8 @@ export class GenerateSubjectRanksService {
 
     constructor(
         private FindSubjectByIdRepository: IFindSubjectByIdRepository,
-        private  ListUsersRepository : IListUsersRepository,
-        private RankRepository : IRankRepository
+        private ListUsersRepository : IListUsersRepository,
+        private GenerateSubjectRanksRepository : IGenerateSubjectRanksRepository
     ){};
 
     async execute({ subject_id } : IGenerateSubjectRanksProps) : Promise<Result<GenericResultClass>>{
@@ -32,7 +32,7 @@ export class GenerateSubjectRanksService {
             return Result.fail<GenericResultClass>(usersOrError.error);
         };
 
-        const ranksOrError = await this.RankRepository.generateSubjectRanks(subjectOrError.getValue(), usersOrError.getValue());
+        const ranksOrError = await this.GenerateSubjectRanksRepository.execute(subjectOrError.getValue(), usersOrError.getValue());
 
         if(ranksOrError.isFailure){
             return Result.fail<GenericResultClass>(ranksOrError.error);
