@@ -3,16 +3,16 @@ import { generateRandomSubject } from '../../../../tests/generate-random-subject
 import { generateRandomQuestion } from '../../../../tests/generate-random-question';
 import { generateRandomAnswer } from '../../../../tests/generate-random-answer';
 import { inMemoryQuestions } from '../../../../tests/repositories/Question/in-memory-question-repository';
-import { InMemoryAnswerRepository } from '../../../../tests/repositories/Answer/in-memory-answer-repository';
+import { InMemoryListAnswersRepository, inMemoryAnswers } from '../../../../tests/repositories/Answer/in-memory-answer-repository';
 import { ListAnswersService } from './list-answers-service';
 import { Answer } from '../../../../domain/entities/Interactions/Answer';
 import { Result } from '../../../../core/Result';
 
 describe('List answers service', () => {
 
-    const answerRepository = new InMemoryAnswerRepository();
+    const listAnswersRepository = new InMemoryListAnswersRepository();
 
-    const service = new ListAnswersService(answerRepository);
+    const service = new ListAnswersService(listAnswersRepository);
     
     const question_user = generateRandomUser();
     const answer_user = generateRandomUser();
@@ -26,12 +26,9 @@ describe('List answers service', () => {
 
 
     inMemoryQuestions.push(question);
-    answerRepository.answers.push(answer);
-    answerRepository.answers.push(answer_two);
+    inMemoryAnswers.push(answer);
+    inMemoryAnswers.push(answer_two);
 
-    afterAll(() =>{
-        answerRepository.answers = [];
-    });
 
     it('should return a list of answer', async () => {
 

@@ -1,19 +1,16 @@
 import { Result } from "../../../core/Result";
 import { Answer } from "../../../domain/entities/Interactions/Answer";
-import { IAnswerDTO } from "../../DTOs/Answers/answer-dto";
-import { IAnswerRepository } from "../../repositories/Answer/answer-repository";
+import { IDataToAnswer } from "../../DTOs/Answers/data-to-answer";
+import { IFindAnswerByIdRepository } from "../../repositories/Answer/answer-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-
-interface IFindAnswerById extends Pick<IAnswerRepository, 'findById'>{};
-
-export class FindAnswerById implements IFindAnswerById{
+export class FindAnswerByIdRepository implements IFindAnswerByIdRepository{
 
     constructor(
-        private AnswerDTO: IAnswerDTO
+        private DataToAnswer: IDataToAnswer
     ){};
 
-    async findById(answer_id: string): Promise<Result<Answer>> {
+    async execute(answer_id: string): Promise<Result<Answer>> {
         
         const response = await prismaClient.answer.findUnique({
             where:{
@@ -34,7 +31,7 @@ export class FindAnswerById implements IFindAnswerById{
             return Result.fail<Answer>('Could not find the answer by the given id');
         };
 
-        const answer = this.AnswerDTO.dataToAnswer(response);
+        const answer = this.DataToAnswer.transform(response);
 
         return Result.ok<Answer>(answer);
     };  

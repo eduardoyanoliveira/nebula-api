@@ -5,7 +5,7 @@ import { IAnswerDataProps } from "./interfaces";
 
 
 export interface IDataToAnswer {
-    dataToAnswer(answerData: IAnswerDataProps): Answer
+    transform(answerData: IAnswerDataProps): Answer
 };
 
 export class DataToAnswer implements IDataToAnswer{
@@ -15,7 +15,7 @@ export class DataToAnswer implements IDataToAnswer{
         private DataToQuestion: DataToQuestion
     ){};
     
-    dataToAnswer(answerData: IAnswerDataProps): Answer {
+    transform(answerData: IAnswerDataProps): Answer {
         const { id, author_id, author, question_id, question, ...props } = answerData;
 
         const answerAuthor = this.DataToUser.transform(author);

@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { objectToWhere } from '../../../../utils/prisma-filters';
-import { IAnswerDTO } from '../../../DTOs/Answers/answer-dto';
+import { IAnswerToResponse } from '../../../DTOs/Answers/answer-to-response';
 import { IAnswerToResponseProps } from '../../../DTOs/Answers/interfaces';
 import { ListAnswersService } from './list-answers-service';
 
 export class ListAnswersController {
     constructor(
         private ListAnswersService: ListAnswersService,
-        private AnswerDTO: IAnswerDTO
+        private AnswerToResponse: IAnswerToResponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -23,7 +23,7 @@ export class ListAnswersController {
         const answers : IAnswerToResponseProps[] = [];
 
         answersOrError.getValue().forEach((answer) => {
-            answers.push(this.AnswerDTO.answerToResponse(answer));
+            answers.push(this.AnswerToResponse.transform(answer));
         });
 
         return res.json(answers);

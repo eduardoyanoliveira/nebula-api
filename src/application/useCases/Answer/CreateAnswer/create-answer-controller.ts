@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { IAnswerDTO } from "../../../DTOs/Answers/answer-dto";
+import { IAnswerToResponse } from "../../../DTOs/Answers/answer-to-response";
 import { CreateAnswerService } from './create-answer-service';
 
 export class CreateAnswerController {
     constructor(
         private CreateAnswerService: CreateAnswerService,
-        private AnswerDTO: IAnswerDTO
+        private AnswerToResponse: IAnswerToResponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -23,6 +23,6 @@ export class CreateAnswerController {
             throw new Error(answerOrError.error);
         };
 
-        return res.json(this.AnswerDTO.answerToResponse(answerOrError.getValue()));
+        return res.json(this.AnswerToResponse.transform(answerOrError.getValue()));
     };
 };

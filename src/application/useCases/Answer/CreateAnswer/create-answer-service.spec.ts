@@ -3,7 +3,7 @@ import { generateRandomSubject } from '../../../../tests/generate-random-subject
 import { generateRandomQuestion } from '../../../../tests/generate-random-question';
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
 import { InMemoryFindQuestionByIdRepository, inMemoryQuestions } from '../../../../tests/repositories/Question/in-memory-question-repository';
-import { InMemoryAnswerRepository } from '../../../../tests/repositories/Answer/in-memory-answer-repository';
+import { InMemoryCreateAnswerRepository } from '../../../../tests/repositories/Answer/in-memory-answer-repository';
 import { CreateAnswerService } from './create-answer-service';
 import { AnswerFactory } from '../../../../domain/factories/Answer/factory-class';
 import { Answer } from '../../../../domain/entities/Interactions/Answer';
@@ -15,12 +15,12 @@ describe( 'Create answer service' ,() =>{
 
     const findUserByIdRepository = new InMemoryFindUserByIdRepository();
     const findQuestionByIdRepository = new InMemoryFindQuestionByIdRepository();
-    const answerRepository = new InMemoryAnswerRepository();
+    const createAnswerRepository = new InMemoryCreateAnswerRepository();
 
     const service = new CreateAnswerService(
         findUserByIdRepository,
         findQuestionByIdRepository,
-        answerRepository,
+        createAnswerRepository,
         factory
     );
     

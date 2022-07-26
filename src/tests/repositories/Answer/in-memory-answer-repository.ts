@@ -1,30 +1,36 @@
-import { IAnswerRepository } from '../../../application/repositories/Answer/answer-repository';
+import { ICreateAnswerRepository, IFindAnswerByIdRepository, IListAnswersRepository, IUpdateAnswerRepository } from '../../../application/repositories/Answer/answer-repositories';
 import { Result } from '../../../core/Result';
 import { Answer } from '../../../domain/entities/Interactions/Answer';
 
-export class InMemoryAnswerRepository implements IAnswerRepository{
 
+export const inMemoryAnswers : Answer[] = [];
 
-    public answers : Answer[] = []
-
-    async create(answer: Answer): Promise<Result<Answer>> {
+export class InMemoryCreateAnswerRepository implements ICreateAnswerRepository{
+  
+    async execute(answer: Answer): Promise<Result<Answer>> {
         
-        this.answers.push(answer);
+        inMemoryAnswers.push(answer);
 
         return Result.ok<Answer>(answer);
     };
+    
+};
 
-    async update(answer: Answer): Promise<Result<Answer>> {
+export class InMemoryUpdateAnswerRepository implements IUpdateAnswerRepository{
 
-        const index = this.answers.findIndex(item => item.id === answer.id);
+    async execute(answer: Answer): Promise<Result<Answer>> {
 
-        this.answers[index] = answer;
+        const index = inMemoryAnswers.findIndex(item => item.id === answer.id);
+
+        inMemoryAnswers[index] = answer;
 
         return Result.ok<Answer>(answer);
     };
+};
 
-    async findById(answer_id: string): Promise<Result<Answer>> {
-        const answer = this.answers.find(item => item.id === answer_id);
+export class InMemoryFindAnswerByIdRepository implements IFindAnswerByIdRepository{
+    async execute(answer_id: string): Promise<Result<Answer>> {
+        const answer = inMemoryAnswers.find(item => item.id === answer_id);
 
         if(!answer){
             return Result.fail<Answer>('Could not find the answer by the given id');
@@ -32,9 +38,10 @@ export class InMemoryAnswerRepository implements IAnswerRepository{
 
         return Result.ok<Answer>(answer);
     };
+};
+export class InMemoryListAnswersRepository implements IListAnswersRepository{
 
-    async list(): Promise<Result<Answer[]>> {
-        return Result.ok<Answer[]>(this.answers);
-    };;
-
-}
+    async execute(): Promise<Result<Answer[]>> {
+        return Result.ok<Answer[]>(inMemoryAnswers);
+    };
+};

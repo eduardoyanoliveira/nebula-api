@@ -3,16 +3,17 @@ import { generateRandomSubject } from '../../../../tests/generate-random-subject
 import { generateRandomQuestion } from '../../../../tests/generate-random-question';
 import { generateRandomAnswer } from '../../../../tests/generate-random-answer';
 import { inMemoryQuestions } from '../../../../tests/repositories/Question/in-memory-question-repository';
-import { InMemoryAnswerRepository } from '../../../../tests/repositories/Answer/in-memory-answer-repository';
+import { InMemoryFindAnswerByIdRepository, InMemoryUpdateAnswerRepository, inMemoryAnswers } from '../../../../tests/repositories/Answer/in-memory-answer-repository';
 import { UpdateAnswerService } from './update-answer-service';
 import { Answer } from '../../../../domain/entities/Interactions/Answer';
 import { Result } from '../../../../core/Result';
 
 describe( 'Update answer service' ,() =>{
 
-    const answerRepository = new InMemoryAnswerRepository();
+    const findAnswerByIdRepository = new InMemoryFindAnswerByIdRepository();
+    const updateAnswerRepository = new InMemoryUpdateAnswerRepository();
 
-    const service = new UpdateAnswerService(answerRepository);
+    const service = new UpdateAnswerService(findAnswerByIdRepository, updateAnswerRepository);
     
     const question_user = generateRandomUser();
     const answer_user = generateRandomUser();
@@ -24,11 +25,7 @@ describe( 'Update answer service' ,() =>{
     const answer = generateRandomAnswer(answer_user, question);
 
     inMemoryQuestions.push(question);
-    answerRepository.answers.push(answer);
-
-    afterAll(() =>{
-        answerRepository.answers = [];
-    });
+    inMemoryAnswers.push(answer);
 
     it('should fail if the answer does not exist', async () => {
 

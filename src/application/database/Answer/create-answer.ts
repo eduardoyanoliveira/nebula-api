@@ -1,17 +1,20 @@
 import { Result } from "../../../core/Result";
 import { Answer } from "../../../domain/entities/Interactions/Answer";
-import { IAnswerRepository } from "../../repositories/Answer/answer-repository";
+import { IDataToAnswer } from "../../DTOs/Answers/data-to-answer";
+import { ICreateAnswerRepository } from "../../repositories/Answer/answer-repositories";
 import { prismaClient } from '../prisma/prismaClient';
 
-interface ICreateAnswer extends Pick<IAnswerRepository, 'create'>{};
+export class CreateAnswerRepository implements ICreateAnswerRepository{
 
-export class CreateAnswer implements ICreateAnswer{
+    constructor(
+        private DataToAnswer: IDataToAnswer
+    ){};
 
-    async create(answer: Answer): Promise<Result<Answer>> {
+    async execute(answer: Answer): Promise<Result<Answer>> {
 
         try{
 
-            await prismaClient.answer.create({
+            const response = await prismaClient.answer.create({
                 data:{
                     id: answer.id,
                     text: answer.props.text,
@@ -19,10 +22,19 @@ export class CreateAnswer implements ICreateAnswer{
                     author_id: answer.props.author.id,
                     created_at: answer.props.created_at,
                     updated_at: answer.props.updated_at
+                },
+                include:{
+                    author:true,
+                    question: {
+                        include:{
+                            author:true,
+                            subject: true
+                        }
+                    }
                 }
             });
             
-            return Result.ok<Answer>(answer);
+            return Result.ok<Answer>(this.DataToAnswer.transform(response));
 
         }catch(err){
             return Result.fail<Answer>(err.message);

@@ -1,19 +1,16 @@
 import { Result } from "../../../core/Result";
 import { Answer } from "../../../domain/entities/Interactions/Answer";
-import { IAnswerDTO } from "../../DTOs/Answers/answer-dto";
-import { IAnswerRepository } from "../../repositories/Answer/answer-repository";
+import { IDataToAnswer } from "../../DTOs/Answers/data-to-answer";
+import { IListAnswersRepository } from "../../repositories/Answer/answer-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-
-interface IListAnswers extends Pick<IAnswerRepository, 'list'>{};
-
-export class ListAnswers implements IListAnswers{
+export class ListAnswersRepository implements IListAnswersRepository{
 
     constructor(
-        private AnswerDTO: IAnswerDTO
+        private DataToAnswer: IDataToAnswer
     ){};
     
-    async list(filters?: object | undefined): Promise<Result<Answer[]>> {
+    async execute(filters?: object | undefined): Promise<Result<Answer[]>> {
         
 
         const response = await prismaClient.answer.findMany({
@@ -32,7 +29,7 @@ export class ListAnswers implements IListAnswers{
         const answers : Answer[] = [];
 
         response.forEach((answer) => {
-            answers.push(this.AnswerDTO.dataToAnswer(answer));
+            answers.push(this.DataToAnswer.transform(answer));
         });
 
         return Result.ok<Answer[]>(answers);

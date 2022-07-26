@@ -3,7 +3,7 @@ import { QuestionToResponse } from '../Question/question-to-response';
 import { IAnswerToResponseProps } from "./interfaces";
 
 export interface IAnswerToResponse {
-    answerToResponse(answer: Answer) : IAnswerToResponseProps
+    transform(answer: Answer) : IAnswerToResponseProps
 };
 
 export class AnswerToResponse implements IAnswerToResponse{
@@ -12,7 +12,7 @@ export class AnswerToResponse implements IAnswerToResponse{
         private QuestionToResponse: QuestionToResponse
     ){};
     
-    answerToResponse(answer: Answer): IAnswerToResponseProps {
+    transform(answer: Answer): IAnswerToResponseProps {
         const { id, props } = answer;
 
         const { question, author, ...rest } = props;

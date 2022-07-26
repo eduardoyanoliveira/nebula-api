@@ -1,16 +1,19 @@
 import { Result } from "../../../core/Result";
 import { Answer } from "../../../domain/entities/Interactions/Answer";
-import { IAnswerRepository } from "../../repositories/Answer/answer-repository";
+import { IDataToAnswer } from "../../DTOs/Answers/data-to-answer";
+import { IUpdateAnswerRepository } from "../../repositories/Answer/answer-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IUpdateAnswer extends Pick<IAnswerRepository, 'update'>{};
+export class UpdateAnswerRepository implements IUpdateAnswerRepository{
 
-export class UpdateAnswer implements IUpdateAnswer{
-
-    async update(answer: Answer): Promise<Result<Answer>> {
+    constructor(
+        private DataToAnswer: IDataToAnswer
+    ){};
+    
+    async execute(answer: Answer): Promise<Result<Answer>> {
         try{
             
-            await prismaClient.answer.update({
+            const response = await prismaClient.answer.update({
                 where: {
                     id: answer.id
                 },
@@ -18,10 +21,19 @@ export class UpdateAnswer implements IUpdateAnswer{
                     text: answer.props.text,
                     question_id: answer.props.question.id,
                     updated_at: answer.props.updated_at
+                },
+                include:{
+                    author:true,
+                    question: {
+                        include:{
+                            author:true,
+                            subject: true
+                        }
+                    }
                 }
             });
             
-            return Result.ok<Answer>(answer);
+            return Result.ok<Answer>(this.DataToAnswer.transform(response));
 
         }catch(err){
             return Result.fail<Answer>(err.message);

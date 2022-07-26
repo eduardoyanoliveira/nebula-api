@@ -1,7 +1,6 @@
 import { Result } from "../../../../core/Result";
 import { Answer } from "../../../../domain/entities/Interactions/Answer";
-import { IAnswerRepository } from "../../../repositories/Answer/answer-repository";
-
+import { IFindAnswerByIdRepository, IUpdateAnswerRepository } from "../../../repositories/Answer/answer-repositories";
 
 interface IUpdateAnswerRequest {
     answer_id: string,
@@ -12,12 +11,13 @@ interface IUpdateAnswerRequest {
 export class UpdateAnswerService {
 
     constructor(
-        private AnswerRepository: IAnswerRepository
+        private FindAnswerByIdRepository: IFindAnswerByIdRepository,
+        private UpdateAnswerRepository: IUpdateAnswerRepository
     ){};
 
     async execute({ answer_id, user_id, text } : IUpdateAnswerRequest) : Promise<Result<Answer>>{
 
-        const answerOrError = await this.AnswerRepository.findById(answer_id);
+        const answerOrError = await this.FindAnswerByIdRepository.execute(answer_id);
 
         if(answerOrError.isFailure){
             return Result.fail<Answer>(answerOrError.error);
@@ -34,7 +34,7 @@ export class UpdateAnswerService {
 
         // Persist on database
 
-        const responseOrError = await this.AnswerRepository.update(answer);
+        const responseOrError = await this.UpdateAnswerRepository.execute(answer);
 
         if(responseOrError.isFailure){
             return Result.fail<Answer>(responseOrError.error);
