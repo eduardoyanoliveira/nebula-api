@@ -1,13 +1,12 @@
 import { Result } from "../../../core/Result";
 import { Content } from "../../../domain/entities/Content";
-import { IContentRepository } from "../../repositories/Content/content-repository";
+import { ICreateContentRepository } from "../../repositories/Content/content-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface ICreateContent extends Pick<IContentRepository, 'create'>{};
 
-export class CreateContent implements ICreateContent{
+export class CreateContentRepository implements ICreateContentRepository{
 
-    async create(content: Content): Promise<Result<Content>> {
+    async execute(content: Content): Promise<Result<Content>> {
         
         try{
             await prismaClient.content.create({

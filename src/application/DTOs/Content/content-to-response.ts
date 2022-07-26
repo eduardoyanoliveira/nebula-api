@@ -2,12 +2,12 @@ import { Content } from "../../../domain/entities/Content";
 import { IContentResponseProps } from "./interfaces";
 
 export interface IContentToResponse {
-    contentToResponse(content: Content): IContentResponseProps
+    transform(content: Content): IContentResponseProps
 };
 
 export class ContentToResponse implements IContentToResponse{
 
-    contentToResponse(content: Content): IContentResponseProps {
+    transform(content: Content): IContentResponseProps {
        const {id, props} = content;
 
        const { subject, ...rest } = props;

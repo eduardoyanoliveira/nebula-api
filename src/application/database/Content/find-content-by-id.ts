@@ -1,18 +1,16 @@
 import { Result } from "../../../core/Result";
 import { Content } from "../../../domain/entities/Content";
-import { IContentDTO } from "../../DTOs/Content/content-dto";
-import { IContentRepository } from "../../repositories/Content/content-repository";
+import { IDataToContent } from "../../DTOs/Content/data-to-content";
+import { IFindContentByIdRepository } from "../../repositories/Content/content-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IFindContentById extends Pick<IContentRepository, 'findById'>{};
-
-export class FindContentById implements IFindContentById{
+export class FindContentByIdRepository implements IFindContentByIdRepository{
 
     constructor(
-        private ContentDTO: IContentDTO
+        private DataToContent: IDataToContent
     ){};
 
-    async findById(content_id: string): Promise<Result<Content>> {
+    async execute(content_id: string): Promise<Result<Content>> {
         
         const response = await prismaClient.content.findUnique({
             where:{
@@ -27,6 +25,6 @@ export class FindContentById implements IFindContentById{
             return Result.fail<Content>('Could not find the content on database');
         };
 
-        return Result.ok<Content>(this.ContentDTO.dataToContent(response));
+        return Result.ok<Content>(this.DataToContent.transform(response));
     }; 
 };

@@ -1,13 +1,11 @@
 import { Result } from "../../../core/Result";
 import { Content } from "../../../domain/entities/Content";
-import { IContentRepository } from "../../repositories/Content/content-repository";
+import { IUpdateContentRepository } from "../../repositories/Content/content-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IUpdateContent extends Pick<IContentRepository, 'update'>{};
-
-export class UpdateContent implements IUpdateContent{
+export class UpdateContentRepository implements IUpdateContentRepository{
     
-    async update(content: Content): Promise<Result<Content>> {
+    async execute(content: Content): Promise<Result<Content>> {
         
         try{
             await prismaClient.content.update({

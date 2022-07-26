@@ -4,12 +4,12 @@ import { IContentDataProps } from "./interfaces";
 
 
 export interface IDataToContent {
-    dataToContent(contentData: IContentDataProps): Content
+    transform(contentData: IContentDataProps): Content
 };
 
 export class DataToContent implements IDataToContent{
 
-    dataToContent(contentData: IContentDataProps): Content {
+    transform(contentData: IContentDataProps): Content {
         const { id, subject, subject_id, ...rest } = contentData;
         
         const { id: subjectId, ...subjectProps } = subject;

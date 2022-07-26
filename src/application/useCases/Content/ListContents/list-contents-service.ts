@@ -1,6 +1,6 @@
 import { Result } from "../../../../core/Result";
 import { Content } from "../../../../domain/entities/Content";
-import { IContentRepository } from "../../../repositories/Content/content-repository";
+import { IListContentsRepository } from "../../../repositories/Content/content-repositories";
 
 interface IListContentsRequest {
     filters?: object
@@ -8,12 +8,12 @@ interface IListContentsRequest {
 
 export class ListContentsService {
     constructor(
-        private ContentRepository: IContentRepository
+        private ListContentsRepository: IListContentsRepository
     ){};
 
     async execute({ filters } : IListContentsRequest): Promise<Result<Content[]>> {
 
-        const contentsOrError = await this.ContentRepository.list(filters);
+        const contentsOrError = await this.ListContentsRepository.execute(filters);
 
         if(contentsOrError.isFailure){
             return Result.fail<Content[]>(contentsOrError.error);

@@ -1,5 +1,5 @@
 import { ContentFactory } from '../../../../domain/factories/Content/factory-class';
-import { InMemoryContentRepository } from '../../../../tests/repositories/Content/in-memory-content-repository';
+import { InMemoryCreateContentRepository } from '../../../../tests/repositories/Content/in-memory-content-repository';
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
 import { CreateContentService } from './create-content-service';
 import { generateRandomSubject } from '../../../../tests/generate-random-subject';
@@ -10,9 +10,13 @@ describe('Create content service', ()  => {
 
     const factory = new ContentFactory();
     const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
-    const contentRepository = new InMemoryContentRepository();
+    const createContentRepository = new InMemoryCreateContentRepository();
 
-    const service = new CreateContentService(findSubjectByIdRepository, factory, contentRepository);
+    const service = new CreateContentService(
+        findSubjectByIdRepository, 
+        factory, 
+        createContentRepository
+    );
 
     const subjectThatExists = generateRandomSubject();
 

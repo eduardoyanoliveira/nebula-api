@@ -1,30 +1,35 @@
-import { IContentRepository } from '../../../application/repositories/Content/content-repository';
+import { ICreateContentRepository, IFindContentByIdRepository, IListContentsRepository, IUpdateContentRepository } from '../../../application/repositories/Content/content-repositories';
 import { Result } from '../../../core/Result';
 import { Content } from '../../../domain/entities/Content';
 
-
-export class InMemoryContentRepository implements IContentRepository{
-
-    public  contents : Content[] = []
-
-    async create(content: Content): Promise<Result<Content>> {
+export  const inMemoryContents : Content[] = [];
+export class InMemoryCreateContentRepository implements ICreateContentRepository{
+    async execute(content: Content): Promise<Result<Content>> {
         
-        this.contents.push(content);
+        inMemoryContents.push(content);
 
         return Result.ok<Content>(content);
     };
 
-    async update(content: Content): Promise<Result<Content>> {
-        const index = this.contents.findIndex(item => item.id === content.id);
+};
 
-        this.contents[index] = content;
+export class InMemoryUpdateContentRepository implements IUpdateContentRepository{
+  
+    async execute(content: Content): Promise<Result<Content>> {
+        const index = inMemoryContents.findIndex(item => item.id === content.id);
+
+        inMemoryContents[index] = content;
 
         return Result.ok<Content>(content);
-    };
+    };   
+};
 
-    async findById(content_id: string): Promise<Result<Content>> {
+
+export class InMemoryFindContentByIdRepository implements IFindContentByIdRepository{
+
+    async execute(content_id: string): Promise<Result<Content>> {
         
-        const content = await this.contents.find(item => item.id === content_id);
+        const content = await inMemoryContents.find(item => item.id === content_id);
 
         if(!content){
             return Result.fail<Content>('Could not find a content with the ginen id');
@@ -32,9 +37,10 @@ export class InMemoryContentRepository implements IContentRepository{
 
         return Result.ok<Content>(content);
     };
-    
-    async list(): Promise<Result<Content[]>> {
-        return Result.ok<Content[]>(this.contents);
-    };
+};
 
+export class InMemoryListContentsRepository implements IListContentsRepository{
+    async execute(): Promise<Result<Content[]>> {
+        return Result.ok<Content[]>(inMemoryContents);
+    };
 };

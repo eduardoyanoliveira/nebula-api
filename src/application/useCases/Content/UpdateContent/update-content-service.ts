@@ -1,7 +1,7 @@
 import { Result } from "../../../../core/Result";
 import { Content } from "../../../../domain/entities/Content";
 import { partialUpdateObject } from "../../../../utils/object-methods/partial-update-object";
-import { IContentRepository } from "../../../repositories/Content/content-repository";
+import { IFindContentByIdRepository, IUpdateContentRepository } from "../../../repositories/Content/content-repositories";
 import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 
 interface IUpdateContentRequest {
@@ -15,12 +15,13 @@ export class UpdateContentService {
 
     constructor(
         private FindSubjectByIdRepository: IFindSubjectByIdRepository,
-        private ContentRepository: IContentRepository
+        private FindContentByIdRepository: IFindContentByIdRepository,
+        private UpdateContentRepository: IUpdateContentRepository
     ){};
 
     async execute({ id, description, url, subject_id } : IUpdateContentRequest) : Promise<Result<Content>>{
 
-        const contentOrError = await this.ContentRepository.findById(id);
+        const contentOrError = await this.FindContentByIdRepository.execute(id);
 
         if(contentOrError.isFailure){
             return Result.fail<Content>(contentOrError.error);
@@ -48,7 +49,7 @@ export class UpdateContentService {
 
         // Persist on database
 
-        const response = await  this.ContentRepository.update(updatedContent);
+        const response = await  this.UpdateContentRepository.execute(updatedContent);
 
         if(response.isFailure){
             return Result.fail<Content>(response.error);

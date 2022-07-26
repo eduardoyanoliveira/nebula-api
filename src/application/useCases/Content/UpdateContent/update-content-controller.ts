@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { IContentDTO } from '../../../DTOs/Content/content-dto';
+import { IContentToResponse } from '../../../DTOs/Content/content-to-response';
 import { UpdateContentService } from './update-content-service';
 
 export class UpdateContentController {
     constructor(
         private UpdateContentService : UpdateContentService,
-        private ContentDTO: IContentDTO
+        private ContentToResponse: IContentToResponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -24,6 +24,6 @@ export class UpdateContentController {
             throw new Error(contentOrError.error);
         };
 
-        return res.json(this.ContentDTO.contentToResponse(contentOrError.getValue()));
+        return res.json(this.ContentToResponse.transform(contentOrError.getValue()));
     };
 };

@@ -1,18 +1,16 @@
 import { Result } from "../../../core/Result";
 import { Content } from "../../../domain/entities/Content";
-import { IContentDTO } from "../../DTOs/Content/content-dto";
-import { IContentRepository } from "../../repositories/Content/content-repository";
+import { IDataToContent } from "../../DTOs/Content/data-to-content";
+import { IListContentsRepository } from "../../repositories/Content/content-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IListContents extends Pick<IContentRepository, 'list'>{};
-
-export class ListContents implements IListContents{
+export class ListContentsRepository implements IListContentsRepository{
 
     constructor(
-        private ContentDTO: IContentDTO
+        private DataToContent: IDataToContent
     ){};
 
-    async list(filters): Promise<Result<Content[]>> {
+    async execute(filters): Promise<Result<Content[]>> {
 
         const response = await prismaClient.content.findMany({
             where:filters,
@@ -29,7 +27,7 @@ export class ListContents implements IListContents{
         const contents : Content[] = [];
 
         response.forEach((content) => {
-            contents.push(this.ContentDTO.dataToContent(content));
+            contents.push(this.DataToContent.transform(content));
         });
 
         return Result.ok<Content[]>(contents);

@@ -1,7 +1,7 @@
 import { Result } from "../../../../core/Result";
 import { Content } from "../../../../domain/entities/Content";
 import { ContentFactory } from '../../../../domain/factories/Content/factory-class';
-import { IContentRepository } from "../../../repositories/Content/content-repository";
+import { ICreateContentRepository } from "../../../repositories/Content/content-repositories";
 import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 interface ICreateContentRequest {
     description: string,
@@ -14,7 +14,7 @@ export class CreateContentService {
     constructor(
         private FindSubjectByIdRepository : IFindSubjectByIdRepository,
         private ContentFactory : ContentFactory,
-        private ContentRepository : IContentRepository,
+        private CreateContentRepository : ICreateContentRepository,
     ){};
 
     async execute({ description, url, subject_id} : ICreateContentRequest) : Promise<Result<Content>>{
@@ -27,7 +27,7 @@ export class CreateContentService {
 
         const content  = this.ContentFactory.create(description, url, subjectOrError.getValue());
 
-        const contentOrError = await this.ContentRepository.create(content);
+        const contentOrError = await this.CreateContentRepository.execute(content);
 
         if(contentOrError.isFailure){
             return Result.fail<Content>(contentOrError.error);

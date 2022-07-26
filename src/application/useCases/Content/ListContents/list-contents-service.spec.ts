@@ -2,15 +2,15 @@ import { Result } from "../../../../core/Result";
 import { Content } from "../../../../domain/entities/Content";
 import { generateRandomContent } from "../../../../tests/generate-random-contents";
 import { generateRandomSubject } from "../../../../tests/generate-random-subject";
-import { InMemoryContentRepository } from "../../../../tests/repositories/Content/in-memory-content-repository";
+import { InMemoryListContentsRepository, inMemoryContents } from "../../../../tests/repositories/Content/in-memory-content-repository";
 import { inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { ListContentsService } from "./list-contents-service"
 
 describe('List contents service', () => {
 
-    const contentRepository = new InMemoryContentRepository();
+    const listContentsRepository = new InMemoryListContentsRepository();
 
-    const service = new ListContentsService(contentRepository);
+    const service = new ListContentsService(listContentsRepository);
 
     const subject = generateRandomSubject();
 
@@ -22,12 +22,8 @@ describe('List contents service', () => {
     inMemorySubjects.push(subject);
     inMemorySubjects.push(other_subject);
 
-    contentRepository.contents.push(content_one);
-    contentRepository.contents.push(content_two);
-
-    afterAll(() => {
-        contentRepository.contents = [];
-    });
+    inMemoryContents.push(content_one);
+    inMemoryContents.push(content_two);
 
 
     it('should be able to list a content array', async () => {

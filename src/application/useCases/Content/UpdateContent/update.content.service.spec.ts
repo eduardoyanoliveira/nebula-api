@@ -1,6 +1,6 @@
 import { generateRandomSubject } from "../../../../tests/generate-random-subject";
 import { generateRandomContent } from "../../../../tests/generate-random-contents";
-import { InMemoryContentRepository } from "../../../../tests/repositories/Content/in-memory-content-repository";
+import { InMemoryFindContentByIdRepository, InMemoryUpdateContentRepository, inMemoryContents } from "../../../../tests/repositories/Content/in-memory-content-repository";
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { UpdateContentService } from "./update-content-service";
 
@@ -8,18 +8,21 @@ import { UpdateContentService } from "./update-content-service";
 describe('Update content service', () => {
 
     const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
-    const contentRepository = new InMemoryContentRepository();
-    const service = new UpdateContentService( findSubjectByIdRepository, contentRepository );
+    const findContentByIdRepository = new InMemoryFindContentByIdRepository();
+    const updateContentRepository = new InMemoryUpdateContentRepository();
+
+    const service = new UpdateContentService( 
+        findSubjectByIdRepository, 
+        findContentByIdRepository,
+        updateContentRepository 
+    );
 
     const subjectThatExists = generateRandomSubject();
     const contentThatExists = generateRandomContent( subjectThatExists );
 
     inMemorySubjects.push(subjectThatExists);
-    contentRepository.contents.push(contentThatExists);
+    inMemoryContents.push(contentThatExists);
 
-    afterAll(() => {
-        contentRepository.contents = [];
-    });
 
     it('should fail if the content does not exists', async () => {
 
