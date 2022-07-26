@@ -1,7 +1,7 @@
 import { Result } from "../../../../core/Result";
 import { Question } from "../../../../domain/entities/Interactions/Question";
 import { partialUpdateObject } from "../../../../utils/object-methods/partial-update-object";
-import { IQuestionRepository } from "../../../repositories/Question/question-repository";
+import { IFindQuestionByIdRepository, IUpdateQuestionRepository } from "../../../repositories/Question/question-repositories";
 import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 
 interface IUpdateQuestionRequest {
@@ -15,13 +15,14 @@ interface IUpdateQuestionRequest {
 
 export class UpdateQuestionService {
     constructor(
-        private Questionrepository: IQuestionRepository,
+        private FindQuestionByIdRepository: IFindQuestionByIdRepository,
         private FindSubjectByIdRepository: IFindSubjectByIdRepository,
+        private UpdateQuestionRepository: IUpdateQuestionRepository
     ){};
 
     async execute({ id, user_id, title, text, subject_id } : IUpdateQuestionRequest){
 
-        const questionOrError = await this.Questionrepository.findById(id);
+        const questionOrError = await this.FindQuestionByIdRepository.execute(id);
 
         if(questionOrError.isFailure){
             return Result.fail<Question>(questionOrError.error);
@@ -53,7 +54,7 @@ export class UpdateQuestionService {
 
         // Persist on database
 
-        const response = await this.Questionrepository.update(updatedContent);
+        const response = await this.UpdateQuestionRepository.execute(updatedContent);
 
         if(response.isFailure){
             return Result.fail<Question>(response.error); 

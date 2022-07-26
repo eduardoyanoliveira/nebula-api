@@ -1,17 +1,20 @@
 import { Result } from "../../../core/Result";
 import { Question } from "../../../domain/entities/Interactions/Question";
-import { IQuestionRepository } from "../../repositories/Question/question-repository";
+import { IDataToQuestion } from "../../DTOs/Question/data-to-question";
+import { ICreateQuestionRepository } from "../../repositories/Question/question-repositories";
 import { prismaClient } from '../prisma/prismaClient';
 
 
-interface ICreateQuestion extends Pick<IQuestionRepository, 'create'>{};
+export class CreateQuestionRepository implements ICreateQuestionRepository{
 
-export class CreateQuestion implements ICreateQuestion{
+    constructor(
+        private DataToQuestion: IDataToQuestion
+    ){};
 
-    async create(question: Question) : Promise<Result<Question>> {
+    async execute(question: Question) : Promise<Result<Question>> {
 
         try{
-            await prismaClient.question.create({
+            const response = await prismaClient.question.create({
                 data:{
                     id: question.id,
                     title: question.props.title,
@@ -22,10 +25,14 @@ export class CreateQuestion implements ICreateQuestion{
                     is_closed: question.props.is_closed,
                     created_at: question.props.created_at,
                     updated_at: question.props.updated_at
+                },
+                include:{
+                    author:true,
+                    subject:true
                 }
             });
 
-            return Result.ok<Question>(question)
+            return Result.ok<Question>(this.DataToQuestion.transform(response));
 
         }catch(err){
             return Result.fail<Question>(err.message);

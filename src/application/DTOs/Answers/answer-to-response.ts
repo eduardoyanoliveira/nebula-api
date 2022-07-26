@@ -17,7 +17,7 @@ export class AnswerToResponse implements IAnswerToResponse{
 
         const { question, author, ...rest } = props;
 
-        const questionResponse = this.QuestionToResponse.questionToResponse(question);
+        const questionResponse = this.QuestionToResponse.transform(question);
 
         const questionProps = {
             id: questionResponse.id,

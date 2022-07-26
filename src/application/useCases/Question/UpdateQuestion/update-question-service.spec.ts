@@ -2,7 +2,7 @@ import { Result } from "../../../../core/Result";
 import { Question } from "../../../../domain/entities/Interactions/Question";
 import { generateRandomSubject } from "../../../../tests/generate-random-subject";
 import { generateRandomQuestion} from '../../../../tests/generate-random-question';
-import { InMemoryQuestionRepository } from "../../../../tests/repositories/Question/in-memory-question-repository";
+import { InMemoryFindQuestionByIdRepository, InMemoryUpdateQuestionRepository, inMemoryQuestions } from "../../../../tests/repositories/Question/in-memory-question-repository";
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { UpdateQuestionService } from "./update-question-service";
 import { generateRandomUser } from "../../../../tests/generate-random-user";
@@ -10,9 +10,14 @@ import { generateRandomUser } from "../../../../tests/generate-random-user";
 describe('Update question service', () => {
 
     const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
-    const questionRepository = new InMemoryQuestionRepository();
+    const findQuestionByIdRepository = new InMemoryFindQuestionByIdRepository();
+    const updateQuestionRepository = new InMemoryUpdateQuestionRepository();
 
-    const service = new UpdateQuestionService(questionRepository, findSubjectByIdRepository);
+    const service = new UpdateQuestionService(
+        findQuestionByIdRepository,
+        findSubjectByIdRepository,
+        updateQuestionRepository
+    );
 
     const user = generateRandomUser();
     const subject = generateRandomSubject();
@@ -22,12 +27,9 @@ describe('Update question service', () => {
 
     inMemorySubjects.push(subject);
     inMemorySubjects.push(other_subject);
-    questionRepository.questions.push(questionThatExists);
+    inMemoryQuestions.push(questionThatExists);
 
-    afterAll(() => {
-        questionRepository.questions = [];
-    });
-
+    
     it('should fail if the question does not exists', async () => {
 
         const response: Result<Question> = await service.execute({

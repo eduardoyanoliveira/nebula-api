@@ -1,18 +1,16 @@
 import { Result } from "../../../core/Result";
 import { Question } from "../../../domain/entities/Interactions/Question";
-import { IQuestionDTO } from "../../DTOs/Question/question-dto";
-import { IQuestionRepository } from "../../repositories/Question/question-repository";
+import { IDataToQuestion } from "../../DTOs/Question/data-to-question";
+import { IListQuestionsRepository } from "../../repositories/Question/question-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IListQuestions extends Pick<IQuestionRepository, 'list'>{};
-
-export class ListQuestions implements IListQuestions{
+export class ListQuestionsRepository implements IListQuestionsRepository{
 
     constructor(
-        private QuestionDTO: IQuestionDTO
+        private DataToQuestion: IDataToQuestion
     ){};
 
-    async list(filters): Promise<Result<Question[]>> {
+    async execute(filters): Promise<Result<Question[]>> {
 
         const response = await prismaClient.question.findMany({
             where: filters,
@@ -25,7 +23,7 @@ export class ListQuestions implements IListQuestions{
         const questions : Question[] = [];
 
         response.forEach((item) => {
-            questions.push(this.QuestionDTO.dataToQuestion(item));
+            questions.push(this.DataToQuestion.transform(item));
         });
 
         return Result.ok<Question[]>(questions);

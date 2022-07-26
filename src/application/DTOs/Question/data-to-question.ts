@@ -4,12 +4,12 @@ import { Role, User } from "../../../domain/entities/User";
 import { IQuestionDataProps } from "./interfaces";
 
 export interface IDataToQuestion {
-    dataToQuestion(questionData: IQuestionDataProps): Question,
+    transform(questionData: IQuestionDataProps): Question,
 };
 
 export class DataToQuestion implements IDataToQuestion {
 
-    dataToQuestion(questionData: IQuestionDataProps) : Question{
+    transform(questionData: IQuestionDataProps) : Question{
 
         const { id, author, author_id, subject, subject_id, ...rest } = questionData;
     

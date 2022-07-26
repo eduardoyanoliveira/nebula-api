@@ -2,7 +2,7 @@ import { generateRandomUser } from '../../../../tests/generate-random-user';
 import { generateRandomSubject } from '../../../../tests/generate-random-subject';
 import { generateRandomQuestion } from '../../../../tests/generate-random-question';
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
-import { InMemoryQuestionRepository } from '../../../../tests/repositories/Question/in-memory-question-repository';
+import { InMemoryFindQuestionByIdRepository, inMemoryQuestions } from '../../../../tests/repositories/Question/in-memory-question-repository';
 import { InMemoryAnswerRepository } from '../../../../tests/repositories/Answer/in-memory-answer-repository';
 import { CreateAnswerService } from './create-answer-service';
 import { AnswerFactory } from '../../../../domain/factories/Answer/factory-class';
@@ -14,10 +14,15 @@ describe( 'Create answer service' ,() =>{
     const factory = new AnswerFactory();
 
     const findUserByIdRepository = new InMemoryFindUserByIdRepository();
-    const questionRepository = new InMemoryQuestionRepository();
+    const findQuestionByIdRepository = new InMemoryFindQuestionByIdRepository();
     const answerRepository = new InMemoryAnswerRepository();
 
-    const service = new CreateAnswerService(findUserByIdRepository, questionRepository, answerRepository, factory);
+    const service = new CreateAnswerService(
+        findUserByIdRepository,
+        findQuestionByIdRepository,
+        answerRepository,
+        factory
+    );
     
 
     const question_user = generateRandomUser();
@@ -30,11 +35,7 @@ describe( 'Create answer service' ,() =>{
     inMemoryUsers.push(answer_user);
     inMemoryUsers.push(question_user);
 
-    questionRepository.questions.push(question);
-
-    afterAll(() =>{
-        questionRepository.questions = [];
-    });
+    inMemoryQuestions.push(question);
 
 
     it('should fail if the user does not exist', async () => {

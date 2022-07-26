@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import { IQuestionDTO } from '../../../DTOs/Question/question-dto';
 import { IQuestionToResponseProps } from '../../../DTOs/Question/interfaces';
 import { ListQuestionsService } from './list-questions-service';
 import { objectToWhere } from '../../../../utils/prisma-filters';
+import { IQuestionToResponse } from '../../../DTOs/Question/question-to-response';
 
 export class ListQuestionsController {
     constructor(
         private ListQuestionsService : ListQuestionsService,
-        private QuestionDTO: IQuestionDTO
+        private QuestionToResponse: IQuestionToResponse
     ){};
 
     async handle(req : Request, res: Response){
@@ -23,7 +23,7 @@ export class ListQuestionsController {
         const questions : IQuestionToResponseProps[] = [];
 
         questionsOrError.getValue().forEach((question) => {
-            questions.push(this.QuestionDTO.questionToResponse(question));
+            questions.push(this.QuestionToResponse.transform(question));
         });
 
         return res.json(questions);

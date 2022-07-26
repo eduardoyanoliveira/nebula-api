@@ -1,19 +1,18 @@
 import { Result } from "../../../../core/Result";
 import { Question } from "../../../../domain/entities/Interactions/Question";
-import { IQuestionRepository } from "../../../repositories/Question/question-repository";
-
+import { IListQuestionsRepository } from "../../../repositories/Question/question-repositories";
 interface IListQuestionRequest {
     filters?: object
 };
 
 export class ListQuestionsService {
     constructor(
-        private QuestionRepository: IQuestionRepository
+        private ListQuestionsRepository: IListQuestionsRepository
     ){};
 
     async execute({ filters }: IListQuestionRequest) : Promise<Result<Question[]>>{
 
-        const questionsOrError = await this.QuestionRepository.list(filters);
+        const questionsOrError = await this.ListQuestionsRepository.execute(filters);
 
         if(questionsOrError.isFailure){
             return Result.fail<Question[]>(questionsOrError.error);

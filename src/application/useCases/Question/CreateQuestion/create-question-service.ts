@@ -1,5 +1,5 @@
 import { IFindUserByIdRepository } from '../../../repositories/User/user-repositories';
-import { IQuestionRepository } from '../../../repositories/Question/question-repository';
+import { ICreateQuestionRepository } from '../../../repositories/Question/question-repositories';
 import { Result } from '../../../../core/Result';
 import { Question } from '../../../../domain/entities/Interactions/Question';
 import { QuestionFactory } from '../../../../domain/factories/Question/factory-class';
@@ -21,7 +21,7 @@ export class CreateQuestionService {
         private QuestionFactory: QuestionFactory,
         private FindUserByIdRepository : IFindUserByIdRepository,
         private FindSubjectByIdRepository: IFindSubjectByIdRepository,
-        private QuestionRepository: IQuestionRepository,
+        private CreateQuestionRepository: ICreateQuestionRepository,
     ){};
 
     async execute({ 
@@ -54,7 +54,7 @@ export class CreateQuestionService {
 
         // Persist on database
 
-        const responseOrError : Result<Question> = await this.QuestionRepository.create(question);
+        const responseOrError : Result<Question> = await this.CreateQuestionRepository.execute(question);
 
         if(responseOrError.isFailure){
             return Result.fail<Question>(responseOrError.error);

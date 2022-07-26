@@ -1,5 +1,5 @@
 import { IAnswerRepository } from '../../../repositories/Answer/answer-repository';
-import { IQuestionRepository } from '../../../repositories/Question/question-repository';
+import { IFindQuestionByIdRepository } from '../../../repositories/Question/question-repositories';
 import { IFindUserByIdRepository } from '../../../repositories/User/user-repositories';
 import { IAnswerFactory } from '../../../../domain/factories/Answer/factory-class';
 import { Result } from '../../../../core/Result';
@@ -15,7 +15,7 @@ interface ICreateAnswerRequest {
 export class CreateAnswerService {
     constructor(
         private FindUserByIdRepository: IFindUserByIdRepository,
-        private QuestionRepository: IQuestionRepository,
+        private FindQuestionByIdRepository: IFindQuestionByIdRepository,
         private AnswerRepository: IAnswerRepository,
         private AnswerFactory: IAnswerFactory
     ){};
@@ -28,7 +28,7 @@ export class CreateAnswerService {
             return Result.fail<Answer>(userOrError.error);
         };
 
-        const questionOrError = await this.QuestionRepository.findById(question_id);
+        const questionOrError = await this.FindQuestionByIdRepository.execute(question_id);
 
         if(questionOrError.isFailure){
             return Result.fail<Answer>(questionOrError.error);

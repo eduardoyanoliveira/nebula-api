@@ -1,6 +1,6 @@
 import { Result } from "../../../../core/Result";
 import { Question } from "../../../../domain/entities/Interactions/Question";
-import { IQuestionRepository } from "../../../repositories/Question/question-repository";
+import { IFindQuestionByIdRepository, IUpdateQuestionRepository } from '../../../repositories/Question/question-repositories';
 
 interface IChangeQuestionAccessRequest {
     id: string,
@@ -10,12 +10,13 @@ interface IChangeQuestionAccessRequest {
 
 export class ChangeQuestionAccessSerivce {
     constructor(
-        private QuestionRepository: IQuestionRepository
+        private FindQuestionByIdRepository: IFindQuestionByIdRepository,
+        private UpdateQuestionRepository: IUpdateQuestionRepository
     ){};
 
     async execute({ id, user_id, is_public } : IChangeQuestionAccessRequest) : Promise<Result<Question>>{
         
-        const questionOrError = await this.QuestionRepository.findById(id);
+        const questionOrError = await this.FindQuestionByIdRepository.execute(id);
 
         if(questionOrError.isFailure){
             return Result.fail<Question>(questionOrError.error);
@@ -33,7 +34,7 @@ export class ChangeQuestionAccessSerivce {
 
         // Persist on database
 
-        const databaseResponse = await this.QuestionRepository.update(question);
+        const databaseResponse = await this.UpdateQuestionRepository.execute(question);
 
         if(databaseResponse.isFailure){
             return Result.fail<Question>(databaseResponse.error);

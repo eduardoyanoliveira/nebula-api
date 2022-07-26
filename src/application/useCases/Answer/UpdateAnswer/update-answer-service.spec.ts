@@ -2,7 +2,7 @@ import { generateRandomUser } from '../../../../tests/generate-random-user';
 import { generateRandomSubject } from '../../../../tests/generate-random-subject';
 import { generateRandomQuestion } from '../../../../tests/generate-random-question';
 import { generateRandomAnswer } from '../../../../tests/generate-random-answer';
-import { InMemoryQuestionRepository } from '../../../../tests/repositories/Question/in-memory-question-repository';
+import { inMemoryQuestions } from '../../../../tests/repositories/Question/in-memory-question-repository';
 import { InMemoryAnswerRepository } from '../../../../tests/repositories/Answer/in-memory-answer-repository';
 import { UpdateAnswerService } from './update-answer-service';
 import { Answer } from '../../../../domain/entities/Interactions/Answer';
@@ -10,8 +10,6 @@ import { Result } from '../../../../core/Result';
 
 describe( 'Update answer service' ,() =>{
 
-
-    const questionRepository = new InMemoryQuestionRepository();
     const answerRepository = new InMemoryAnswerRepository();
 
     const service = new UpdateAnswerService(answerRepository);
@@ -25,11 +23,10 @@ describe( 'Update answer service' ,() =>{
 
     const answer = generateRandomAnswer(answer_user, question);
 
-    questionRepository.questions.push(question);
+    inMemoryQuestions.push(question);
     answerRepository.answers.push(answer);
 
     afterAll(() =>{
-        questionRepository.questions = [];
         answerRepository.answers = [];
     });
 

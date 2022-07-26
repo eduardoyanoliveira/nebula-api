@@ -3,14 +3,14 @@ import { IQuestionToResponseProps } from "./interfaces";
 
 
 
-export interface IQuestionToReponse {
-    questionToResponse(question: Question) :IQuestionToResponseProps
+export interface IQuestionToResponse {
+    transform(question: Question) :IQuestionToResponseProps
 };
 
 
-export class QuestionToResponse implements IQuestionToReponse {
+export class QuestionToResponse implements IQuestionToResponse {
 
-    questionToResponse(question: Question) : IQuestionToResponseProps {
+    transform(question: Question) : IQuestionToResponseProps {
 
         const { id, props } = question;
         const { author, subject, ...rest } = props;

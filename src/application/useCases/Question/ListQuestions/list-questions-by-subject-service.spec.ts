@@ -3,15 +3,15 @@ import { Question } from "../../../../domain/entities/Interactions/Question";
 import { generateRandomQuestion } from "../../../../tests/generate-random-question";
 import { generateRandomSubject } from "../../../../tests/generate-random-subject";
 import { generateRandomUser } from "../../../../tests/generate-random-user";
-import { InMemoryQuestionRepository } from "../../../../tests/repositories/Question/in-memory-question-repository";
+import { InMemoryListQuestionsRepository, inMemoryQuestions } from "../../../../tests/repositories/Question/in-memory-question-repository";
 import { inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
 import { ListQuestionsService } from "./list-questions-service";
 
 
 describe('Get question service', () => {
 
-    const questionRepository = new InMemoryQuestionRepository();
-    const service = new ListQuestionsService(questionRepository);
+    const listQuestionsRepository = new InMemoryListQuestionsRepository();
+    const service = new ListQuestionsService(listQuestionsRepository);
 
     const randomUser = generateRandomUser();
     const randomSubjectOne = generateRandomSubject();
@@ -21,16 +21,12 @@ describe('Get question service', () => {
     const question_two = generateRandomQuestion(randomUser, randomSubjectOne);
     const question_three = generateRandomQuestion(randomUser, randomSubjectTwo);
 
-    questionRepository.questions.push(question_one);
-    questionRepository.questions.push(question_two);
-    questionRepository.questions.push(question_three);
+    inMemoryQuestions.push(question_one);
+    inMemoryQuestions.push(question_two);
+    inMemoryQuestions.push(question_three);
 
     inMemorySubjects.push(randomSubjectOne);
     inMemorySubjects.push(randomSubjectTwo);
-
-    afterAll(() => {
-        questionRepository.questions = [];
-    });
 
 
     it('should be able to get a list of question', async () => {

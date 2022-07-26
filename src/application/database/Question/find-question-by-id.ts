@@ -1,18 +1,17 @@
 import { Result } from "../../../core/Result";
 import { Question } from "../../../domain/entities/Interactions/Question";
-import { IQuestionRepository } from "../../repositories/Question/question-repository";
-import { IQuestionDTO } from '../../DTOs/Question/question-dto';
+import { IDataToQuestion } from "../../DTOs/Question/data-to-question";
+import { IFindQuestionByIdRepository } from "../../repositories/Question/question-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
-interface IFindQuestionById extends Pick<IQuestionRepository, 'findById'>{};
 
-export class FindQuestionById implements IFindQuestionById{
+export class FindQuestionByIdRepository implements IFindQuestionByIdRepository{
 
     constructor(
-        private QuestionDTO : IQuestionDTO
+        private DataToQuestion : IDataToQuestion
     ){};
 
-    async findById(question_id: string): Promise<Result<Question>> {
+    async execute(question_id: string): Promise<Result<Question>> {
         
         const response = await prismaClient.question.findUnique({
             where:{
@@ -28,7 +27,7 @@ export class FindQuestionById implements IFindQuestionById{
             return Result.fail<Question>('Could not find the question on database');
         };
 
-        const question = this.QuestionDTO.dataToQuestion(response);
+        const question = this.DataToQuestion.transform(response);
 
         return Result.ok<Question>(question);
     }; 

@@ -1,6 +1,6 @@
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
-import { InMemoryQuestionRepository } from '../../../../tests/repositories/Question/in-memory-question-repository';
+import { InMemoryCreateQuestionRepository } from '../../../../tests/repositories/Question/in-memory-question-repository';
 import { QuestionFactory } from '../../../../domain/factories/Question/factory-class';
 import { generateRandomUser } from '../../../../tests/generate-random-user';
 import { generateRandomSubject } from '../../../../tests/generate-random-subject';
@@ -12,10 +12,16 @@ describe('Create question service', () => {
 
     const findUserByIdRepository = new InMemoryFindUserByIdRepository();
     const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
-    const questionRepository = new InMemoryQuestionRepository();
+    const createQuestionRepository = new InMemoryCreateQuestionRepository();
+
     const factory = new QuestionFactory();
 
-    const service = new CreateQuestionService(factory, findUserByIdRepository, findSubjectByIdRepository, questionRepository);
+    const service = new CreateQuestionService(
+        factory, 
+        findUserByIdRepository, 
+        findSubjectByIdRepository, 
+        createQuestionRepository
+    );
 
     const userThatExists = generateRandomUser();
     const subjectThatExists = generateRandomSubject();

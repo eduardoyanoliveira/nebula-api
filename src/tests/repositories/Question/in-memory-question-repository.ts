@@ -1,30 +1,34 @@
-import { IQuestionRepository } from "../../../application/repositories/Question/question-repository";
+import { ICreateQuestionRepository, IFindQuestionByIdRepository, IListQuestionsRepository, IUpdateQuestionRepository } from "../../../application/repositories/Question/question-repositories";
 import { Result } from "../../../core/Result";
 import { Question } from "../../../domain/entities/Interactions/Question";
 
-export class InMemoryQuestionRepository implements IQuestionRepository{
+export const inMemoryQuestions : Question[] = [];
 
-
-    public questions : Question[] = [];
-
-    async create(question: Question): Promise<Result<Question>> {
-        this.questions.push(question);
+export class InMemoryCreateQuestionRepository implements ICreateQuestionRepository{
+    async execute(question: Question): Promise<Result<Question>> {
+        inMemoryQuestions.push(question);
 
         return Result.ok<Question>(question);
     };
+};
 
-    async update(question: Question): Promise<Result<Question>> {
+export class InMemoryUpdateQuestionRepository implements IUpdateQuestionRepository{
 
-        const index = this.questions.findIndex(item => item.id === question.id);
+    async execute(question: Question): Promise<Result<Question>> {
 
-        this.questions[index] = question;
+        const index = inMemoryQuestions.findIndex(item => item.id === question.id);
+
+        inMemoryQuestions[index] = question;
 
         return Result.ok<Question>(question);
     };
+};
 
-    async findById(question_id: string): Promise<Result<Question>> {
+export class InMemoryFindQuestionByIdRepository implements IFindQuestionByIdRepository {
+
+    async execute(question_id: string): Promise<Result<Question>> {
         
-        const question = this.questions.find(item => item.id === question_id);
+        const question = inMemoryQuestions.find(item => item.id === question_id);
 
         if(!question){
             return Result.fail<Question>('Could not find any question with the given id')
@@ -32,8 +36,10 @@ export class InMemoryQuestionRepository implements IQuestionRepository{
 
         return Result.ok<Question>(question);
     };
+};
 
-    async list(): Promise<Result<Question[]>> {
-        return Result.ok<Question[]>(this.questions);
+export class InMemoryListQuestionsRepository implements IListQuestionsRepository{
+    async execute(): Promise<Result<Question[]>> {
+        return Result.ok<Question[]>(inMemoryQuestions);
     };
 };

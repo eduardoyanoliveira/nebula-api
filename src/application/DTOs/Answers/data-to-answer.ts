@@ -19,7 +19,7 @@ export class DataToAnswer implements IDataToAnswer{
         const { id, author_id, author, question_id, question, ...props } = answerData;
 
         const answerAuthor = this.DataToUser.transform(author);
-        const answerQuestion = this.DataToQuestion.dataToQuestion(question);
+        const answerQuestion = this.DataToQuestion.transform(question);
 
         const answerProps = {
             ...props,

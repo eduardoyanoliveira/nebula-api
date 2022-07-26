@@ -1,19 +1,17 @@
 import { Result } from "../../../core/Result";
 import { Question } from "../../../domain/entities/Interactions/Question";
-import { IQuestionDTO } from "../../DTOs/Question/question-dto";
-import { IQuestionRepository } from "../../repositories/Question/question-repository";
+import { IDataToQuestion } from "../../DTOs/Question/data-to-question";
+import { IUpdateQuestionRepository } from "../../repositories/Question/question-repositories";
+
 import { prismaClient } from '../prisma/prismaClient';
 
-
-interface IUpdateQuestion extends Pick<IQuestionRepository, 'update'>{};
-
-export class UpdateQuestion implements IUpdateQuestion{
+export class UpdateQuestionRepository implements IUpdateQuestionRepository{
 
     constructor(
-        private QuestionDTO: IQuestionDTO
+        private DataToQuestion: IDataToQuestion
     ){};
 
-    async update(question: Question) : Promise<Result<Question>> {
+    async execute(question: Question) : Promise<Result<Question>> {
 
         try{
             const response = await prismaClient.question.update({
@@ -34,7 +32,7 @@ export class UpdateQuestion implements IUpdateQuestion{
                 }
             });
 
-            return Result.ok<Question>(this.QuestionDTO.dataToQuestion(response));
+            return Result.ok<Question>(this.DataToQuestion.transform(response));
 
         }catch(err){
             return Result.fail<Question>(err.message);

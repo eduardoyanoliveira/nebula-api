@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { IQuestionDTO } from '../../../DTOs/Question/question-dto';
+import { IQuestionToResponse } from '../../../DTOs/Question/question-to-response';
 import { GetQuestionService } from './get-question-service';
 
 export class GetQuestionController {
     constructor(
         private GetQuestionService : GetQuestionService,
-        private QuestionDTO: IQuestionDTO,
+        private QuestionToResponse: IQuestionToResponse,
     ){};
 
     async handle(req: Request, res: Response) {
@@ -18,7 +18,7 @@ export class GetQuestionController {
             throw new Error(questionOrError.error);
         };
 
-        const question = this.QuestionDTO.questionToResponse(questionOrError.getValue());
+        const question = this.QuestionToResponse.transform(questionOrError.getValue());
 
         return res.json(question);
     };
