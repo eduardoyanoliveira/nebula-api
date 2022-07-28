@@ -38,6 +38,7 @@ export class UserAuthenticationService{
             user_id: user.id,
             username: user.props.username,
             email: email,
+            role: user.props.role,
             token: token
         });
 

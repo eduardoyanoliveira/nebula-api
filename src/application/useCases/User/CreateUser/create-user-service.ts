@@ -48,7 +48,7 @@ export class CreateUserService{
         };
 
         const cryptoPassword = await this.PasswordCryptographer.crypt(password);
-
+  
         const user = this.UserFactory.create(role, username, email, cryptoPassword);
 
         // Persist on database

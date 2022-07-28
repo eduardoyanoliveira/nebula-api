@@ -23,7 +23,7 @@ export class CreateUserRepository implements ICreateUserRepository{
         try{
             
             await prismaClient.$transaction(async () => {
-                const subjectResponse = await prismaClient.user.create({
+                const userResponse = await prismaClient.user.create({
                     data:{
                         id: user.id,
                         ...user.props
@@ -34,7 +34,7 @@ export class CreateUserRepository implements ICreateUserRepository{
                     data: dataToCreateRanks
                 });
 
-                return { subjectResponse, ranksResponse}
+                return { userResponse, ranksResponse}
             });
 
             return Result.ok<User>(user);

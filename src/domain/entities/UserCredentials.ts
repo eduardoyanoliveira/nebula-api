@@ -2,6 +2,7 @@ interface IUserCredentialsProps{
     user_id: string,
     username: string,
     email: string,
+    role: string,
     token: string
 };
 
@@ -12,7 +13,7 @@ export class UserCredentials{
     public email: string;
     public token: string;
 
-    private constructor({ user_id, username, email, token} : IUserCredentialsProps){
+    private constructor({ user_id, username, email, role, token} : IUserCredentialsProps){
         this.user_id = user_id;
         this.username = username;
         this.email = email;
