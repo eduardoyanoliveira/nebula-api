@@ -11,12 +11,14 @@ export class UserCredentials{
     public user_id: string;
     public username: string;
     public email: string;
+    public role: string;
     public token: string;
 
     private constructor({ user_id, username, email, role, token} : IUserCredentialsProps){
         this.user_id = user_id;
         this.username = username;
         this.email = email;
+        this.role = role;
         this.token = token;
     };
 
