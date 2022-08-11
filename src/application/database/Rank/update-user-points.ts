@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { Rank } from "../../../domain/entities/Rank";
+import { Result } from "../../core/Result";
+import { Rank } from "../../domain/entities/Rank";
 import { IUpdateUserPointsRepository } from "../../repositories/Rank/rank-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 

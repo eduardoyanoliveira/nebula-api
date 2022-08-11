@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { Question } from "../../../domain/entities/Interactions/Question";
+import { Result } from "../../core/Result";
+import { Question } from "../../domain/entities/Interactions/Question";
 import { IDataToQuestion } from "../../DTOs/Question/data-to-question";
 import { IListQuestionsRepository } from "../../repositories/Question/question-repositories";
 import { prismaClient } from "../prisma/prismaClient";

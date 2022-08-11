@@ -1,4 +1,4 @@
-import { IAnswerProps } from "../../../domain/entities/Interactions/Answer";
+import { IAnswerProps } from "../../domain/entities/Interactions/Answer";
 import { IUserDataProps } from "../User/interfaces";
 import { IQuestionDataProps, IQuestionToResponseProps } from '../Question/interfaces';
 

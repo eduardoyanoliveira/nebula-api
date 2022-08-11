@@ -1,5 +1,5 @@
-import { Result } from "../../../../core/Result";
-import { User } from "../../../../domain/entities/User";
+import { Result } from "../../../core/Result";
+import { User } from "../../../domain/entities/User";
 import { IFindUserByIdRepository, IUpdateUserRepository } from "../../../repositories/User/user-repositories";
 
 interface IUpdateUserRequest {

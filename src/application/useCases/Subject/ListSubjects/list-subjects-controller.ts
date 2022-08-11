@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { Result } from "../../../../core/Result";
-import { Subject } from "../../../../domain/entities/Subject";
-import { objectToWhere } from "../../../../utils/prisma-filters";
+import { Result } from "../../../core/Result";
+import { Subject } from "../../../domain/entities/Subject";
+import { objectToWhere } from "../../../utils/prisma-filters";
 import { ISubjectDataProps } from "../../../DTOs/Subject/interfaces";
 import { ISubjectToResponse } from "../../../DTOs/Subject/subject-to-response";
 import { ListSubjectsService } from "./list-subjects-service";

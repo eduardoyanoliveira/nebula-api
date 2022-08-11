@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { Subject } from "../../../domain/entities/Subject";
+import { Result } from "../../core/Result";
+import { Subject } from "../../domain/entities/Subject";
 
 export interface ICreateSubjectRepository {
     execute(subject: Subject) : Promise<Result<Subject>>,

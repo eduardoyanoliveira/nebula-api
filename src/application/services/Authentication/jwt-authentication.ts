@@ -1,6 +1,6 @@
-import { IAuthenticationService, IValidateResult } from "../../../interfaces/authentication-interfaces";
+import { IAuthenticationService, IValidateResult } from "../../domain/interfaces/authentication-interfaces";
 import { sign, verify } from 'jsonwebtoken';
-import { User } from "../../../domain/entities/User";
+import { User } from "../../domain/entities/User";
 
 interface Payload {
     sub: string
@@ -20,7 +20,7 @@ export class JWTAuthentication implements IAuthenticationService  {
                 username: user.props.username,
                 email: user.props.email
             },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET as string,
             {
                 subject: user.id,
                 expiresIn: this.expiresIn
@@ -36,7 +36,7 @@ export class JWTAuthentication implements IAuthenticationService  {
    
             const { sub } = verify(
                 token,
-                process.env.JWT_SECRET
+                process.env.JWT_SECRET as string
             ) as Payload;
 
     

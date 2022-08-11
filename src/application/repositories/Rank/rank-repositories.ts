@@ -1,8 +1,8 @@
-import { GenericResultClass } from "../../../core/GenericResultClass";
-import { Result } from "../../../core/Result";
-import { Rank } from "../../../domain/entities/Rank";
-import { Subject } from "../../../domain/entities/Subject";
-import { User } from "../../../domain/entities/User";
+import { GenericResultClass } from "../../core/GenericResultClass";
+import { Result } from "../../core/Result";
+import { Rank } from "../../domain/entities/Rank";
+import { Subject } from "../../domain/entities/Subject";
+import { User } from "../../domain/entities/User";
 
 
 export interface IGenerateUserRanksRepository {

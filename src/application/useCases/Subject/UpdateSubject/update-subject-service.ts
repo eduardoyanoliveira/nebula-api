@@ -1,6 +1,6 @@
-import { Result } from "../../../../core/Result";
-import { Subject } from "../../../../domain/entities/Subject";
-import { partialUpdateObject } from "../../../../utils/object-methods/partial-update-object";
+import { Result } from "../../../core/Result";
+import { Subject } from "../../../domain/entities/Subject";
+import { partialUpdateObject } from "../../../utils/object-methods/partial-update-object";
 import { IFindSubjectByIdRepository, IUpdateSubjectRepository } from "../../../repositories/Subject/subject-repositories";
 
 interface IUpdateSubjectRequest {

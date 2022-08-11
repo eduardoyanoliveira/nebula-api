@@ -1,5 +1,5 @@
 import { CreateAnswerService } from "./create-answer-service";
-import { AnswerFactory } from "../../../../domain/factories/Answer/factory-class";
+import { AnswerFactory } from "../../../domain/factories/Answer/factory-class";
 import { CreateAnswerController } from "./create-answer-controller";
 import { FindUserByIdRepository } from "../../../database/User/find-user-by-id";
 import { DataToUser } from "../../../DTOs/User/data-to-user";

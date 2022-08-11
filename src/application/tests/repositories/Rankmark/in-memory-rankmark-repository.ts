@@ -1,4 +1,4 @@
-import { ICreateRankmarkRepository, IFindRankmarkByIdRepository, IFindRankmarkByNameRepository, IListRankmarksRepository, IUpdateRankmarkRepository } from "../../../application/repositories/Rankmark/rankmark-repositories";
+import { ICreateRankmarkRepository, IFindRankmarkByIdRepository, IFindRankmarkByNameRepository, IListRankmarksRepository, IUpdateRankmarkRepository } from "../../../repositories/Rankmark/rankmark-repositories";
 import { Result } from "../../../core/Result";
 import { Rankmark } from "../../../domain/entities/Rankmark";
 

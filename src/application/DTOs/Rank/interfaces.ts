@@ -1,4 +1,4 @@
-import { IRankProps } from "../../../domain/entities/Rank";
+import { IRankProps } from "../../domain/entities/Rank";
 import { ISubjectDataProps } from "../Subject/interfaces";
 import { IUserDataProps } from "../User/interfaces";
 

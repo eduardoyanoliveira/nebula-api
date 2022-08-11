@@ -1,4 +1,4 @@
-import { Answer } from "../../../domain/entities/Interactions/Answer";
+import { Answer } from "../../domain/entities/Interactions/Answer";
 import { DataToQuestion } from "../Question/data-to-question";
 import { DataToUser } from '../User/data-to-user';
 import { IAnswerDataProps } from "./interfaces";

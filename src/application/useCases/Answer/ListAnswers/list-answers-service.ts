@@ -1,5 +1,5 @@
-import { Result } from "../../../../core/Result";
-import { Answer } from "../../../../domain/entities/Interactions/Answer";
+import { Result } from "../../../core/Result";
+import { Answer } from "../../../domain/entities/Interactions/Answer";
 import { IListAnswersRepository } from "../../../repositories/Answer/answer-repositories";
 interface IListAnswers {
     filters?: object

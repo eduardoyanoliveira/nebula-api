@@ -1,6 +1,6 @@
-import { Result } from "../../../../core/Result";
-import { Question } from "../../../../domain/entities/Interactions/Question";
-import { partialUpdateObject } from "../../../../utils/object-methods/partial-update-object";
+import { Result } from "../../../core/Result";
+import { Question } from "../../../domain/entities/Interactions/Question";
+import { partialUpdateObject } from "../../../utils/object-methods/partial-update-object";
 import { IFindQuestionByIdRepository, IUpdateQuestionRepository } from "../../../repositories/Question/question-repositories";
 import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 

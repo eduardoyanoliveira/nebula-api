@@ -1,6 +1,6 @@
-import { Rank } from "../../../domain/entities/Rank";
-import { Subject } from "../../../domain/entities/Subject";
-import { Role, User } from "../../../domain/entities/User";
+import { Rank } from "../../domain/entities/Rank";
+import { Subject } from "../../domain/entities/Subject";
+import { Role, User } from "../../domain/entities/User";
 import { IRankDataProps } from "./interfaces";
 
 

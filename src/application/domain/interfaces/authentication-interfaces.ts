@@ -1,4 +1,4 @@
-import { User } from "../domain/entities/User";
+import { User } from "../application/domain/entities/User";
 
 export interface IValidateResult {
     isValid: boolean,

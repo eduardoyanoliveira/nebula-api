@@ -1,5 +1,5 @@
-import { Content } from "../../../domain/entities/Content";
-import { Subject } from "../../../domain/entities/Subject";
+import { Content } from "../../domain/entities/Content";
+import { Subject } from "../../domain/entities/Subject";
 import { IContentDataProps } from "./interfaces";
 
 

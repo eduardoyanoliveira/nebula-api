@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { Subject } from "../../../domain/entities/Subject";
+import { Result } from "../../core/Result";
+import { Subject } from "../../domain/entities/Subject";
 import { IDataToSubject } from "../../DTOs/Subject/data-to-subject";
 import { IFindSubjectByNameRepository } from "../../repositories/Subject/subject-repositories";
 import { prismaClient } from "../prisma/prismaClient";

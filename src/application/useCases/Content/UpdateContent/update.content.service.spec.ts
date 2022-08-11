@@ -1,7 +1,7 @@
-import { generateRandomSubject } from "../../../../tests/generate-random-subject";
-import { generateRandomContent } from "../../../../tests/generate-random-contents";
-import { InMemoryFindContentByIdRepository, InMemoryUpdateContentRepository, inMemoryContents } from "../../../../tests/repositories/Content/in-memory-content-repository";
-import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { generateRandomSubject } from "../../../tests/generate-random-subject";
+import { generateRandomContent } from "../../../tests/generate-random-contents";
+import { InMemoryFindContentByIdRepository, InMemoryUpdateContentRepository, inMemoryContents } from "../../../tests/repositories/Content/in-memory-content-repository";
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../tests/repositories/Subject/in-memory-subject-repo";
 import { UpdateContentService } from "./update-content-service";
 
 

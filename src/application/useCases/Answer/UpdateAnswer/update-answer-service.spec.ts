@@ -1,12 +1,12 @@
-import { generateRandomUser } from '../../../../tests/generate-random-user';
-import { generateRandomSubject } from '../../../../tests/generate-random-subject';
-import { generateRandomQuestion } from '../../../../tests/generate-random-question';
-import { generateRandomAnswer } from '../../../../tests/generate-random-answer';
-import { inMemoryQuestions } from '../../../../tests/repositories/Question/in-memory-question-repository';
-import { InMemoryFindAnswerByIdRepository, InMemoryUpdateAnswerRepository, inMemoryAnswers } from '../../../../tests/repositories/Answer/in-memory-answer-repository';
+import { generateRandomUser } from '../../../tests/generate-random-user';
+import { generateRandomSubject } from '../../../tests/generate-random-subject';
+import { generateRandomQuestion } from '../../../tests/generate-random-question';
+import { generateRandomAnswer } from '../../../tests/generate-random-answer';
+import { inMemoryQuestions } from '../../../tests/repositories/Question/in-memory-question-repository';
+import { InMemoryFindAnswerByIdRepository, InMemoryUpdateAnswerRepository, inMemoryAnswers } from '../../../tests/repositories/Answer/in-memory-answer-repository';
 import { UpdateAnswerService } from './update-answer-service';
-import { Answer } from '../../../../domain/entities/Interactions/Answer';
-import { Result } from '../../../../core/Result';
+import { Answer } from '../../../domain/entities/Interactions/Answer';
+import { Result } from '../../../core/Result';
 
 describe( 'Update answer service' ,() =>{
 

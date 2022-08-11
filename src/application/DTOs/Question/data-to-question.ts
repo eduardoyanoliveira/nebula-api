@@ -1,6 +1,6 @@
-import { Question } from "../../../domain/entities/Interactions/Question";
-import { Subject } from "../../../domain/entities/Subject";
-import { Role, User } from "../../../domain/entities/User";
+import { Question } from "../../domain/entities/Interactions/Question";
+import { Subject } from "../../domain/entities/Subject";
+import { Role, User } from "../../domain/entities/User";
 import { IQuestionDataProps } from "./interfaces";
 
 export interface IDataToQuestion {

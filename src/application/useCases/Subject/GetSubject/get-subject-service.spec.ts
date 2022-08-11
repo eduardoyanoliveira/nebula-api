@@ -1,5 +1,5 @@
-import { generateRandomSubject } from "../../../../tests/generate-random-subject";
-import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { generateRandomSubject } from "../../../tests/generate-random-subject";
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../tests/repositories/Subject/in-memory-subject-repo";
 import { GetSubjectService } from "./get-subject-service";
 
 describe('Get subject service', () => {

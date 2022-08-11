@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { objectToWhere } from '../../../../utils/prisma-filters';
+import { objectToWhere } from '../../../utils/prisma-filters';
 import { IAnswerToResponse } from '../../../DTOs/Answers/answer-to-response';
 import { IAnswerToResponseProps } from '../../../DTOs/Answers/interfaces';
 import { ListAnswersService } from './list-answers-service';

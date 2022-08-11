@@ -1,4 +1,4 @@
-import { IEmailValidator } from "../../interfaces/email-interfaces";
+import { IEmailValidator } from "../../domain/interfaces/email-interfaces";
 
 export class EmailValidator implements IEmailValidator{
     async validate(email: string) : Promise<boolean>{

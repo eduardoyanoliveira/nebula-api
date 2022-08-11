@@ -1,5 +1,5 @@
 import { CreateContentService } from "./create-content-service";
-import { ContentFactory } from "../../../../domain/factories/Content/factory-class";
+import { ContentFactory } from "../../../domain/factories/Content/factory-class";
 import { CreateContentController } from "./create-content-controller";
 import { DataToSubject } from "../../../DTOs/Subject/data-to-subject";
 import { FindSubjectByIdRepository } from "../../../database/Subject/find-subject-by-id";

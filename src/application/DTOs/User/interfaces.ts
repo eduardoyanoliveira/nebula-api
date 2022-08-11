@@ -1,4 +1,4 @@
-import { IUserProps } from "../../../domain/entities/User";
+import { IUserProps } from "../../domain/entities/User";
 
 export interface IUserDataProps extends Omit<IUserProps, 'role'>{
     id: string,

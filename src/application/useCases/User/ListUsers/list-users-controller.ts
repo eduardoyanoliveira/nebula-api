@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { IUserDataProps } from "../../../DTOs/User/interfaces";
 import { ListUsersService } from "./list-users-service";
-import { objectToWhere } from '../../../../utils/prisma-filters';
+import { objectToWhere } from '../../../utils/prisma-filters';
 import { IUserToResponse } from "../../../DTOs/User/user-to-response";
 
 export class ListUsersController{

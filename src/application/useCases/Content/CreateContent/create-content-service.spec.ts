@@ -1,10 +1,10 @@
-import { ContentFactory } from '../../../../domain/factories/Content/factory-class';
-import { InMemoryCreateContentRepository } from '../../../../tests/repositories/Content/in-memory-content-repository';
-import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
+import { ContentFactory } from '../../../domain/factories/Content/factory-class';
+import { InMemoryCreateContentRepository } from '../../../tests/repositories/Content/in-memory-content-repository';
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../tests/repositories/Subject/in-memory-subject-repo';
 import { CreateContentService } from './create-content-service';
-import { generateRandomSubject } from '../../../../tests/generate-random-subject';
-import { Content } from '../../../../domain/entities/Content';
-import { Result } from '../../../../core/Result';
+import { generateRandomSubject } from '../../../tests/generate-random-subject';
+import { Content } from '../../../domain/entities/Content';
+import { Result } from '../../../core/Result';
 
 describe('Create content service', ()  => {
 

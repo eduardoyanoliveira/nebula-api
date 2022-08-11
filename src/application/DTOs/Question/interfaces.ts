@@ -1,4 +1,4 @@
-import { IQuestionProps } from "../../../domain/entities/Interactions/Question"
+import { IQuestionProps } from "../../domain/entities/Interactions/Question"
 import { ISubjectDataProps } from "../Subject/interfaces"
 import { IUserDataProps } from "../User/interfaces"
 

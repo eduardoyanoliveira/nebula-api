@@ -1,4 +1,4 @@
-import { IGenerateSubjectRanksRepository, IGenerateUserRanksRepository, IListRanksBySubjectRepository, IUpdateUserPointsRepository } from "../../../application/repositories/Rank/rank-repositories";
+import { IGenerateSubjectRanksRepository, IGenerateUserRanksRepository, IListRanksBySubjectRepository, IUpdateUserPointsRepository } from "../../../repositories/Rank/rank-repositories";
 import { GenericResultClass } from "../../../core/GenericResultClass";
 import { Result } from "../../../core/Result";
 import { Rank } from "../../../domain/entities/Rank";

@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { Content } from "../../../domain/entities/Content";
+import { Result } from "../../core/Result";
+import { Content } from "../../domain/entities/Content";
 import { IDataToContent } from "../../DTOs/Content/data-to-content";
 import { IListContentsRepository } from "../../repositories/Content/content-repositories";
 import { prismaClient } from "../prisma/prismaClient";

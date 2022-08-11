@@ -1,4 +1,4 @@
-import { IPasswordValidator } from "../../interfaces/password-interfaces";
+import { IPasswordValidator } from "../../domain/interfaces/password-interfaces";
 
 export class PasswordValidator implements IPasswordValidator {
 

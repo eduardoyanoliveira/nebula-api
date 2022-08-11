@@ -1,10 +1,10 @@
-import { Result } from "../../../../core/Result";
-import { User } from "../../../../domain/entities/User";
-import { UserFactory } from "../../../../domain/factories/User/factory-class";
-import { generateRandomUser } from "../../../../tests/generate-random-user";
-import { InMemoryCreateUserRepository, InMemoryFindUserByEmailRepository } from "../../../../tests/repositories/User/in-memory-user-repo";
-import { EmailValidator } from "../../../../utils/email/email-validator";
-import { PasswordValidator } from "../../../../utils/password/password-validator";
+import { Result } from "../../../core/Result";
+import { User } from "../../../domain/entities/User";
+import { UserFactory } from "../../../domain/factories/User/factory-class";
+import { generateRandomUser } from "../../../tests/generate-random-user";
+import { InMemoryCreateUserRepository, InMemoryFindUserByEmailRepository } from "../../../tests/repositories/User/in-memory-user-repo";
+import { EmailValidator } from "../../email/email-validator";
+import { PasswordValidator } from "../../password/password-validator";
 import { PasswordCryptographer } from "../../../services/Cryptography/password-cryptography";
 import { CreateUserService } from "./create-user-service";
 

@@ -1,8 +1,8 @@
-import { Result } from "../../../../core/Result";
-import { User } from "../../../../domain/entities/User";
-import { IUserFactory } from "../../../../domain/factories/User/factory-class";
-import { IEmailValidator } from "../../../../interfaces/email-interfaces";
-import { IPasswordCryptographer, IPasswordValidator } from "../../../../interfaces/password-interfaces";
+import { Result } from "../../../core/Result";
+import { User } from "../../../domain/entities/User";
+import { IUserFactory } from "../../../domain/factories/User/factory-class";
+import { IEmailValidator } from "../../../domain/interfaces/email-interfaces";
+import { IPasswordCryptographer, IPasswordValidator } from "../../../domain/interfaces/password-interfaces";
 import { ICreateUserRepository, IFindUserByEmailRepository } from "../../../repositories/User/user-repositories";
 
 

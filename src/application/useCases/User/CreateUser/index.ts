@@ -1,9 +1,9 @@
-import { EmailValidator } from "../../../../utils/email/email-validator";
-import { PasswordValidator } from "../../../../utils/password/password-validator";
+import { EmailValidator } from "../../email/email-validator";
+import { PasswordValidator } from "../../password/password-validator";
 import { PasswordCryptographer } from "../../../services/Cryptography/password-cryptography";
 import { CreateUserService } from "./create-user-service";
 import { CreateUserController } from "./create-user-controller";
-import { UserFactory } from "../../../../domain/factories/User/factory-class";
+import { UserFactory } from "../../../domain/factories/User/factory-class";
 import { CreateUserRepository } from "../../../database/User/create-user";
 import { FindUserByEmailRepository } from "../../../database/User/find-user-by-email";
 import { UserToResponse } from "../../../DTOs/User/user-to-response";

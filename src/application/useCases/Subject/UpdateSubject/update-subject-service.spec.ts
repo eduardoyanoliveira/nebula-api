@@ -1,7 +1,7 @@
-import { Result } from "../../../../core/Result";
-import { Subject } from "../../../../domain/entities/Subject";
-import { generateRandomSubject } from "../../../../tests/generate-random-subject";
-import { InMemoryFindSubjectByIdRepository, InMemoryUpdateSubjectRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { Result } from "../../../core/Result";
+import { Subject } from "../../../domain/entities/Subject";
+import { generateRandomSubject } from "../../../tests/generate-random-subject";
+import { InMemoryFindSubjectByIdRepository, InMemoryUpdateSubjectRepository, inMemorySubjects } from "../../../tests/repositories/Subject/in-memory-subject-repo";
 import { UpdateSubjectService } from "./update-subject-service";
 
 describe('Update subject service', () => {

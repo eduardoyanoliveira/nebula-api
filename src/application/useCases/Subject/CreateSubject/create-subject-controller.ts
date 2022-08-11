@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Result } from "../../../../core/Result";
-import { Subject } from "../../../../domain/entities/Subject";
+import { Result } from "../../../core/Result";
+import { Subject } from "../../../domain/entities/Subject";
 import { ISubjectToResponse } from "../../../DTOs/Subject/subject-to-response";
 import { CreateSubjectService } from "./create-subject-service";
 

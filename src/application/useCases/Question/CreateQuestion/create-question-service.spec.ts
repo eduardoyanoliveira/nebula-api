@@ -1,12 +1,12 @@
-import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
-import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
-import { InMemoryCreateQuestionRepository } from '../../../../tests/repositories/Question/in-memory-question-repository';
-import { QuestionFactory } from '../../../../domain/factories/Question/factory-class';
-import { generateRandomUser } from '../../../../tests/generate-random-user';
-import { generateRandomSubject } from '../../../../tests/generate-random-subject';
+import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../tests/repositories/User/in-memory-user-repo';
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../tests/repositories/Subject/in-memory-subject-repo';
+import { InMemoryCreateQuestionRepository } from '../../../tests/repositories/Question/in-memory-question-repository';
+import { QuestionFactory } from '../../../domain/factories/Question/factory-class';
+import { generateRandomUser } from '../../../tests/generate-random-user';
+import { generateRandomSubject } from '../../../tests/generate-random-subject';
 import { CreateQuestionService } from './create-question-service';
-import { Result } from '../../../../core/Result';
-import { Question } from '../../../../domain/entities/Interactions/Question';
+import { Result } from '../../../core/Result';
+import { Question } from '../../../domain/entities/Interactions/Question';
 
 describe('Create question service', () => {
 

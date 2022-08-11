@@ -1,5 +1,5 @@
-import { Question } from "../../../domain/entities/Interactions/Question";
-import { Result } from '../../../core/Result';
+import { Question } from "../../domain/entities/Interactions/Question";
+import { Result } from '../../core/Result';
 
 export interface ICreateQuestionRepository{
     execute(question: Question): Promise<Result<Question>>,

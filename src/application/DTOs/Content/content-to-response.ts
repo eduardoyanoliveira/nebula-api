@@ -1,4 +1,4 @@
-import { Content } from "../../../domain/entities/Content";
+import { Content } from "../../domain/entities/Content";
 import { IContentResponseProps } from "./interfaces";
 
 export interface IContentToResponse {

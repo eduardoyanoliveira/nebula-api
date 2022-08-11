@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { Answer } from "../../../domain/entities/Interactions/Answer";
+import { Result } from "../../core/Result";
+import { Answer } from "../../domain/entities/Interactions/Answer";
 import { IDataToAnswer } from "../../DTOs/Answers/data-to-answer";
 import { IListAnswersRepository } from "../../repositories/Answer/answer-repositories";
 import { prismaClient } from "../prisma/prismaClient";

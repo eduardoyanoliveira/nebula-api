@@ -1,4 +1,4 @@
-import { Rank } from "../../../domain/entities/Rank"; 
+import { Rank } from "../../domain/entities/Rank"; 
 import { IRankResponseProps } from "./interfaces";
 
 export interface IRankToResponse {

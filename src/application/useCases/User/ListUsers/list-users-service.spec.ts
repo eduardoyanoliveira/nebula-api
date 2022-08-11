@@ -1,7 +1,7 @@
-import { Result } from "../../../../core/Result";
-import { User } from "../../../../domain/entities/User";
-import { generateRandomUser } from "../../../../tests/generate-random-user";
-import { InMemoryListUsersRepository, inMemoryUsers } from "../../../../tests/repositories/User/in-memory-user-repo";
+import { Result } from "../../../core/Result";
+import { User } from "../../../domain/entities/User";
+import { generateRandomUser } from "../../../tests/generate-random-user";
+import { InMemoryListUsersRepository, inMemoryUsers } from "../../../tests/repositories/User/in-memory-user-repo";
 import { ListUsersService } from "./list-users-service";
 
 describe('List users service', () => {

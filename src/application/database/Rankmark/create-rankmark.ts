@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { Rankmark } from "../../../domain/entities/Rankmark";
+import { Result } from "../../core/Result";
+import { Rankmark } from "../../domain/entities/Rankmark";
 import { ICreateRankmarkRepository } from "../../repositories/Rankmark/rankmark-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ListContentsService } from './list-contents-service';
-import { objectToWhere } from '../../../../utils/prisma-filters';
+import { objectToWhere } from '../../../utils/prisma-filters';
 import { IContentToResponse } from '../../../DTOs/Content/content-to-response';
 
 export class ListContentsController {

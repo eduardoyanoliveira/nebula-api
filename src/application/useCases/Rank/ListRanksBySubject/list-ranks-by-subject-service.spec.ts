@@ -1,8 +1,8 @@
-import { Rank } from "../../../../domain/entities/Rank";
-import { Subject } from "../../../../domain/entities/Subject";
-import { Role, User } from "../../../../domain/entities/User";
-import { InMemoryListRanksBySubjectRepository, inMemoryRanks } from "../../../../tests/repositories/Rank/in-memory-rank-repository";
-import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { Rank } from "../../../domain/entities/Rank";
+import { Subject } from "../../../domain/entities/Subject";
+import { Role, User } from "../../../domain/entities/User";
+import { InMemoryListRanksBySubjectRepository, inMemoryRanks } from "../../../tests/repositories/Rank/in-memory-rank-repository";
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../tests/repositories/Subject/in-memory-subject-repo";
 import { ListRanksBySubjectService } from "./list-ranks-by-subject-service";
 
 describe('List ranks by subject service', () => {

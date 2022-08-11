@@ -1,10 +1,10 @@
-import { Result } from "../../../../core/Result";
-import { Question } from "../../../../domain/entities/Interactions/Question";
-import { generateRandomQuestion } from "../../../../tests/generate-random-question";
-import { generateRandomSubject } from "../../../../tests/generate-random-subject";
-import { generateRandomUser } from "../../../../tests/generate-random-user";
-import { InMemoryListQuestionsRepository, inMemoryQuestions } from "../../../../tests/repositories/Question/in-memory-question-repository";
-import { inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { Result } from "../../../core/Result";
+import { Question } from "../../../domain/entities/Interactions/Question";
+import { generateRandomQuestion } from "../../../tests/generate-random-question";
+import { generateRandomSubject } from "../../../tests/generate-random-subject";
+import { generateRandomUser } from "../../../tests/generate-random-user";
+import { InMemoryListQuestionsRepository, inMemoryQuestions } from "../../../tests/repositories/Question/in-memory-question-repository";
+import { inMemorySubjects } from "../../../tests/repositories/Subject/in-memory-subject-repo";
 import { ListQuestionsService } from "./list-questions-service";
 
 

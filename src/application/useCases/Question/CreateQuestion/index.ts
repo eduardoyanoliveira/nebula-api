@@ -1,4 +1,4 @@
-import { QuestionFactory } from "../../../../domain/factories/Question/factory-class";
+import { QuestionFactory } from "../../../domain/factories/Question/factory-class";
 import { CreateQuestionService } from "./create-question-service";
 import { FindUserByIdRepository } from '../../../database/User/find-user-by-id';
 import { CreateQuestionController } from "./create-question-controller";

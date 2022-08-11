@@ -1,5 +1,5 @@
-import { Result } from "../../../../core/Result";
-import { Question } from "../../../../domain/entities/Interactions/Question";
+import { Result } from "../../../core/Result";
+import { Question } from "../../../domain/entities/Interactions/Question";
 import { IFindQuestionByIdRepository } from "../../../repositories/Question/question-repositories";
 
 

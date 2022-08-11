@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { User } from "../../../domain/entities/User";
+import { Result } from "../../core/Result";
+import { User } from "../../domain/entities/User";
 export interface ICreateUserRepository {
     execute(user: User) : Promise<Result<User>>,
 };

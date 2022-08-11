@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { User } from "../../../domain/entities/User";
+import { Result } from "../../core/Result";
+import { User } from "../../domain/entities/User";
 import { prismaClient } from '../prisma/prismaClient';
 import { RankCreateManyInputs } from 'prisma';
 import { ICreateUserRepository } from "../../repositories/User/user-repositories";

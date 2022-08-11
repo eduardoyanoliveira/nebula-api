@@ -1,4 +1,4 @@
-import { Subject } from "../../../domain/entities/Subject";
+import { Subject } from "../../domain/entities/Subject";
 import { ISubjectDataProps } from "./interfaces";
 
 export interface ISubjectToResponse {

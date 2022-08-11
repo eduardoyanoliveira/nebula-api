@@ -1,12 +1,12 @@
 import { UpdateUserPointsService } from "./update-user-points-service";
-import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
-import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
-import { InMemoryUpdateUserPointsRepository, inMemoryRanks } from '../../../../tests/repositories/Rank/in-memory-rank-repository';
+import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../tests/repositories/User/in-memory-user-repo';
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../tests/repositories/Subject/in-memory-subject-repo';
+import { InMemoryUpdateUserPointsRepository, inMemoryRanks } from '../../../tests/repositories/Rank/in-memory-rank-repository';
 
-import { generateRandomUser } from '../../../../tests/generate-random-user';
-import { generateRandomSubject } from '../../../../tests/generate-random-subject';
-import { Rank } from "../../../../domain/entities/Rank";
-import { Result } from "../../../../core/Result";
+import { generateRandomUser } from '../../../tests/generate-random-user';
+import { generateRandomSubject } from '../../../tests/generate-random-subject';
+import { Rank } from "../../../domain/entities/Rank";
+import { Result } from "../../../core/Result";
 
 describe('Update user points', () => {
 

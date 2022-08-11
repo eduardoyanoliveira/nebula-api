@@ -1,5 +1,5 @@
-import { Result } from "../../../../core/Result";
-import { Content } from "../../../../domain/entities/Content";
+import { Result } from "../../../core/Result";
+import { Content } from "../../../domain/entities/Content";
 import { IListContentsRepository } from "../../../repositories/Content/content-repositories";
 
 interface IListContentsRequest {

@@ -1,5 +1,5 @@
-import { Result } from "../../../../core/Result";
-import { Rank } from '../../../../domain/entities/Rank';
+import { Result } from "../../../core/Result";
+import { Rank } from '../../../domain/entities/Rank';
 import { IFindUserByIdRepository } from '../../../repositories/User/user-repositories';
 import { IFindSubjectByIdRepository } from '../../../repositories/Subject/subject-repositories';
 import { IUpdateUserPointsRepository } from '../../../repositories/Rank/rank-repositories';

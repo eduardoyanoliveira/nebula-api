@@ -1,4 +1,4 @@
-import { User } from "../../../domain/entities/User";
+import { User } from "../../domain/entities/User";
 import { IUserDataProps } from "./interfaces";
 
 export interface IUserToResponse {

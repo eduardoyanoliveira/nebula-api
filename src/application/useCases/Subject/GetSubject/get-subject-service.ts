@@ -1,5 +1,5 @@
-import { Result } from "../../../../core/Result";
-import { Subject } from "../../../../domain/entities/Subject";
+import { Result } from "../../../core/Result";
+import { Subject } from "../../../domain/entities/Subject";
 import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 
 interface IGetSubjectRequest {

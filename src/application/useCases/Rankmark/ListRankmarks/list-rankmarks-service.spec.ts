@@ -1,7 +1,7 @@
-import { Result } from "../../../../core/Result";
-import { Rankmark } from "../../../../domain/entities/Rankmark";
-import { generateRandomRankmark } from "../../../../tests/generate-random-rankmark";
-import { InMemoryListRankmarksRepository, inMemoryRankmarks } from "../../../../tests/repositories/Rankmark/in-memory-rankmark-repository";
+import { Result } from "../../../core/Result";
+import { Rankmark } from "../../../domain/entities/Rankmark";
+import { generateRandomRankmark } from "../../../tests/generate-random-rankmark";
+import { InMemoryListRankmarksRepository, inMemoryRankmarks } from "../../../tests/repositories/Rankmark/in-memory-rankmark-repository";
 import { ListRankmarksService } from "./list-rankmarks-service";
 
 describe('List rankmarks service', () => {

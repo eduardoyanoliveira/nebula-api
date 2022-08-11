@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IRankmarkDataProps } from '../../../DTOs/Rankmark/interfaces';
 import { ListRankmarksService } from './list-rankmarks-service';
-import { objectToWhere } from '../../../../utils/prisma-filters'; 
+import { objectToWhere } from '../../../utils/prisma-filters'; 
 import { IRankmarkToResponse } from '../../../DTOs/Rankmark/rankmark-to-response';
 
 export class ListRankmarksController {

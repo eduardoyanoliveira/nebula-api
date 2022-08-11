@@ -1,4 +1,4 @@
-import { ICreateQuestionRepository, IFindQuestionByIdRepository, IListQuestionsRepository, IUpdateQuestionRepository } from "../../../application/repositories/Question/question-repositories";
+import { ICreateQuestionRepository, IFindQuestionByIdRepository, IListQuestionsRepository, IUpdateQuestionRepository } from "../../../repositories/Question/question-repositories";
 import { Result } from "../../../core/Result";
 import { Question } from "../../../domain/entities/Interactions/Question";
 

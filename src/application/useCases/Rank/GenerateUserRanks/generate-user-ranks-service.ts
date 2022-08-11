@@ -1,5 +1,5 @@
-import { GenericResultClass } from "../../../../core/GenericResultClass";
-import { Result } from "../../../../core/Result";
+import { GenericResultClass } from "../../../core/GenericResultClass";
+import { Result } from "../../../core/Result";
 import { IListSubjectsRepository } from "../../../repositories/Subject/subject-repositories";
 import { IFindUserByIdRepository } from "../../../repositories/User/user-repositories";
 import { IGenerateUserRanksRepository } from '../../../repositories/Rank/rank-repositories';

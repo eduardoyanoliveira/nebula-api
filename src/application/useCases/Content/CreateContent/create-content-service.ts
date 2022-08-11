@@ -1,6 +1,6 @@
-import { Result } from "../../../../core/Result";
-import { Content } from "../../../../domain/entities/Content";
-import { ContentFactory } from '../../../../domain/factories/Content/factory-class';
+import { Result } from "../../../core/Result";
+import { Content } from "../../../domain/entities/Content";
+import { ContentFactory } from '../../../domain/factories/Content/factory-class';
 import { ICreateContentRepository } from "../../../repositories/Content/content-repositories";
 import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 interface ICreateContentRequest {

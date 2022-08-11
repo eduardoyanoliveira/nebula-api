@@ -1,6 +1,6 @@
-import { Result } from "../../../../core/Result";
-import { Rankmark } from "../../../../domain/entities/Rankmark";
-import { partialUpdateObject } from "../../../../utils/object-methods/partial-update-object";
+import { Result } from "../../../core/Result";
+import { Rankmark } from "../../../domain/entities/Rankmark";
+import { partialUpdateObject } from "../../../utils/object-methods/partial-update-object";
 import { IFindRankmarkByIdRepository, IUpdateRankmarkRepository } from "../../../repositories/Rankmark/rankmark-repositories";
 
 interface IUpdateRankmarkRequestProps{

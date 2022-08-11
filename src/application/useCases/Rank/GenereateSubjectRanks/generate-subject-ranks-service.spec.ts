@@ -1,9 +1,9 @@
 import { GenerateSubjectRanksService } from "./generate-subject-ranks-service";
-import { InMemoryListUsersRepository, inMemoryUsers } from '../../../../tests/repositories/User/in-memory-user-repo';
-import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../../tests/repositories/Subject/in-memory-subject-repo';
-import { InMemoryGenerateSubjectRanksRepository } from "../../../../tests/repositories/Rank/in-memory-rank-repository";
-import { generateRandomUser } from "../../../../tests/generate-random-user";
-import { generateRandomSubject } from "../../../../tests/generate-random-subject";
+import { InMemoryListUsersRepository, inMemoryUsers } from '../../../tests/repositories/User/in-memory-user-repo';
+import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../tests/repositories/Subject/in-memory-subject-repo';
+import { InMemoryGenerateSubjectRanksRepository } from "../../../tests/repositories/Rank/in-memory-rank-repository";
+import { generateRandomUser } from "../../../tests/generate-random-user";
+import { generateRandomSubject } from "../../../tests/generate-random-subject";
 
 
 describe('Generate ranks with user service', () => {

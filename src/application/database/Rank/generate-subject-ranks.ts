@@ -1,9 +1,9 @@
-import { Result } from '../../../core/Result';
+import { Result } from '../../core/Result';
 import { prismaClient } from '../prisma/prismaClient';
 import { RankCreateManyInputs } from 'prisma';
-import { GenericResultClass } from '../../../core/GenericResultClass';
-import { User } from '../../../domain/entities/User';
-import { Subject } from '../../../domain/entities/Subject';
+import { GenericResultClass } from '../../core/GenericResultClass';
+import { User } from '../../domain/entities/User';
+import { Subject } from '../../domain/entities/Subject';
 import { IGenerateSubjectRanksRepository } from '../../repositories/Rank/rank-repositories';
 
 

@@ -1,4 +1,4 @@
-import { Rankmark } from "../../../domain/entities/Rankmark";
+import { Rankmark } from "../../domain/entities/Rankmark";
 import { IRankmarkDataProps } from "./interfaces";
 
 export interface IDataToRankmark {

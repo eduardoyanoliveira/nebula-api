@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { Rankmark } from "../../../domain/entities/Rankmark";
+import { Result } from "../../core/Result";
+import { Rankmark } from "../../domain/entities/Rankmark";
 
 export interface ICreateRankmarkRepository{
     execute(rankmark: Rankmark ) : Promise<Result<Rankmark>>,

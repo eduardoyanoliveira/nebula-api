@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IQuestionToResponseProps } from '../../../DTOs/Question/interfaces';
 import { ListQuestionsService } from './list-questions-service';
-import { objectToWhere } from '../../../../utils/prisma-filters';
+import { objectToWhere } from '../../../utils/prisma-filters';
 import { IQuestionToResponse } from '../../../DTOs/Question/question-to-response';
 
 export class ListQuestionsController {

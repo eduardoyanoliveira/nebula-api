@@ -1,8 +1,8 @@
-import { Result } from "../../../../core/Result";
-import { Rankmark } from "../../../../domain/entities/Rankmark";
-import { RankmarkFactory } from "../../../../domain/factories/Rankmark/factory-class";
-import { generateRandomRankmark } from "../../../../tests/generate-random-rankmark";
-import { InMemoryCreateRankmarkRepository, InMemoryFindRankmarkByNameRepository, inMemoryRankmarks } from "../../../../tests/repositories/Rankmark/in-memory-rankmark-repository";
+import { Result } from "../../../core/Result";
+import { Rankmark } from "../../../domain/entities/Rankmark";
+import { RankmarkFactory } from "../../../domain/factories/Rankmark/factory-class";
+import { generateRandomRankmark } from "../../../tests/generate-random-rankmark";
+import { InMemoryCreateRankmarkRepository, InMemoryFindRankmarkByNameRepository, inMemoryRankmarks } from "../../../tests/repositories/Rankmark/in-memory-rankmark-repository";
 import { CreateRankmarkService } from "./create-rankmark-service";
 
 describe('Create rankmark service', () => {

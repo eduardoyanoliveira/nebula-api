@@ -1,4 +1,4 @@
-import { IContentProps } from "../../../domain/entities/Content";
+import { IContentProps } from "../../domain/entities/Content";
 import { ISubjectDataProps } from '../Subject/interfaces';
 
 export interface IContentResponseProps extends Omit<IContentProps, 'subject'> {

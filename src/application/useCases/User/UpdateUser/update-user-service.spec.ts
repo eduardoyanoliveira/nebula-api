@@ -1,7 +1,7 @@
-import { Result } from "../../../../core/Result";
-import { User } from "../../../../domain/entities/User";
-import { generateRandomUser } from "../../../../tests/generate-random-user";
-import { InMemoryFindUserByIdRepository, InMemoryUpdateUserRepository, inMemoryUsers } from "../../../../tests/repositories/User/in-memory-user-repo";
+import { Result } from "../../../core/Result";
+import { User } from "../../../domain/entities/User";
+import { generateRandomUser } from "../../../tests/generate-random-user";
+import { InMemoryFindUserByIdRepository, InMemoryUpdateUserRepository, inMemoryUsers } from "../../../tests/repositories/User/in-memory-user-repo";
 import { UpdateUserService } from "./update-user-service";
 
 

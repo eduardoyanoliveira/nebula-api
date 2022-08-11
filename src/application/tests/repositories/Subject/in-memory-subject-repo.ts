@@ -1,4 +1,4 @@
-import { ICreateSubjectRepository, IFindSubjectByIdRepository, IFindSubjectByNameRepository, IListSubjectsRepository, IUpdateSubjectRepository } from '../../../application/repositories/Subject/subject-repositories';
+import { ICreateSubjectRepository, IFindSubjectByIdRepository, IFindSubjectByNameRepository, IListSubjectsRepository, IUpdateSubjectRepository } from '../../../repositories/Subject/subject-repositories';
 import { Result } from "../../../core/Result";
 import { Subject } from "../../../domain/entities/Subject";
 

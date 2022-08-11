@@ -1,4 +1,4 @@
-import { ICreateContentRepository, IFindContentByIdRepository, IListContentsRepository, IUpdateContentRepository } from '../../../application/repositories/Content/content-repositories';
+import { ICreateContentRepository, IFindContentByIdRepository, IListContentsRepository, IUpdateContentRepository } from '../../../repositories/Content/content-repositories';
 import { Result } from '../../../core/Result';
 import { Content } from '../../../domain/entities/Content';
 

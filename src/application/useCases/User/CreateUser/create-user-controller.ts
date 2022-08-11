@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Result } from "../../../../core/Result";
-import { User } from "../../../../domain/entities/User";
+import { Result } from "../../../core/Result";
+import { User } from "../../../domain/entities/User";
 import { IUserToResponse } from "../../../DTOs/User/user-to-response";
 import { CreateUserService } from "./create-user-service";
 

@@ -1,5 +1,5 @@
-import { Result } from "../../../core/Result";
-import { Content } from "../../../domain/entities/Content";
+import { Result } from "../../core/Result";
+import { Content } from "../../domain/entities/Content";
 import { ICreateContentRepository } from "../../repositories/Content/content-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 

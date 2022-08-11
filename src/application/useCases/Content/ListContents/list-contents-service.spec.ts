@@ -1,9 +1,9 @@
-import { Result } from "../../../../core/Result";
-import { Content } from "../../../../domain/entities/Content";
-import { generateRandomContent } from "../../../../tests/generate-random-contents";
-import { generateRandomSubject } from "../../../../tests/generate-random-subject";
-import { InMemoryListContentsRepository, inMemoryContents } from "../../../../tests/repositories/Content/in-memory-content-repository";
-import { inMemorySubjects } from "../../../../tests/repositories/Subject/in-memory-subject-repo";
+import { Result } from "../../../core/Result";
+import { Content } from "../../../domain/entities/Content";
+import { generateRandomContent } from "../../../tests/generate-random-contents";
+import { generateRandomSubject } from "../../../tests/generate-random-subject";
+import { InMemoryListContentsRepository, inMemoryContents } from "../../../tests/repositories/Content/in-memory-content-repository";
+import { inMemorySubjects } from "../../../tests/repositories/Subject/in-memory-subject-repo";
 import { ListContentsService } from "./list-contents-service"
 
 describe('List contents service', () => {

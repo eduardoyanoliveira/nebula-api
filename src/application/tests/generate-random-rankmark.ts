@@ -1,5 +1,5 @@
 import { Rankmark } from "../domain/entities/Rankmark";
-import { RankmarkFactory } from "../domain/factories/Rankmark/factory-class";
+import { RankmarkFactory } from "../domain/factories/Rankmark//factory-class";
 import { getRandomNumberMax } from "../utils/random-number/random-number-max";
 
 const rankmarkFactory = new RankmarkFactory();

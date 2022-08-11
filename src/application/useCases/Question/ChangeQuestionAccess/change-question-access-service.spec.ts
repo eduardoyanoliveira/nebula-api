@@ -1,10 +1,10 @@
-import { Result } from "../../../../core/Result";
-import { Question } from "../../../../domain/entities/Interactions/Question";
-import { generateRandomSubject } from "../../../../tests/generate-random-subject";
-import { generateRandomQuestion} from '../../../../tests/generate-random-question';
-import { InMemoryFindQuestionByIdRepository, InMemoryUpdateQuestionRepository, inMemoryQuestions } from "../../../../tests/repositories/Question/in-memory-question-repository";
+import { Result } from "../../../core/Result";
+import { Question } from "../../../domain/entities/Interactions/Question";
+import { generateRandomSubject } from "../../../tests/generate-random-subject";
+import { generateRandomQuestion} from '../../../tests/generate-random-question';
+import { InMemoryFindQuestionByIdRepository, InMemoryUpdateQuestionRepository, inMemoryQuestions } from "../../../tests/repositories/Question/in-memory-question-repository";
 import { ChangeQuestionAccessSerivce } from "./change-question-access-service";
-import { generateRandomUser } from "../../../../tests/generate-random-user";
+import { generateRandomUser } from "../../../tests/generate-random-user";
 
 describe('Update question service', () => {
 

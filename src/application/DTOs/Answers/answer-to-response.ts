@@ -1,4 +1,4 @@
-import { Answer } from "../../../domain/entities/Interactions/Answer";
+import { Answer } from "../../domain/entities/Interactions/Answer";
 import { QuestionToResponse } from '../Question/question-to-response';
 import { IAnswerToResponseProps } from "./interfaces";
 

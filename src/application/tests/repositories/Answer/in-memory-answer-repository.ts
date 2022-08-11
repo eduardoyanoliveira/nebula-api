@@ -1,4 +1,4 @@
-import { ICreateAnswerRepository, IFindAnswerByIdRepository, IListAnswersRepository, IUpdateAnswerRepository } from '../../../application/repositories/Answer/answer-repositories';
+import { ICreateAnswerRepository, IFindAnswerByIdRepository, IListAnswersRepository, IUpdateAnswerRepository } from '../../../repositories/Answer/answer-repositories';
 import { Result } from '../../../core/Result';
 import { Answer } from '../../../domain/entities/Interactions/Answer';
 

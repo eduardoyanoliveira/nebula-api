@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { JWTAuthentication } from "../application/services/Authentication/jwt-authentication";
-import { IAuthenticationService } from '../interfaces/authentication-interfaces';
+import { IAuthenticationService } from '../application/domain/interfaces/authentication-interfaces';
 
 export class JWTAuthenticate {
     constructor(

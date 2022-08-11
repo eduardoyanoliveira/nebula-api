@@ -1,5 +1,5 @@
 import { hash, compare } from "bcrypt";
-import { IPasswordCryptographer } from "../../../interfaces/password-interfaces";
+import { IPasswordCryptographer } from "../../domain/interfaces/password-interfaces";
 
 export class PasswordCryptographer implements IPasswordCryptographer{
     async crypt(password : string) : Promise<string>{

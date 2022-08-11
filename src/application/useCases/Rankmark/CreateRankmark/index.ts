@@ -1,4 +1,4 @@
-import { RankmarkFactory } from "../../../../domain/factories/Rankmark/factory-class";
+import { RankmarkFactory } from "../../../domain/factories/Rankmark/factory-class";
 import { DataToRankmark } from '../../../DTOs/Rankmark/data-to-rankmark';
 import { RankmarkToResponse } from "../../../DTOs/Rankmark/rankmark-to-response";
 import { CreateRankmarkController } from "./create-rankmark-controller";

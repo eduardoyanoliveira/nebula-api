@@ -1,6 +1,6 @@
-import { Result } from "../../../../core/Result";
-import { Rankmark } from "../../../../domain/entities/Rankmark";
-import { IRankmarkFactory } from '../../../../domain/factories/Rankmark/factory-class';
+import { Result } from "../../../core/Result";
+import { Rankmark } from "../../../domain/entities/Rankmark";
+import { IRankmarkFactory } from '../../../domain/factories/Rankmark/factory-class';
 import { ICreateRankmarkRepository, IFindRankmarkByNameRepository } from "../../../repositories/Rankmark/rankmark-repositories";
 
 interface ICreateRankmarkRequestProps {

@@ -1,8 +1,8 @@
 import { IFindQuestionByIdRepository } from '../../../repositories/Question/question-repositories';
 import { IFindUserByIdRepository } from '../../../repositories/User/user-repositories';
-import { IAnswerFactory } from '../../../../domain/factories/Answer/factory-class';
-import { Result } from '../../../../core/Result';
-import { Answer } from '../../../../domain/entities/Interactions/Answer';
+import { IAnswerFactory } from '../../../domain/factories/Answer/factory-class';
+import { Result } from '../../../core/Result';
+import { Answer } from '../../../domain/entities/Interactions/Answer';
 import { ICreateAnswerRepository } from '../../../repositories/Answer/answer-repositories';
 
 interface ICreateAnswerRequest {

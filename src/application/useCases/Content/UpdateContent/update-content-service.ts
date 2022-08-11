@@ -1,6 +1,6 @@
-import { Result } from "../../../../core/Result";
-import { Content } from "../../../../domain/entities/Content";
-import { partialUpdateObject } from "../../../../utils/object-methods/partial-update-object";
+import { Result } from "../../../core/Result";
+import { Content } from "../../../domain/entities/Content";
+import { partialUpdateObject } from "../../../utils/object-methods/partial-update-object";
 import { IFindContentByIdRepository, IUpdateContentRepository } from "../../../repositories/Content/content-repositories";
 import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 
