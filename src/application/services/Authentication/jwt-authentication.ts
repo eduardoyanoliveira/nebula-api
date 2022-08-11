@@ -31,17 +31,19 @@ export class JWTAuthentication implements IAuthenticationService  {
     };
 
     validate(token: string): IValidateResult {
+        
         try{
    
             const { sub } = verify(
                 token,
                 process.env.JWT_SECRET
             ) as Payload;
+
     
             return { isValid: true, user_id: sub };
-        }catch{
-
-        }
-      
+        }catch(err){
+            console.log(err)
+            return { isValid: false, user_id: '' };
+        };
     };
 };

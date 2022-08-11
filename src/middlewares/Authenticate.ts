@@ -13,7 +13,7 @@ export class JWTAuthenticate {
         if(!authToken){
             return res.status(401).end();
         };
-        
+
         const [, token] = authToken.split(' ');
 
         // Validates the token
