@@ -10,6 +10,7 @@ export interface IUserProps{
     email: string,
     password: string,
     role: Role,
+    photo?: string,
     is_active?: boolean,
     created_at?: Date,
     updated_at?: Date,

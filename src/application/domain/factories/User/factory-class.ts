@@ -2,7 +2,7 @@ import { User } from "../../entities/User";
 import { AdminUser, BaseUser } from "./concrete-classes";
 
 export interface IUserFactory {
-    create(role: string, username: string, email: string, password: string): User,
+    create(role: string, username: string, email: string, password: string, photo?: string): User,
 }
 
 export const userConcretClasses = {
@@ -12,7 +12,7 @@ export const userConcretClasses = {
 
 export class UserFactory implements IUserFactory {
     
-    create(role: string, username: string, email: string, password: string) : User {
-        return userConcretClasses[role].create(username, email, password);
+    create(role: string, username: string, email: string, password: string, photo?: string) : User {
+        return userConcretClasses[role].create(username, email, password, photo);
     };
 };

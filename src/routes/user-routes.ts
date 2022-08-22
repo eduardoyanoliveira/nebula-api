@@ -4,12 +4,13 @@ import { getUserController } from "../application/useCases/User/GetUser";
 import { listUsersController } from "../application/useCases/User/ListUsers";
 import { updateUserController } from "../application/useCases/User/UpdateUser";
 import { jwtAuthenticate } from "../middlewares/Authenticate";
+import { upload } from '../middlewares/imageUpload';
 
 const userRoutes = Router();
 
 // USER ROUTES
 
-userRoutes.post('/users', (req, res) => createUserController.handle(req, res));
+userRoutes.post('/users', upload.single('file'), (req, res) => createUserController.handle(req, res));
 
 userRoutes.get(
     '/users/:id', 
@@ -26,6 +27,7 @@ userRoutes.get(
 
 userRoutes.patch(
     '/users/:id',
+    upload.single('file'),
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => updateUserController.handle(req, res)
 );

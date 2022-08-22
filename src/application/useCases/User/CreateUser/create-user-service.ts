@@ -11,6 +11,7 @@ interface ICreateUserRequest{
     username: string,
     email: string,
     password: string,
+    photo?: string,
 };
 
 
@@ -27,7 +28,7 @@ export class CreateUserService{
     )
     {};
 
-    async execute({ role, username, email, password } : ICreateUserRequest) : Promise<Result<User>>{
+    async execute({ role, username, email, password, photo } : ICreateUserRequest) : Promise<Result<User>>{
 
         const alreadyExists : Result<User> = await this.FindUserByEmailRepository.execute(email);
 
@@ -49,7 +50,7 @@ export class CreateUserService{
 
         const cryptoPassword = await this.PasswordCryptographer.crypt(password);
   
-        const user = this.UserFactory.create(role, username, email, cryptoPassword);
+        const user = this.UserFactory.create(role, username, email, cryptoPassword, photo);
 
         // Persist on database
 

@@ -20,11 +20,19 @@ export class CreateUserController{
             password, 
         } = req.body;
 
+        let photo = '';
+
+        if(req.file){
+            const { originalname, filename}  = req.file;
+            photo = filename;
+        };
+
         const userOrError : Result<User> = await this.CreateUserService.execute({ 
             role,
             username, 
             email, 
-            password 
+            password,
+            photo
         });
 
         if(userOrError.isFailure){

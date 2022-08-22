@@ -39,6 +39,7 @@ export class UserAuthenticationService{
             username: user.props.username,
             email: email,
             role: user.props.role,
+            photo: user.props.photo,
             token: token
         });
 

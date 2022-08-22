@@ -10,6 +10,7 @@ export class UpdateUserRepository implements IUpdateUserRepository{
         
         try{
 
+            console.log(user)
             await prismaClient.user.update({
                 where:{
                     id: user.id,

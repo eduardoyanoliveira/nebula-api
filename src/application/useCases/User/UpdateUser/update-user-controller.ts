@@ -14,9 +14,17 @@ export class UpdateUserController {
 
         const { username, is_active } = req.body;
 
+        let photo = '';
+
+        if(req.file){
+            const { originalname, filename}  = req.file;
+            photo = filename;
+        };
+
         const userOrError = await this.UpdateUserService.execute({
             id,
             username,
+            photo,
             is_active
         });
 
