@@ -1,6 +1,7 @@
 import express from 'express';
 import 'express-async-errors';
 import cors from 'cors';
+import path from 'path';
 
 import { handleRequestError } from './middlewares/handeRequestError';
 import { requestLog } from './middlewares/requestLog';
@@ -26,6 +27,9 @@ app.use(express.json());
 
 // Middleware that logs every server request on console 
 app.use(requestLog);
+
+// Configure the server to display the images
+app.use('/files', express.static(path.resolve(__dirname, 'assets', 'images')));
 
 // Sets server to use the specifics routes 
 app.use(userRoutes);
