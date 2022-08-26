@@ -3,8 +3,8 @@ import 'express-async-errors';
 import cors from 'cors';
 import path from 'path';
 
+import morgan from 'morgan';
 import { handleRequestError } from './middlewares/handeRequestError';
-import { requestLog } from './middlewares/requestLog';
 
 import { userRoutes } from './routes/user-routes';
 import { sessionRoutes } from './routes/session-routes';
@@ -22,11 +22,10 @@ app.use(cors({
     origin: 'http://localhost:3000'
 }));
 
+app.use(morgan('combined'));
+
 // Configure Server to accept json data
 app.use(express.json());
-
-// Middleware that logs every server request on console 
-app.use(requestLog);
 
 // Configure the server to display the images
 app.use('/files', express.static(path.resolve(__dirname, 'assets', 'images')));

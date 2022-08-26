@@ -1,7 +1,8 @@
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 import { IFindUserByIdRepository, IUpdateUserRepository } from "../../../repositories/User/user-repositories";
-
+import fs from 'fs';
+import { resolve } from 'path';
 interface IUpdateUserRequest {
     id: string,
     username?: string,
@@ -29,7 +30,16 @@ export class UpdateUserService {
 
         user.props.username = username ?? user.props.username;
         user.props.is_active = is_active ?? user.props.is_active;
-        user.props.photo = photo ?? user.props.photo;
+
+        if(photo) {
+            try{
+                await fs.unlinkSync(resolve(__dirname, '..', '..', '..', '..', `assets/images/${user.props.photo}`));
+            }catch{
+
+            };
+            user.props.photo = photo;
+        };
+ 
         user.props.updated_at = new Date();
 
         // Persist on database

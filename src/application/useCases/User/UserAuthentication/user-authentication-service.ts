@@ -35,7 +35,7 @@ export class UserAuthenticationService{
         const token = this.AuthenticationService.generate(user);
 
         const userCredentials = UserCredentials.create({
-            user_id: user.id,
+            id: user.id,
             username: user.props.username,
             email: email,
             role: user.props.role,

@@ -21,7 +21,7 @@ export class CreateUserRepository implements ICreateUserRepository{
         });
 
         try{
-            
+
             await prismaClient.$transaction(async () => {
                 const userResponse = await prismaClient.user.create({
                     data:{

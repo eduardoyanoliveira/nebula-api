@@ -10,7 +10,6 @@ export class UpdateUserRepository implements IUpdateUserRepository{
         
         try{
 
-            console.log(user)
             await prismaClient.user.update({
                 where:{
                     id: user.id,
@@ -22,6 +21,7 @@ export class UpdateUserRepository implements IUpdateUserRepository{
     
             return Result.ok<User>(user);
         }catch(err){
+            console.log(err.message)
             return Result.fail<User>(err.message);
         };
     };
