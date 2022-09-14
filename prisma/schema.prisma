@@ -27,6 +27,8 @@ model User{
   ranks Rank[]
   questions Question[]
   answers Answer[]
+  likes Likes[]
+  views Views[]
 }
 
 
@@ -109,6 +111,9 @@ model Question{
 
   @@map("tbl_questions")
   answers Answer[]
+  best_answers BestAnswer[]
+  likes Likes[]
+  views Views[]
 } 
 
 
@@ -126,4 +131,49 @@ model Answer{
   question_id String
 
   @@map("tbl_answers")
+  best_answers BestAnswer[]
+}
+
+model BestAnswer {
+
+  question Question @relation(fields: [question_id], references: [id])
+  question_id String
+
+  answer Answer @relation(fields: [answer_id], references: [id])
+  answer_id String
+
+  created_at DateTime @default(now())
+
+  @@id(question_id)
+  @@map("tbl_best_answer")
+}
+
+model Likes {
+
+  question Question @relation(fields: [question_id], references: [id])
+  question_id String
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
+
+  created_at DateTime @default(now())
+
+  @@id([user_id, question_id])
+  @@map("tbl_likes")
+
+}
+
+model Views {
+
+  question Question @relation(fields: [question_id], references: [id])
+  question_id String
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
+
+  created_at DateTime @default(now())
+
+  @@id([user_id, question_id])
+  @@map("tbl_views")
+
 }

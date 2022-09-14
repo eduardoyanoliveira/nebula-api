@@ -32,7 +32,8 @@ export class AnswerToResponse implements IAnswerToResponse{
             question: questionProps,
             author: {
                 id: author.id,
-                username: author.props.username
+                username: author.props.username,
+                photo: author.props.photo
             }
         };
 

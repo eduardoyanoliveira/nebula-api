@@ -2,7 +2,6 @@ import { Question } from "../../domain/entities/Interactions/Question"
 import { IQuestionToResponseProps } from "./interfaces";
 
 
-
 export interface IQuestionToResponse {
     transform(question: Question) :IQuestionToResponseProps
 };
@@ -17,7 +16,8 @@ export class QuestionToResponse implements IQuestionToResponse {
 
         const formatedAuthor = {
             id: author.id,
-            username: author.props.username
+            username: author.props.username,
+            photo: author.props.photo
         };
 
         const formatedSubject = {
