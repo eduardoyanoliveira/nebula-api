@@ -17,8 +17,8 @@ describe('List BestAnswers by author tests', () => {
     inMemoryUsers.push(userA);
     inMemoryUsers.push(userB);
 
-    const bestQuestionA = generateRandomBestAnswer(userA);
-    const bestQuestionB = generateRandomBestAnswer(userA);
+    const bestQuestionA = generateRandomBestAnswer({answerAuthor: userA});
+    const bestQuestionB = generateRandomBestAnswer({answerAuthor: userA});
 
 
     inMemoryBestAnswers.push(bestQuestionA);

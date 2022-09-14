@@ -9,3 +9,12 @@ export interface ICreateBestAnswerRepository {
 export interface IListBestAnswerByAuthorRepository {
     execute(author: User): Promise<Result<BestAnswer[]>>,
 };
+
+export interface IFindBestAnswerByQuestionRepository {
+    execute(questionId: string) : Promise<Result<BestAnswer>>
+};
+
+export interface IRemoveBestAnswerByQuestionRepository {
+    execute(questionId: string) : Promise<Result<BestAnswer>>
+};
+
