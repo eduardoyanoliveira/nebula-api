@@ -11,7 +11,10 @@ export class UpdateQuestionController {
     async handle(req: Request, res: Response){
 
         const id = req.params.id;
-        const { title, text, subject_id } = req.body;
+        const { title, text, subject_id, is_public, is_closed } = req.body;
+        const { subject } = req.body;
+   
+
         const user_id = req.user_id;
 
         const questionOrError = await this.UpdateQuestionService.execute({
@@ -19,7 +22,9 @@ export class UpdateQuestionController {
             user_id,
             title,
             text,
-            subject_id
+            subject_id: subject_id || subject?.id,
+            is_public,
+            is_closed
         });
 
 

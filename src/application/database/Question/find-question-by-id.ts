@@ -19,7 +19,8 @@ export class FindQuestionByIdRepository implements IFindQuestionByIdRepository{
             },
             include:{
                 author: true, 
-                subject:true
+                subject:true,
+                best_answers: true
             }
         });
 

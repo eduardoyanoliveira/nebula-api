@@ -1,3 +1,4 @@
+import { BestAnswer } from '@prisma/client';
 import { Subject } from '../Subject';
 import { BaseInteraction, IInteractionProps } from './BaseInteraction';
 
@@ -7,7 +8,7 @@ export interface IQuestionProps extends IInteractionProps {
     is_public?: boolean,
     is_closed?: boolean,
     subject: Subject,
-
+    bestAnswers?: BestAnswer[]
 };
 
 

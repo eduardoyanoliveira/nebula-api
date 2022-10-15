@@ -11,7 +11,7 @@ export class DataToQuestion implements IDataToQuestion {
 
     transform(questionData: IQuestionDataProps) : Question{
 
-        const { id, author, author_id, subject, subject_id, ...rest } = questionData;
+        const { id, author, author_id, subject, subject_id, best_answers, ...rest } = questionData;
     
         const { id: authorId, ...authorProps } = author;
     
@@ -30,7 +30,8 @@ export class DataToQuestion implements IDataToQuestion {
         const props = {
             ...rest,
             author: newAuthor,
-            subject: newSubject
+            subject: newSubject,
+            bestAnswers: best_answers
         };
     
         return Question.create(props, id);

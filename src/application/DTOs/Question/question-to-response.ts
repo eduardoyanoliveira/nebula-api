@@ -12,7 +12,7 @@ export class QuestionToResponse implements IQuestionToResponse {
     transform(question: Question) : IQuestionToResponseProps {
 
         const { id, props } = question;
-        const { author, subject, ...rest } = props;
+        const { author, subject, bestAnswers, ...rest } = props;
 
         const formatedAuthor = {
             id: author.id,
@@ -26,11 +26,11 @@ export class QuestionToResponse implements IQuestionToResponse {
         };
 
         const  questionResponse : IQuestionToResponseProps = {
-
             id,
             ...rest,
             author: formatedAuthor,
-            subject: formatedSubject
+            subject: formatedSubject,
+            bestAnswers: bestAnswers
         };
 
         return questionResponse;

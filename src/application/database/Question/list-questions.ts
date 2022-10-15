@@ -16,7 +16,8 @@ export class ListQuestionsRepository implements IListQuestionsRepository{
             where: filters,
             include:{
                 author: true,
-                subject: true
+                subject: true,
+                best_answers: true
             }
         });
 

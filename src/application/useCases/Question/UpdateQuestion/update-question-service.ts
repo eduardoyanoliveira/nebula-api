@@ -9,7 +9,9 @@ interface IUpdateQuestionRequest {
     user_id: string,
     title?: string,
     text?: string,
-    subject_id?: string
+    subject_id?: string,
+    is_public?: boolean,
+    is_closed?: boolean
 };
 
 
@@ -20,7 +22,7 @@ export class UpdateQuestionService {
         private UpdateQuestionRepository: IUpdateQuestionRepository
     ){};
 
-    async execute({ id, user_id, title, text, subject_id } : IUpdateQuestionRequest){
+    async execute({ id, user_id, title, text, subject_id, is_public, is_closed } : IUpdateQuestionRequest){
 
         const questionOrError = await this.FindQuestionByIdRepository.execute(id);
 
@@ -31,7 +33,7 @@ export class UpdateQuestionService {
         if(questionOrError.getValue().props.author.id !== user_id){
             return Result.fail<Question>('Only the users who has created the question can update it');
         };
-
+        
         const validatedSubjectId = subject_id || questionOrError.getValue().props.subject.id;
 
         const subjectOrError = await this.FindSubjectByIdRepository.execute(validatedSubjectId);
@@ -44,6 +46,8 @@ export class UpdateQuestionService {
             title,
             text,
             subject: subjectOrError.getValue(),
+            is_public,
+            is_closed,
             updated_at: new Date()
         };
 

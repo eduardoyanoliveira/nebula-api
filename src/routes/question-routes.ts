@@ -24,7 +24,7 @@ questionRoutes.post(
 );
 
 questionRoutes.post(
-    '/question/:id/finish',
+    '/questions/:id/finish',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => finishQuestionController.handle(req, res)
 );
