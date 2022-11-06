@@ -2,22 +2,11 @@ import { Result } from "../../core/Result";
 import { Subject } from "../../domain/entities/Subject";
 import { ICreateSubjectRepository } from "../../repositories/Subject/subject-repositories";
 import { prismaClient } from "../prisma/prismaClient";
-import { RankCreateManyInputs } from 'prisma';
 
 export class CreateSubjectRepository implements ICreateSubjectRepository{
 
     async execute(subject: Subject): Promise<Result<Subject>>{
   
-        const users = await prismaClient.user.findMany({});
-
-        const dataToCreateRanks : RankCreateManyInputs[] = users.map((user) =>{
-            return {
-                subject_id: subject.id,
-                user_id: user.id,
-                points: 0
-            }
-        });
-
         try{
             
             await prismaClient.$transaction(async () => {
@@ -28,11 +17,7 @@ export class CreateSubjectRepository implements ICreateSubjectRepository{
                     }
                 });
 
-                const ranksResponse =  await prismaClient.rank.createMany({
-                    data: dataToCreateRanks
-                });
-
-                return { subjectResponse, ranksResponse}
+                return { subjectResponse }
             });
 
             return Result.ok<Subject>(subject);

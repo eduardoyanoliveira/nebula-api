@@ -1,7 +1,5 @@
 import { Router } from "express";
-import { changeQuestionAccessController } from "../application/useCases/Question/ChangeQuestionAccess";
 import { createQuestionController } from "../application/useCases/Question/CreateQuestion";
-import { finishQuestionController } from "../application/useCases/Question/FinishQuestion";
 import { getQuestionController } from "../application/useCases/Question/GetQuestion";
 import { listQuestionsController } from "../application/useCases/Question/ListQuestions";
 import { updateQuestionController } from "../application/useCases/Question/UpdateQuestion";
@@ -17,17 +15,6 @@ questionRoutes.post(
     (req, res) => createQuestionController.handle(req, res)
 );
 
-questionRoutes.post(
-    '/questions/:id/change_access',
-    (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
-    (req, res) => changeQuestionAccessController.handle(req, res)
-);
-
-questionRoutes.post(
-    '/questions/:id/finish',
-    (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
-    (req, res) => finishQuestionController.handle(req, res)
-);
 
 questionRoutes.patch(
     '/questions/:id',
