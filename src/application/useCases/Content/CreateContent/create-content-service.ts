@@ -1,6 +1,5 @@
 import { Result } from "../../../core/Result";
 import { Content } from "../../../domain/entities/Content";
-import { ContentFactory } from '../../../domain/factories/Content/factory-class';
 import { ICreateContentRepository } from "../../../repositories/Content/content-repositories";
 import { IFindSubjectByIdRepository } from "../../../repositories/Subject/subject-repositories";
 interface ICreateContentRequest {
@@ -13,7 +12,6 @@ export class CreateContentService {
 
     constructor(
         private FindSubjectByIdRepository : IFindSubjectByIdRepository,
-        private ContentFactory : ContentFactory,
         private CreateContentRepository : ICreateContentRepository,
     ){};
 
@@ -25,7 +23,7 @@ export class CreateContentService {
             return Result.fail<Content>(subjectOrError.error);
         };
 
-        const content  = this.ContentFactory.create(description, url, subjectOrError.getValue());
+        const content  = Content.create({ description, url, subject: subjectOrError.getValue()});
 
         const contentOrError = await this.CreateContentRepository.execute(content);
 

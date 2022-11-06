@@ -1,11 +1,7 @@
 import { Question } from '../domain/entities/Interactions/Question';
 import { Subject } from '../domain/entities/Subject';
 import { User } from '../domain/entities/User';
-import { QuestionFactory } from '../domain/factories/Question/factory-class';
 import { getRandomNumberMax } from '../utils/random-number/random-number-max';
-
-const factory = new QuestionFactory();
-
 
 
 const question_one =  { title :'question_one', text: 'question_one desc', is_public: false };
@@ -32,5 +28,11 @@ export const generateRandomQuestion = (author: User, subject: Subject) : Questio
 
     const randomNumber = getRandomNumberMax(questionsBase.length -1 );
     const question = questionsBase[randomNumber];
-    return factory.create( question.title, question.text, question.is_public, author, subject);
+    return Question.create({ 
+        title: question.title,
+        text: question.text, 
+        is_public: question.is_public, 
+        author, 
+        subject
+    });
 };

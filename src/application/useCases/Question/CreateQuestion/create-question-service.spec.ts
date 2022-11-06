@@ -1,7 +1,6 @@
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../tests/repositories/User/in-memory-user-repo';
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../tests/repositories/Subject/in-memory-subject-repo';
 import { InMemoryCreateQuestionRepository } from '../../../tests/repositories/Question/in-memory-question-repository';
-import { QuestionFactory } from '../../../domain/factories/Question/factory-class';
 import { generateRandomUser } from '../../../tests/generate-random-user';
 import { generateRandomSubject } from '../../../tests/generate-random-subject';
 import { CreateQuestionService } from './create-question-service';
@@ -14,10 +13,7 @@ describe('Create question service', () => {
     const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
     const createQuestionRepository = new InMemoryCreateQuestionRepository();
 
-    const factory = new QuestionFactory();
-
     const service = new CreateQuestionService(
-        factory, 
         findUserByIdRepository, 
         findSubjectByIdRepository, 
         createQuestionRepository

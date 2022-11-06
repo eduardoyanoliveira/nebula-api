@@ -1,6 +1,5 @@
 import { Result } from "../../../core/Result";
 import { Rankmark } from "../../../domain/entities/Rankmark";
-import { IRankmarkFactory } from '../../../domain/factories/Rankmark/factory-class';
 import { ICreateRankmarkRepository, IFindRankmarkByNameRepository } from "../../../repositories/Rankmark/rankmark-repositories";
 
 interface ICreateRankmarkRequestProps {
@@ -14,7 +13,6 @@ export class CreateRankmarkService {
     constructor(
         private FindRankmarkByNameRepository: IFindRankmarkByNameRepository,
         private CreateRankmarkRepository: ICreateRankmarkRepository,
-        private RankmarkFactory: IRankmarkFactory
     ){};
 
     async execute({ name, color, points } : ICreateRankmarkRequestProps) : Promise<Result<Rankmark>>{
@@ -25,7 +23,7 @@ export class CreateRankmarkService {
             return Result.fail<Rankmark>('There is already a rankmark on database with this name');
         };
 
-        const rankmark = await this.RankmarkFactory.create(name, color, points);
+        const rankmark = await Rankmark.create({ name, color, points });
 
         const rankmarkOrError = await this.CreateRankmarkRepository.execute(rankmark);
 

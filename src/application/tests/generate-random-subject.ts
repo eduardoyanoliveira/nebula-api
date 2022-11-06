@@ -1,15 +1,13 @@
 import { Subject } from "../domain/entities/Subject";
-import { SubjectFactory } from "../domain/factories/Subject/factory-class";
 import { getRandomNumberMax } from "../utils/random-number/random-number-max";
 
-const subjectFactory = new SubjectFactory();
 
-const subject_one = subjectFactory.create('subject_one');
-const subject_two = subjectFactory.create('subject_two');
-const subject_three = subjectFactory.create('subject_three');
-const subject_four = subjectFactory.create('subject_four');
-const subject_five = subjectFactory.create('subject_five');
-const subject_six = subjectFactory.create('subject_six');
+const subject_one = Subject.create({ name: 'subject_one'});
+const subject_two = Subject.create({ name:'subject_two' });
+const subject_three = Subject.create({ name:'subject_three' });
+const subject_four = Subject.create({ name:'subject_four' });
+const subject_five = Subject.create({ name:'subject_five'});
+const subject_six = Subject.create({ name: 'subject_six' });
 
 const subjects : Subject[] = [
     subject_one,

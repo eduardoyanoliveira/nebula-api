@@ -1,10 +1,6 @@
 import { Content } from '../domain/entities/Content';
 import { Subject } from '../domain/entities/Subject';
-import { ContentFactory } from '../domain/factories/Content/factory-class';
 import { getRandomNumberMax } from '../utils/random-number/random-number-max';
-
-const factory = new ContentFactory();
-
 
 
 const content_one =  { description :'content_one', url: 'http://content_one.com' };
@@ -31,5 +27,5 @@ export const generateRandomContent = (subject: Subject) : Content => {
 
     const randomNumber = getRandomNumberMax(contentsBase.length -1 );
     const contentBase = contentsBase[randomNumber];
-    return factory.create( contentBase.description, contentBase.url, subject);
+    return Content.create( { description: contentBase.description, url: contentBase.url, subject });
 };

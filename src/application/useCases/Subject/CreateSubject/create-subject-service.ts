@@ -17,7 +17,7 @@ export class CreateSubjectService {
         const alreadyExists = await this.FindSubjectByNameRepository.execute(name);
 
         if(alreadyExists.isSuccess){
-            return Result<Subject>.fail('Name is already taken');
+            return Result.fail('Name is already taken');
         };
 
         const subject = Subject.create({name});
@@ -29,6 +29,6 @@ export class CreateSubjectService {
             return Result.fail<Subject>(databaseResponse.error);
         };
 
-        return Result<Subject>.ok(subject);
+        return Result.ok(subject);
     };
 };

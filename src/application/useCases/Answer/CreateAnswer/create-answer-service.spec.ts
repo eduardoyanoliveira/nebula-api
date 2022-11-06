@@ -5,13 +5,10 @@ import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../tests/re
 import { InMemoryFindQuestionByIdRepository, inMemoryQuestions } from '../../../tests/repositories/Question/in-memory-question-repository';
 import { InMemoryCreateAnswerRepository } from '../../../tests/repositories/Answer/in-memory-answer-repository';
 import { CreateAnswerService } from './create-answer-service';
-import { AnswerFactory } from '../../../domain/factories/Answer/factory-class';
 import { Answer } from '../../../domain/entities/Interactions/Answer';
 import { Result } from '../../../core/Result';
 
 describe( 'Create answer service' ,() =>{
-
-    const factory = new AnswerFactory();
 
     const findUserByIdRepository = new InMemoryFindUserByIdRepository();
     const findQuestionByIdRepository = new InMemoryFindQuestionByIdRepository();
@@ -21,7 +18,6 @@ describe( 'Create answer service' ,() =>{
         findUserByIdRepository,
         findQuestionByIdRepository,
         createAnswerRepository,
-        factory
     );
     
 

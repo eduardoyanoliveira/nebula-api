@@ -2,7 +2,6 @@ import { IFindUserByIdRepository } from '../../../repositories/User/user-reposit
 import { ICreateQuestionRepository } from '../../../repositories/Question/question-repositories';
 import { Result } from '../../../core/Result';
 import { Question } from '../../../domain/entities/Interactions/Question';
-import { QuestionFactory } from '../../../domain/factories/Question/factory-class';
 import { IFindSubjectByIdRepository } from '../../../repositories/Subject/subject-repositories';
 
 
@@ -18,7 +17,6 @@ interface ICreateQuestionRequest {
 export class CreateQuestionService {
 
     constructor(
-        private QuestionFactory: QuestionFactory,
         private FindUserByIdRepository : IFindUserByIdRepository,
         private FindSubjectByIdRepository: IFindSubjectByIdRepository,
         private CreateQuestionRepository: ICreateQuestionRepository,
@@ -44,13 +42,13 @@ export class CreateQuestionService {
             return Result.fail<Question>(subjectOrError.error);
         };
 
-        const question : Question = this.QuestionFactory.create(
+        const question : Question = Question.create({
             title,
             text,
             is_public,
-            userOrError.getValue(),
-            subjectOrError.getValue()
-        );
+            author: userOrError.getValue(),
+            subject: subjectOrError.getValue()
+        });
 
         // Persist on database
 

@@ -1,10 +1,7 @@
 import { Answer } from '../domain/entities/Interactions/Answer';
 import { User } from '../domain/entities/User';
 import { getRandomNumberMax } from '../utils/random-number/random-number-max';
-import { AnswerFactory } from '../domain/factories/Answer/factory-class';
 import { Question } from '../domain/entities/Interactions/Question';
-
-const factory = new AnswerFactory();
 
 
 const answer_one =  { text: 'answer_one desc' };
@@ -31,5 +28,5 @@ export const generateRandomAnswer = (author: User, question: Question) : Answer 
 
     const randomNumber = getRandomNumberMax(answersBase.length -1 );
     const answer = answersBase[randomNumber];
-    return factory.create( answer.text, author, question);
+    return Answer.create({text: answer.text, author, question });
 };

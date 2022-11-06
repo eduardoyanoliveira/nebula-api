@@ -1,4 +1,3 @@
-import { ContentFactory } from '../../../domain/factories/Content/factory-class';
 import { InMemoryCreateContentRepository } from '../../../tests/repositories/Content/in-memory-content-repository';
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../tests/repositories/Subject/in-memory-subject-repo';
 import { CreateContentService } from './create-content-service';
@@ -8,13 +7,11 @@ import { Result } from '../../../core/Result';
 
 describe('Create content service', ()  => {
 
-    const factory = new ContentFactory();
     const findSubjectByIdRepository = new InMemoryFindSubjectByIdRepository();
     const createContentRepository = new InMemoryCreateContentRepository();
 
     const service = new CreateContentService(
         findSubjectByIdRepository, 
-        factory, 
         createContentRepository
     );
 

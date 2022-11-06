@@ -1,15 +1,13 @@
 import { Rankmark } from "../domain/entities/Rankmark";
-import { RankmarkFactory } from "../domain/factories/Rankmark//factory-class";
 import { getRandomNumberMax } from "../utils/random-number/random-number-max";
 
-const rankmarkFactory = new RankmarkFactory();
 
-const rankmark_one = rankmarkFactory.create('rankmark_one', '#fff', 50);
-const rankmark_two = rankmarkFactory.create('rankmark_two', 'red', 20);
-const rankmark_three = rankmarkFactory.create('rankmark_three', '#000', 90);
-const rankmark_four = rankmarkFactory.create('rankmark_four', 'blue', 500);
-const rankmark_five = rankmarkFactory.create('rankmark_one', '#fff', 200);
-const rankmark_six = rankmarkFactory.create('rankmark_one', 'green', 10);
+const rankmark_one = Rankmark.create({ name:'rankmark_one', color: '#fff', points: 50 });
+const rankmark_two = Rankmark.create({ name:'rankmark_two', color: 'red', points: 20 });
+const rankmark_three = Rankmark.create({ name:'rankmark_three', color: '#000', points: 90 });
+const rankmark_four = Rankmark.create({ name: 'rankmark_four', color: 'blue', points: 500});
+const rankmark_five = Rankmark.create({ name: 'rankmark_one', color: '#fff', points: 200});
+const rankmark_six = Rankmark.create({ name: 'rankmark_one', color: 'green', points: 10 });
 
 const rankmarks : Rankmark[] = [
     rankmark_one,

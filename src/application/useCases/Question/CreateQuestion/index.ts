@@ -1,4 +1,3 @@
-import { QuestionFactory } from "../../../domain/factories/Question/factory-class";
 import { CreateQuestionService } from "./create-question-service";
 import { FindUserByIdRepository } from '../../../database/User/find-user-by-id';
 import { CreateQuestionController } from "./create-question-controller";
@@ -15,8 +14,6 @@ const questionToResponse = new QuestionToResponse();
 const dataToSubject = new DataToSubject();
 const dataToUser = new DataToUser();
 
-const questionFactory = new QuestionFactory();
-
 const findUserByIdRepository = new FindUserByIdRepository(dataToUser);
 
 const findSubjectByIdRepository = new FindSubjectByIdRepository(dataToSubject);
@@ -24,7 +21,6 @@ const findSubjectByIdRepository = new FindSubjectByIdRepository(dataToSubject);
 const createQuestionRepository = new CreateQuestionRepository(dataToQuestion);
 
 const createQuestionService = new CreateQuestionService(
-    questionFactory, 
     findUserByIdRepository, 
     findSubjectByIdRepository,
     createQuestionRepository

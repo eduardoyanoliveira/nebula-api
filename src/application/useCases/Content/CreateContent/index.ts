@@ -1,5 +1,4 @@
 import { CreateContentService } from "./create-content-service";
-import { ContentFactory } from "../../../domain/factories/Content/factory-class";
 import { CreateContentController } from "./create-content-controller";
 import { DataToSubject } from "../../../DTOs/Subject/data-to-subject";
 import { FindSubjectByIdRepository } from "../../../database/Subject/find-subject-by-id";
@@ -12,11 +11,8 @@ const contentToResponse = new ContentToResponse();
 const findSubjectByIdRepository = new FindSubjectByIdRepository(dataToSubject);
 const createContentRepository = new CreateContentRepository();
 
-const contentFactory = new ContentFactory();
-
 const createContentService = new CreateContentService(
     findSubjectByIdRepository, 
-    contentFactory, 
     createContentRepository
 );
 

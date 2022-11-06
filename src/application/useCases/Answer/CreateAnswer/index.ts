@@ -1,5 +1,4 @@
 import { CreateAnswerService } from "./create-answer-service";
-import { AnswerFactory } from "../../../domain/factories/Answer/factory-class";
 import { CreateAnswerController } from "./create-answer-controller";
 import { FindUserByIdRepository } from "../../../database/User/find-user-by-id";
 import { DataToUser } from "../../../DTOs/User/data-to-user";
@@ -23,13 +22,11 @@ const answerToResponse = new AnswerToResponse(questionToResponse);
 
 const createAnswerRepository = new CreateAnswerRepository(dataToAnswer);
 
-const answerFactory = new AnswerFactory();
 
 const createAnswerService = new CreateAnswerService(
     findUserByIdRepository,
     findQuestionByIdRepository,
     createAnswerRepository,
-    answerFactory
 );
 
 const createAnswerController = new CreateAnswerController(createAnswerService, answerToResponse);

@@ -1,6 +1,5 @@
 import { IFindQuestionByIdRepository } from '../../../repositories/Question/question-repositories';
 import { IFindUserByIdRepository } from '../../../repositories/User/user-repositories';
-import { IAnswerFactory } from '../../../domain/factories/Answer/factory-class';
 import { Result } from '../../../core/Result';
 import { Answer } from '../../../domain/entities/Interactions/Answer';
 import { ICreateAnswerRepository } from '../../../repositories/Answer/answer-repositories';
@@ -17,7 +16,6 @@ export class CreateAnswerService {
         private FindUserByIdRepository: IFindUserByIdRepository,
         private FindQuestionByIdRepository: IFindQuestionByIdRepository,
         private CreateAnswerRepository: ICreateAnswerRepository,
-        private AnswerFactory: IAnswerFactory
     ){};
 
     async execute( { text, user_id, question_id } : ICreateAnswerRequest) : Promise<Result<Answer>>{
@@ -34,7 +32,7 @@ export class CreateAnswerService {
             return Result.fail<Answer>(questionOrError.error);
         };
 
-        const answer = this.AnswerFactory.create(text, userOrError.getValue(), questionOrError.getValue());
+        const answer = Answer.create({ text, author: userOrError.getValue(), question: questionOrError.getValue()});
 
         // Persist on database
 
