@@ -1,6 +1,6 @@
-import { Content } from '../domain/entities/Content';
-import { Subject } from '../domain/entities/Subject';
-import { getRandomNumberMax } from '../utils/random-number/random-number-max';
+import { Content } from '../../domain/entities/Content';
+import { Subject } from '../../domain/entities/Subject';
+import { getRandomNumberMax } from '../../utils/random-number/random-number-max';
 
 
 const content_one =  { description :'content_one', url: 'http://content_one.com' };

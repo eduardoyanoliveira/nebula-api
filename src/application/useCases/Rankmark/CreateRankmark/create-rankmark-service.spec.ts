@@ -1,6 +1,6 @@
 import { Result } from "../../../core/Result";
 import { Rankmark } from "../../../domain/entities/Rankmark";
-import { generateRandomRankmark } from "../../../tests/generate-random-rankmark";
+import { generateRandomRankmark } from "../../../tests/generators/generate-random-rankmark";
 import { InMemoryCreateRankmarkRepository, InMemoryFindRankmarkByNameRepository, inMemoryRankmarks } from "../../../tests/repositories/Rankmark/in-memory-rankmark-repository";
 import { CreateRankmarkService } from "./create-rankmark-service";
 

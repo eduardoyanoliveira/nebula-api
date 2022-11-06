@@ -1,5 +1,5 @@
-import { generateRandomBestAnswer } from "../../../tests/generate-random-best-answers";
-import { generateRandomUser } from "../../../tests/generate-random-user";
+import { generateRandomBestAnswer } from "../../../tests/generators/generate-random-best-answers";
+import { generateRandomUser } from "../../../tests/generators/generate-random-user";
 import { inMemoryBestAnswers, InMemoryListBestAnswerByAuthorRepository } from "../../../tests/repositories/BestAnswer/in-memory-best-answer-repository";
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from "../../../tests/repositories/User/in-memory-user-repo";
 import { ListBestAnswersByAuthorService } from "./list-best-answers-by-author-service";

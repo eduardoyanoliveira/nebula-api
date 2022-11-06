@@ -1,6 +1,6 @@
-import { BestAnswer } from "../domain/entities/Interactions/BestAnswer";
-import { Question } from "../domain/entities/Interactions/Question";
-import { User } from "../domain/entities/User";
+import { BestAnswer } from "../../domain/entities/Interactions/BestAnswer";
+import { Question } from "../../domain/entities/Interactions/Question";
+import { User } from "../../domain/entities/User";
 import { generateRandomAnswer } from "./generate-random-answer";
 import { generateRandomQuestion } from "./generate-random-question";
 import { generateRandomSubject } from "./generate-random-subject";

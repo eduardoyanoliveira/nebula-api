@@ -1,5 +1,5 @@
-import { Rankmark } from "../domain/entities/Rankmark";
-import { getRandomNumberMax } from "../utils/random-number/random-number-max";
+import { Rankmark } from "../../domain/entities/Rankmark";
+import { getRandomNumberMax } from "../../utils/random-number/random-number-max";
 
 
 const rankmark_one = Rankmark.create({ name:'rankmark_one', color: '#fff', points: 50 });

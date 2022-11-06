@@ -1,7 +1,7 @@
-import { Answer } from '../domain/entities/Interactions/Answer';
-import { User } from '../domain/entities/User';
-import { getRandomNumberMax } from '../utils/random-number/random-number-max';
-import { Question } from '../domain/entities/Interactions/Question';
+import { Answer } from '../../domain/entities/Interactions/Answer';
+import { User } from '../../domain/entities/User';
+import { getRandomNumberMax } from '../../utils/random-number/random-number-max';
+import { Question } from '../../domain/entities/Interactions/Question';
 
 
 const answer_one =  { text: 'answer_one desc' };

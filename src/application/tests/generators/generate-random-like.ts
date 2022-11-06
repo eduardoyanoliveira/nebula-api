@@ -1,6 +1,6 @@
-import { Answer } from "../domain/entities/Interactions/Answer";
-import { Like } from "../domain/entities/Interactions/Like";
-import { User } from "../domain/entities/User";
+import { Answer } from "../../domain/entities/Interactions/Answer";
+import { Like } from "../../domain/entities/Interactions/Like";
+import { User } from "../../domain/entities/User";
 import { generateRandomAnswer } from "./generate-random-answer";
 import { generateRandomQuestion } from "./generate-random-question";
 import { generateRandomSubject } from "./generate-random-subject";

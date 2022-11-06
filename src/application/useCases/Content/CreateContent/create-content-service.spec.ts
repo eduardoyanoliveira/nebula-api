@@ -1,7 +1,7 @@
 import { InMemoryCreateContentRepository } from '../../../tests/repositories/Content/in-memory-content-repository';
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../tests/repositories/Subject/in-memory-subject-repo';
 import { CreateContentService } from './create-content-service';
-import { generateRandomSubject } from '../../../tests/generate-random-subject';
+import { generateRandomSubject } from '../../../tests/generators/generate-random-subject';
 import { Content } from '../../../domain/entities/Content';
 import { Result } from '../../../core/Result';
 

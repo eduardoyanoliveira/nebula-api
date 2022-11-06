@@ -1,6 +1,6 @@
-import { generateRandomUser } from '../../../tests/generate-random-user';
-import { generateRandomSubject } from '../../../tests/generate-random-subject';
-import { generateRandomQuestion } from '../../../tests/generate-random-question';
+import { generateRandomUser } from '../../../tests/generators/generate-random-user';
+import { generateRandomSubject } from '../../../tests/generators/generate-random-subject';
+import { generateRandomQuestion } from '../../../tests/generators/generate-random-question';
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../tests/repositories/User/in-memory-user-repo';
 import { InMemoryFindQuestionByIdRepository, inMemoryQuestions } from '../../../tests/repositories/Question/in-memory-question-repository';
 import { InMemoryCreateAnswerRepository } from '../../../tests/repositories/Answer/in-memory-answer-repository';

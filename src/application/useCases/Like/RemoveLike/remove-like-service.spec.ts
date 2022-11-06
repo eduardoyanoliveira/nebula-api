@@ -2,11 +2,11 @@ import { RemoveLikeService } from "./remove-like-service";
 import { InMemoryFindLikeByAuthorAndAnswerRepository, inMemoryLikes, InMemoryRemoveLikeRepository } from '../../../tests/repositories/Like/in-memory-like-repository';
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../tests/repositories/User/in-memory-user-repo';
 import { inMemoryAnswers, InMemoryFindAnswerByIdRepository } from '../../../tests/repositories/Answer/in-memory-answer-repository';
-import { generateRandomAnswer } from "../../../tests/generate-random-answer";
-import { generateRandomUser } from "../../../tests/generate-random-user";
-import { generateRandomQuestion } from "../../../tests/generate-random-question";
-import { generateRandomSubject } from "../../../tests/generate-random-subject";
-import { generateRandomLike } from "../../../tests/generate-random-like";
+import { generateRandomAnswer } from "../../../tests/generators/generate-random-answer";
+import { generateRandomUser } from "../../../tests/generators/generate-random-user";
+import { generateRandomQuestion } from "../../../tests/generators/generate-random-question";
+import { generateRandomSubject } from "../../../tests/generators/generate-random-subject";
+import { generateRandomLike } from "../../../tests/generators/generate-random-like";
 
 
 describe('Remove Like Service tests', () => {

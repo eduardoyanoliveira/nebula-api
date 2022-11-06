@@ -1,6 +1,6 @@
-import { User } from "../domain/entities/User";
-import { UserFactory } from "../domain/factories/User/factory-class";
-import { getRandomNumberMax } from '../utils/random-number/random-number-max';
+import { User } from "../../domain/entities/User";
+import { UserFactory } from "../../domain/factories/User/factory-class";
+import { getRandomNumberMax } from '../../utils/random-number/random-number-max';
 
 const userFactory = new UserFactory();
 

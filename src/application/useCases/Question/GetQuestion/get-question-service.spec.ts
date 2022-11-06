@@ -1,8 +1,8 @@
 import { Result } from "../../../core/Result";
 import { Question } from "../../../domain/entities/Interactions/Question";
-import { generateRandomQuestion } from "../../../tests/generate-random-question";
-import { generateRandomSubject } from "../../../tests/generate-random-subject";
-import { generateRandomUser } from "../../../tests/generate-random-user";
+import { generateRandomQuestion } from "../../../tests/generators/generate-random-question";
+import { generateRandomSubject } from "../../../tests/generators/generate-random-subject";
+import { generateRandomUser } from "../../../tests/generators/generate-random-user";
 import { InMemoryFindQuestionByIdRepository, inMemoryQuestions } from "../../../tests/repositories/Question/in-memory-question-repository";
 import { GetQuestionService } from "./get-question-service";
 

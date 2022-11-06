@@ -1,5 +1,5 @@
-import { Subject } from "../domain/entities/Subject";
-import { getRandomNumberMax } from "../utils/random-number/random-number-max";
+import { Subject } from "../../domain/entities/Subject";
+import { getRandomNumberMax } from "../../utils/random-number/random-number-max";
 
 
 const subject_one = Subject.create({ name: 'subject_one'});

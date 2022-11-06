@@ -1,7 +1,7 @@
-import { Question } from '../domain/entities/Interactions/Question';
-import { Subject } from '../domain/entities/Subject';
-import { User } from '../domain/entities/User';
-import { getRandomNumberMax } from '../utils/random-number/random-number-max';
+import { Question } from '../../domain/entities/Interactions/Question';
+import { Subject } from '../../domain/entities/Subject';
+import { User } from '../../domain/entities/User';
+import { getRandomNumberMax } from '../../utils/random-number/random-number-max';
 
 
 const question_one =  { title :'question_one', text: 'question_one desc', is_public: false };

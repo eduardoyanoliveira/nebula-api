@@ -1,10 +1,10 @@
 import { FindBestAnswerByQuestionService } from "./find-best-answer-by-question-service";
 import { InMemoryFindQuestionByIdRepository, inMemoryQuestions } from '../../../tests/repositories/Question/in-memory-question-repository';
 import { inMemoryBestAnswers, InMemoryFindBestAnswerByQuestionRepository } from "../../../tests/repositories/BestAnswer/in-memory-best-answer-repository";
-import { generateRandomQuestion } from "../../../tests/generate-random-question";
-import { generateRandomUser } from "../../../tests/generate-random-user";
-import { generateRandomSubject } from "../../../tests/generate-random-subject";
-import { generateRandomBestAnswer } from "../../../tests/generate-random-best-answers";
+import { generateRandomQuestion } from "../../../tests/generators/generate-random-question";
+import { generateRandomUser } from "../../../tests/generators/generate-random-user";
+import { generateRandomSubject } from "../../../tests/generators/generate-random-subject";
+import { generateRandomBestAnswer } from "../../../tests/generators/generate-random-best-answers";
 import { inMemoryUsers } from "../../../tests/repositories/User/in-memory-user-repo";
 
 describe('Find best answer by question tests', () => {

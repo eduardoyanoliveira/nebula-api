@@ -3,7 +3,7 @@ import { User } from "../../../domain/entities/User";
 import { UserCredentials } from "../../../domain/entities/UserCredentials";
 import { IAuthenticationService, IValidateResult } from "../../../domain/interfaces/authentication-interfaces";
 import { IPasswordCryptographer } from "../../../domain/interfaces/password-interfaces";
-import { generateRandomUser } from "../../../tests/generate-random-user";
+import { generateRandomUser } from "../../../tests/generators/generate-random-user";
 import { InMemoryFindUserByEmailRepository, inMemoryUsers } from "../../../tests/repositories/User/in-memory-user-repo";
 import { UserAuthenticationService } from "./user-authentication-service";
 

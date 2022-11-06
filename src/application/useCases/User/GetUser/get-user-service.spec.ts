@@ -1,6 +1,6 @@
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
-import { generateRandomUser } from "../../../tests/generate-random-user";
+import { generateRandomUser } from "../../../tests/generators/generate-random-user";
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from "../../../tests/repositories/User/in-memory-user-repo";
 import { GetUserService } from "./get-user-service";
 

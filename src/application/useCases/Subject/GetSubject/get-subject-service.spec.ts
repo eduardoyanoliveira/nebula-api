@@ -1,4 +1,4 @@
-import { generateRandomSubject } from "../../../tests/generate-random-subject";
+import { generateRandomSubject } from "../../../tests/generators/generate-random-subject";
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from "../../../tests/repositories/Subject/in-memory-subject-repo";
 import { GetSubjectService } from "./get-subject-service";
 

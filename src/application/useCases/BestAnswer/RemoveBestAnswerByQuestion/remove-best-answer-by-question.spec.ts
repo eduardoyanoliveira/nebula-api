@@ -1,7 +1,7 @@
-import { generateRandomBestAnswer } from "../../../tests/generate-random-best-answers";
-import { generateRandomQuestion } from "../../../tests/generate-random-question";
-import { generateRandomSubject } from "../../../tests/generate-random-subject";
-import { generateRandomUser } from "../../../tests/generate-random-user";
+import { generateRandomBestAnswer } from "../../../tests/generators/generate-random-best-answers";
+import { generateRandomQuestion } from "../../../tests/generators/generate-random-question";
+import { generateRandomSubject } from "../../../tests/generators/generate-random-subject";
+import { generateRandomUser } from "../../../tests/generators/generate-random-user";
 import { inMemoryBestAnswers, InMemoryFindBestAnswerByQuestionRepository } from "../../../tests/repositories/BestAnswer/in-memory-best-answer-repository";
 import { InMemoryFindQuestionByIdRepository, inMemoryQuestions } from "../../../tests/repositories/Question/in-memory-question-repository";
 import { inMemoryUsers } from "../../../tests/repositories/User/in-memory-user-repo";

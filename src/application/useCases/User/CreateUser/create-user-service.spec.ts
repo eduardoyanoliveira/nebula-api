@@ -1,7 +1,7 @@
 import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 import { UserFactory } from "../../../domain/factories/User/factory-class";
-import { generateRandomUser } from "../../../tests/generate-random-user";
+import { generateRandomUser } from "../../../tests/generators/generate-random-user";
 import { InMemoryCreateUserRepository, InMemoryFindUserByEmailRepository } from "../../../tests/repositories/User/in-memory-user-repo";
 import { EmailValidator } from "../../email/email-validator";
 import { PasswordValidator } from "../../password/password-validator";

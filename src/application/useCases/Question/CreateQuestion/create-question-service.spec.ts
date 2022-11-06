@@ -1,8 +1,8 @@
 import { InMemoryFindUserByIdRepository, inMemoryUsers } from '../../../tests/repositories/User/in-memory-user-repo';
 import { InMemoryFindSubjectByIdRepository, inMemorySubjects } from '../../../tests/repositories/Subject/in-memory-subject-repo';
 import { InMemoryCreateQuestionRepository } from '../../../tests/repositories/Question/in-memory-question-repository';
-import { generateRandomUser } from '../../../tests/generate-random-user';
-import { generateRandomSubject } from '../../../tests/generate-random-subject';
+import { generateRandomUser } from '../../../tests/generators/generate-random-user';
+import { generateRandomSubject } from '../../../tests/generators/generate-random-subject';
 import { CreateQuestionService } from './create-question-service';
 import { Result } from '../../../core/Result';
 import { Question } from '../../../domain/entities/Interactions/Question';
