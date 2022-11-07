@@ -10,19 +10,19 @@ const answerRoutes = Router();
 
 
 answerRoutes.post(
-    '/answers',
+    '',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => createAnswerController.handle(req, res)
 );
 
 answerRoutes.get(
-    '/answers',
+    '',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => listAnswersController.handle(req, res)
 );
 
 answerRoutes.patch(
-    '/answers/:id',
+    '/:id',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => updateAnswerController.handle(req, res)
 );

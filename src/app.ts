@@ -14,6 +14,7 @@ import { contentRoutes } from './routes/content-routes';
 import { questionRoutes } from './routes/question-routes';
 import { answerRoutes } from './routes/answer-routes';
 import { bestAnswerRoutes } from './routes/best-answer-routes';
+import { likeRouter } from './routes/like-routes';
 
 
 const app = express();
@@ -37,8 +38,9 @@ app.use(subjectRoutes);
 app.use(rankmarkRoutes);
 app.use(contentRoutes);
 app.use(questionRoutes);
-app.use(answerRoutes);
+app.use('answer', answerRoutes);
 app.use(bestAnswerRoutes);
+app.use('likes', likeRouter);
 
 // Middleware that handles request erros
 app.use(handleRequestError);

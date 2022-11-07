@@ -112,7 +112,6 @@ model Question{
   @@map("tbl_questions")
   answers Answer[]
   best_answers BestAnswer[]
-  likes Likes[]
   views Views[]
 } 
 
@@ -132,6 +131,7 @@ model Answer{
 
   @@map("tbl_answers")
   best_answers BestAnswer[]
+  likes Likes[]
 }
 
 model BestAnswer {
@@ -150,15 +150,15 @@ model BestAnswer {
 
 model Likes {
 
-  question Question @relation(fields: [question_id], references: [id])
-  question_id String
+  answer Answer @relation(fields: [answer_id], references: [id])
+  answer_id String
 
-  user User @relation(fields: [user_id], references: [id])
-  user_id String
+  author User @relation(fields: [author_id], references: [id])
+  author_id String
 
   created_at DateTime @default(now())
 
-  @@id([user_id, question_id])
+  @@id([author_id, answer_id])
   @@map("tbl_likes")
 
 }
