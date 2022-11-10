@@ -13,16 +13,27 @@ export class FindLikeByAuthorAndAnswerRepository implements IFindLikeByAuthorAnd
                 where:{
                     author_id: author.id,
                     answer_id: answer.id
+                },
+                include:{
+                    answer:{
+                      
+                    },
+                    author:{
+                    
+                    }
                 }
             });
 
+            if(!response) return Result.fail<Like>("No like found on database");
+
+            
             const { ...props } = response;
             const like : Like = Like.create(props);
 
             return Result.ok<Like>(like);
 
         } catch (error) {
-            return Result.fail<Like>(error)
+            return Result.fail<Like>(error);
         };
    
     }; 

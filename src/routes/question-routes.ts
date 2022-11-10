@@ -10,28 +10,28 @@ const questionRoutes = Router();
 // QUESTION ROUTES
 
 questionRoutes.post(
-    '/questions',
+    '',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => createQuestionController.handle(req, res)
 );
 
 
 questionRoutes.patch(
-    '/questions/:id',
+    '/:id',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => updateQuestionController.handle(req, res)
 );
 
 
 questionRoutes.get(
-    '/questions/:id',
+    '/:id',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => getQuestionController.handle(req, res)
 );
 
 
 questionRoutes.get(
-    '/questions',
+    '',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => listQuestionsController.handle(req, res)
 );

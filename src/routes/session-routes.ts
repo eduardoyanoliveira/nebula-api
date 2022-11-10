@@ -4,6 +4,6 @@ import { userAuthenticationController } from "../application/useCases/User/UserA
 
 const sessionRoutes = Router();
 
-sessionRoutes.post('/sessions', (req, res) => userAuthenticationController.handle(req, res));
+sessionRoutes.post('', (req, res) => userAuthenticationController.handle(req, res));
 
 export { sessionRoutes };

@@ -11,25 +11,25 @@ const bestAnswerRoutes = Router();
 
 
 bestAnswerRoutes.post(
-    '/best_answers',
+    '/',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => createBestAnswerController.handle(req, res)
 );
 
 bestAnswerRoutes.get(
-    '/best_answers',
+    '',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => listBestAnswerByAuthorController.handle(req, res)
 );
 
 bestAnswerRoutes.get(
-    '/best_answers/find_by_question/:id',
+    '/find_by_question/:id',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => findBestAnswerByQuestionController.handle(req, res)
 );
 
 bestAnswerRoutes.delete(
-    '/best_answers/:id',
+    '/:id',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => removeBestAnswerByQuestionController.handle(req, res)
 );

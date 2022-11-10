@@ -32,15 +32,15 @@ app.use(express.json());
 app.use('/files', express.static(path.resolve(__dirname, 'assets', 'images')));
 
 // Sets server to use the specifics routes 
-app.use(userRoutes);
-app.use(sessionRoutes);
-app.use(subjectRoutes);
-app.use(rankmarkRoutes);
-app.use(contentRoutes);
-app.use(questionRoutes);
-app.use('answer', answerRoutes);
-app.use(bestAnswerRoutes);
-app.use('likes', likeRouter);
+app.use('/users', userRoutes);
+app.use('/sessions', sessionRoutes);
+app.use('/subjects', subjectRoutes);
+app.use('/rankmarks', rankmarkRoutes);
+app.use('/contents', contentRoutes);
+app.use('/questions', questionRoutes);
+app.use('/answers', answerRoutes);
+app.use('/best_answers', bestAnswerRoutes);
+app.use('/likes', likeRouter);
 
 // Middleware that handles request erros
 app.use(handleRequestError);

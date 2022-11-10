@@ -9,19 +9,19 @@ const contentRoutes = Router();
 // CONTENT ROUTES
 
 contentRoutes.post(
-    '/contents',
+    '',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => createContentController.handle(req, res)
 );
 
 contentRoutes.patch(
-    '/contents/:id',
+    '/:id',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => updateContentController.handle(req, res)
 );
 
 contentRoutes.get(
-    '/contents',
+    '',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => listContentsController.handle(req, res)
 );

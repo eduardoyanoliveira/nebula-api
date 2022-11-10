@@ -25,15 +25,15 @@ export class CreateLikeService {
 
         if(userResponse.isFailure) return Result.fail<Like>(userResponse.error);
 
-
         const answerResponse = await this.FindAnswerByIdRepository.execute(answerId);
 
         if(answerResponse.isFailure) return Result.fail<Like>(answerResponse.error);
-        
 
         const likeAlreadyExists = await this.FindLikeByAuthorAndAnswerRepository.execute(
             userResponse.getValue(), answerResponse.getValue()
         );
+
+        console.log(likeAlreadyExists)
 
         if(likeAlreadyExists.isSuccess) 
             return Result.fail<Like>('This user already gaved a like to this answer');

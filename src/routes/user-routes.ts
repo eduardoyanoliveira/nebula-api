@@ -10,23 +10,27 @@ const userRoutes = Router();
 
 // USER ROUTES
 
-userRoutes.post('/users', upload.single('file'), (req, res) => createUserController.handle(req, res));
+userRoutes.post(
+    '', 
+    upload.single('file'), 
+    (req, res) => createUserController.handle(req, res)
+);
 
 userRoutes.get(
-    '/users/:id', 
+    '/:id', 
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => getUserController.handle(req, res)
 );
 
 userRoutes.get(
-    '/users',
+    '',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => listUsersController.handle(req, res)
 );
 
 
 userRoutes.patch(
-    '/users/:id',
+    '/:id',
     upload.single('file'),
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => updateUserController.handle(req, res)
