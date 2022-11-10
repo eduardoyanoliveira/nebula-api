@@ -4,7 +4,7 @@ import { ICountLikesByAnswerRepository } from "../../repositories/Like/like-repo
 import { prismaClient } from "../prisma/prismaClient";
 
 
-export class CountLikesByAnswerRepository implements ICountLikesByAnswerRepository{
+export class PrismaCountLikesByAnswerRepository implements ICountLikesByAnswerRepository{
 
     async execute(answer: Answer): Promise<Result<number>> {
 

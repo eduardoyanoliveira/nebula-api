@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createUserController } from "../application/useCases/User/CreateUser";
-import { getUserController } from "../application/useCases/User/GetUser";
+import { findUserByIdController } from "../application/useCases/User/FindUserById";
 import { listUsersController } from "../application/useCases/User/ListUsers";
 import { updateUserController } from "../application/useCases/User/UpdateUser";
 import { jwtAuthenticate } from "../middlewares/Authenticate";
@@ -19,7 +19,7 @@ userRoutes.post(
 userRoutes.get(
     '/:id', 
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
-    (req, res) => getUserController.handle(req, res)
+    (req, res) => findUserByIdController.handle(req, res)
 );
 
 userRoutes.get(

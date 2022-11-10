@@ -1,3 +1,9 @@
+export interface IResult<T> {
+  isSuccess: boolean;
+  isFailure: boolean
+  error: string;
+  getValue(): T;
+};
 export class Result<T> {
     public isSuccess: boolean;
     public isFailure: boolean

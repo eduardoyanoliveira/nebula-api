@@ -8,7 +8,7 @@ import { jwtAuthenticate } from "../middlewares/Authenticate";
 const likeRouter = Router();
 
 likeRouter.get(
-    '/find_by_author_and_answer', 
+    '/find_like_by_author_and_answer', 
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => findLikeByAuthorAndAnswerController.handle(req, res)
 );

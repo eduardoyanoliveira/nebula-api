@@ -2,20 +2,20 @@ import { Result } from "../../../core/Result";
 import { User } from "../../../domain/entities/User";
 import { IFindUserByIdRepository } from "../../../repositories/User/user-repositories";
 
-interface IGetUserRequest{
-    user_id: string,
+interface IFindUserByIdRequest{
+    userId: string,
 };
 
 
-export class GetUserService{
+export class FindUserByIdService{
 
     constructor(
         private FindUserByIdRepository : IFindUserByIdRepository
     ){};
 
-    async execute({ user_id } : IGetUserRequest) : Promise<Result<User>>{
+    async execute({ userId } : IFindUserByIdRequest) : Promise<Result<User>>{
 
-        const response = await this.FindUserByIdRepository.execute(user_id);
+        const response = await this.FindUserByIdRepository.execute(userId);
 
         if(response.isFailure){
             return Result.fail<User>(response.error);

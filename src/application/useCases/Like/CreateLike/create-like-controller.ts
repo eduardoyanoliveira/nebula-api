@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
+import { ILikeToReponse } from "../../../DTOs/Like/like-to-response";
 import { CreateLikeService } from './create-like-service';
 
 export class CreateLikeController {
     constructor(
-        private CreateLikeService: CreateLikeService
+        private CreateLikeService: CreateLikeService,
+        private LikeToResponse: ILikeToReponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -19,6 +21,8 @@ export class CreateLikeController {
 
         if(response.isFailure) throw new Error(response.error);
 
-        return res.json(response.getValue());
+        const like = this.LikeToResponse.transform(response.getValue());
+
+        return res.json(like);
     };
 };

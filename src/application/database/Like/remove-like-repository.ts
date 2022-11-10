@@ -4,7 +4,7 @@ import { IRemoveLikeRepository } from '../../repositories/Like/like-repositories
 import { prismaClient } from "../prisma/prismaClient";
 
 
-export class RemoveLikeRepository implements IRemoveLikeRepository {
+export class PrismaRemoveLikeRepository implements IRemoveLikeRepository {
 
     async execute(like: Like): Promise<Result<string>> {
         

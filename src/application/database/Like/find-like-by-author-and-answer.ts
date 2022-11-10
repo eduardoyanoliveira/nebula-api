@@ -21,13 +21,13 @@ export class FindLikeByAuthorAndAnswerRepository implements IFindLikeByAuthorAnd
                     author:{
                     
                     }
-                }
+                },
             });
 
             if(!response) return Result.fail<Like>("No like found on database");
 
             
-            const { ...props } = response;
+            const { answer_id, author_id, ...props } = response;
             const like : Like = Like.create(props);
 
             return Result.ok<Like>(like);

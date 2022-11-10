@@ -9,7 +9,7 @@ export interface IUpdateUserRepository {
 };
 
 export interface IFindUserByIdRepository {
-    execute(user_id: string) : Promise<Result<User>>,
+    execute(userId: string) : Promise<Result<User>>,
 };
 
 export interface IFindUserByEmailRepository {

@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
+import { ILikeToReponse } from "../../../DTOs/Like/like-to-response";
 import { FindLikeByAuthorAndAnswerService } from "./find-like-by-author-and-answer-service";
 
 
 export class FindLikeByAuthorAndAnswerController {
 
     constructor(
-        private FindLikeByAuthorAndAnswerService: FindLikeByAuthorAndAnswerService
+        private FindLikeByAuthorAndAnswerService: FindLikeByAuthorAndAnswerService,
+        private LikeToResponse: ILikeToReponse
     ){};
 
     async handle(req: Request, res: Response){
@@ -16,7 +18,9 @@ export class FindLikeByAuthorAndAnswerController {
 
         if(response.isFailure) throw new Error(response.error);
 
-        return res.json(response.getValue());
+        const like = this.LikeToResponse.transform(response.getValue());
+
+        return res.json(like);
 
     };
 };

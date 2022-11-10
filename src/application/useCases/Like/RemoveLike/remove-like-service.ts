@@ -35,7 +35,7 @@ export class RemoveLikeService {
 
         if(likeResponse.isFailure) 
             return Result.fail<string>(likeResponse.error);
-        
+
         const removeLikeReponse = await this.RemoveLikeRepository.execute(likeResponse.getValue());
 
         if(removeLikeReponse.isFailure) return Result.fail<string>(removeLikeReponse.error);

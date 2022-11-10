@@ -1,6 +1,6 @@
 import { Result } from "../../core/Result";
 import { Like } from "../../domain/entities/Interactions/Like";
-import { ICreateLikeRepository } from "../../repositories/Like/like-repositories";
+import { ICreateLikeRepository } from "../../repositories/Like/abstract-like-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
 

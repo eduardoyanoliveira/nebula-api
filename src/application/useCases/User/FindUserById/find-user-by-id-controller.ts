@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { IUserToResponse } from "../../../DTOs/User/user-to-response";
-import { GetUserService } from "./get-user-service";
+import { FindUserByIdService } from "./find-user-by-id-service";
 
-export class GetUserController {
+export class FindUserByIdController {
 
     constructor(
-        private GetUserService : GetUserService,
+        private FindUserByIdService : FindUserByIdService,
         private UserToResponse: IUserToResponse
     ){};
 
@@ -13,7 +13,7 @@ export class GetUserController {
         const id = req.params.id;
 
 
-        const userOrError = await this.GetUserService.execute({ user_id: id });
+        const userOrError = await this.FindUserByIdService.execute({ userId: id });
 
         if(userOrError.isFailure){
             throw new Error(userOrError.error);
