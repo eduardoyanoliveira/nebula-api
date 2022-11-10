@@ -1,6 +1,6 @@
 import { Result } from "../../../core/Result";
 import { Like } from "../../../domain/entities/Interactions/Like";
-import { ICreateLikeRepository, IFindLikeByAuthorAndAnswerRepository } from "../../../repositories/Like/abstract-like-repositories";
+import { ICreateLikeRepository, IFindLikeByAuthorAndAnswerRepository } from "../../../repositories/Like/like-repositories";
 import { IFindAnswerByIdRepository } from "../../../repositories/Answer/answer-repositories";
 import { IFindUserByIdRepository } from '../../../repositories/User/user-repositories';
 
