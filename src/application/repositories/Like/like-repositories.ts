@@ -8,7 +8,7 @@ export interface ICreateLikeRepository {
 };
 
 export interface IFindLikeByAuthorAndAnswerRepository {
-    execute(author: User, answer: Answer): Promise<Result<Like>>
+    execute(author: User, answer: Answer): Promise<Result<boolean>>
 };
 
 export interface IRemoveLikeRepository {

@@ -11,7 +11,7 @@ const bestAnswerRoutes = Router();
 
 
 bestAnswerRoutes.post(
-    '/',
+    '',
     (req, res, next) => jwtAuthenticate.authenticate(req, res, next),
     (req, res) => createBestAnswerController.handle(req, res)
 );

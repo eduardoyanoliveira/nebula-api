@@ -16,6 +16,6 @@ export class CountLikesByAnswerController {
 
         if(response.isFailure) throw new Error(response.error);
 
-        return res.json({ likesAmount: response.getValue()});
+        return res.json(response.getValue());
     };
 };

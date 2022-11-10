@@ -39,7 +39,7 @@ app.use('/rankmarks', rankmarkRoutes);
 app.use('/contents', contentRoutes);
 app.use('/questions', questionRoutes);
 app.use('/answers', answerRoutes);
-app.use('/best_answers', bestAnswerRoutes);
+app.use('/bestAnswers', bestAnswerRoutes);
 app.use('/likes', likeRouter);
 
 // Middleware that handles request erros

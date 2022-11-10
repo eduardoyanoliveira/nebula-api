@@ -3,7 +3,6 @@ import { FindLikeByAuthorAndAnswerService } from "./find-like-by-author-and-answ
 import { FindLikeByAuthorAndAnswerRepository } from "../../../database/Like/find-like-by-author-and-answer";
 import { findUserByIdRepository } from "../../User/FindUserById";
 import { findAnswerByIdRepository } from "../../Answer/FindAnswerById";
-import { LikeToResponse } from "../../../DTOs/Like/like-to-response";
 
 const findLikeByAuthorAndAnswerRepository = new FindLikeByAuthorAndAnswerRepository();
 
@@ -13,11 +12,8 @@ const findLikeByAuthorAndAnswerService = new FindLikeByAuthorAndAnswerService(
     findLikeByAuthorAndAnswerRepository
 );
 
-const likeToResponse = new LikeToResponse();
-
 const findLikeByAuthorAndAnswerController = new FindLikeByAuthorAndAnswerController( 
     findLikeByAuthorAndAnswerService,
-    likeToResponse 
 );
 
 export { 

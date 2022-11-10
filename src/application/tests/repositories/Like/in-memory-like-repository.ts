@@ -23,16 +23,16 @@ export class InMemoryCreateLikeRepository implements ICreateLikeRepository{
 };
 
 export class InMemoryFindLikeByAuthorAndAnswerRepository implements IFindLikeByAuthorAndAnswerRepository{
-    async execute(author: User, answer: Answer): Promise<Result<Like>> {
+    async execute(author: User, answer: Answer): Promise<Result<boolean>> {
         
         const like = inMemoryLikes.find(
             like => like.props.author.id === author.id 
             && like.props.answer.id === answer.id
         );
 
-        if(!like) return Result.fail<Like>("No like with this author to this answer was found on database");
+        if(!like) return Result.fail<boolean>("No like with this author to this answer was found on database");
 
-        return Result.ok<Like>(like);
+        return Result.ok<boolean>(true);
         
     };
 };

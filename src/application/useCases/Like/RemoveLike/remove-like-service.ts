@@ -1,4 +1,5 @@
 import { Result } from "../../../core/Result";
+import { Like } from "../../../domain/entities/Interactions/Like";
 import { IFindAnswerByIdRepository } from "../../../repositories/Answer/answer-repositories";
 import { IFindLikeByAuthorAndAnswerRepository, IRemoveLikeRepository } from "../../../repositories/Like/like-repositories";
 import { IFindUserByIdRepository } from "../../../repositories/User/user-repositories";
@@ -33,10 +34,14 @@ export class RemoveLikeService {
             userResponse.getValue(), answerResponse.getValue()
         );
 
-        if(likeResponse.isFailure) 
-            return Result.fail<string>(likeResponse.error);
+        if(likeResponse.isFailure) return Result.fail<string>(likeResponse.error);
 
-        const removeLikeReponse = await this.RemoveLikeRepository.execute(likeResponse.getValue());
+        const like = Like.create({
+            author: userResponse.getValue(),
+            answer: answerResponse.getValue()
+        });
+
+        const removeLikeReponse = await this.RemoveLikeRepository.execute(like);
 
         if(removeLikeReponse.isFailure) return Result.fail<string>(removeLikeReponse.error);
 

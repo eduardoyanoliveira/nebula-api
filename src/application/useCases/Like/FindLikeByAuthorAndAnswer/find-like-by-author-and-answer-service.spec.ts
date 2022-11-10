@@ -7,7 +7,6 @@ import { generateRandomUser } from "../../../tests/generators/generate-random-us
 import { generateRandomQuestion } from "../../../tests/generators/generate-random-question";
 import { generateRandomSubject } from "../../../tests/generators/generate-random-subject";
 import { generateRandomLike } from "../../../tests/generators/generate-random-like";
-import { Like } from "../../../domain/entities/Interactions/Like";
 
 describe('GetLikeByAuthorAndAnswerService tests', () => {
 
@@ -70,6 +69,6 @@ describe('GetLikeByAuthorAndAnswerService tests', () => {
         });
 
         expect(response.isSuccess).toBeTruthy();
-        expect(response.getValue()).toBeInstanceOf(Like);
+        expect(response.getValue()).toBeTruthy();
     });
 });

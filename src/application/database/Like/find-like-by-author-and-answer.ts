@@ -1,12 +1,11 @@
 import { Result } from "../../core/Result";
 import { Answer } from "../../domain/entities/Interactions/Answer";
-import { Like } from "../../domain/entities/Interactions/Like";
 import { User } from "../../domain/entities/User";
 import { IFindLikeByAuthorAndAnswerRepository } from "../../repositories/Like/like-repositories";
 import { prismaClient } from "../prisma/prismaClient";
 
 export class FindLikeByAuthorAndAnswerRepository implements IFindLikeByAuthorAndAnswerRepository {
-    async execute(author: User, answer: Answer): Promise<Result<Like>> {
+    async execute(author: User, answer: Answer): Promise<Result<boolean>> {
 
         try {
             const response = await prismaClient.likes.findFirst({
@@ -24,16 +23,12 @@ export class FindLikeByAuthorAndAnswerRepository implements IFindLikeByAuthorAnd
                 },
             });
 
-            if(!response) return Result.fail<Like>("No like found on database");
+            if(!response) return Result.fail<boolean>("Like not found");
 
-            
-            const { answer_id, author_id, ...props } = response;
-            const like : Like = Like.create(props);
-
-            return Result.ok<Like>(like);
+            return Result.ok<boolean>(true);
 
         } catch (error) {
-            return Result.fail<Like>(error);
+            return Result.fail<boolean>(error);
         };
    
     }; 

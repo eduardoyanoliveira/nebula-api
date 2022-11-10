@@ -7,7 +7,8 @@ export class RemoveLikeController {
     ){};
 
     async handle(req: Request, res: Response){
-        const { answerId, userId } = req.body;
+        const answerId  = req.params.id;
+        const userId = req.user_id;
 
         const response = await this.RemoveLikeService.execute({
             answerId,
