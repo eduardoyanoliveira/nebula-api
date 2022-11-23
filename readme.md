@@ -36,7 +36,9 @@
 ```
   npm|yarn dev
 ```
-6º In order to run the web application keep following the tutorial on the nebula-web-application repository
+6º In order to run the web application keep following the tutorial on this repository
+
+[frontend] (https://github.com/eduardoyanoliveira/nebula-web-application)
 
 ## Main Technologies
 
